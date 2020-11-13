@@ -74,9 +74,8 @@ Firmware/TestProject1/Debug/*
 *.hex
 
 #Added for Schematic & PCB (Altium / CircuitStudio
-1_RECEIVER_BOARD/History/*
-1_RECEIVER_BOARD/Logs/*
-2_DUMB_BOARD/History/*
-2_DUMB_BOARD/Logs/*
-3_SMART_BOARD/History/*
-3_SMART_BOARD/Logs/*
+History/*
+Hardware/History/*
+Hardware/SCH/__Previews/*
+*.SchDocPreview
+
