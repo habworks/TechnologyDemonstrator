@@ -76,6 +76,7 @@ Firmware/TestProject1/Debug/*
 #Added for Schematic & PCB (Altium / CircuitStudio
 History/*
 Hardware/History/*
-Hardware/SCH/__Previews/*
 *.SchDocPreview
+Hardware/SCH/__Previews/*.*
+
 
