@@ -52,7 +52,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=WTIKOPUA
+DocumentUniqueId=BNTPCDCM
 
 [Document2]
 DocumentPath=Libs\IMR_Lib.SchLib
@@ -242,23 +242,6 @@ GenerateClassCluster=0
 DocumentUniqueId=VTDWUBQC
 
 [Document13]
-DocumentPath=Libs\PMGlibPCB.PcbLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=THUNWMLK
-
-[Document14]
 DocumentPath=Libs\PMGlibSCH.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -275,7 +258,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=YSFEXSOF
 
-[Document15]
+[Document14]
 DocumentPath=PCB\PCB_TechDemo.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -291,6 +274,23 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=XBRXMJVO
+
+[Document15]
+DocumentPath=Libs\TechDemo.SCHLIB
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=OTHRTYQO
 
 [Parameter1]
 Name=ProjectDate
