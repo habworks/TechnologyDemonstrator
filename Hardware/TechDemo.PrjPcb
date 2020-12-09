@@ -273,7 +273,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=XBRXMJVO
+DocumentUniqueId=PTEVYEWA
 
 [Document15]
 DocumentPath=Libs\TechDemo.SCHLIB
@@ -291,6 +291,10 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=OTHRTYQO
+
+[GeneratedDocument1]
+DocumentPath=Project Outputs for TechDemo\Design Rule Check - PCB_TechDemo.html
+DItemRevisionGUID=
 
 [Parameter1]
 Name=ProjectDate
