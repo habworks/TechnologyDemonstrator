@@ -1,0 +1,135 @@
+Protel Design System Design Rule Check
+PCB File : C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc
+Date     : 12/12/2020
+Time     : 7:07:37 PM
+
+WARNING: 7 Net Ties failed verification
+   SMT Small Component C59-TRJC226K016RRJ (141.75mm,44.75mm) on Top Layer, SMT Small Component C59-TRJC226K016RRJ (141.75mm,44.75mm) on Top Layer, has isolated copper
+   SMT Small Component C49-TAJA226M010RNJ (129mm,76.25mm) on Bottom Layer, SMT Small Component C49-TAJA226M010RNJ (129mm,76.25mm) on Bottom Layer, has isolated copper
+   SMT Small Component C71-UZS1C220MCL1GB (104.25mm,4.175mm) on Bottom Layer, SMT Small Component C71-UZS1C220MCL1GB (104.25mm,4.175mm) on Bottom Layer, has isolated copper
+   SMT Small Component C68-UZS1C220MCL1GB (77.5mm,18.75mm) on Bottom Layer, SMT Small Component C68-UZS1C220MCL1GB (77.5mm,18.75mm) on Bottom Layer, has isolated copper
+   SMT Small Component C66-UCL1C470MCL6GS (140.75mm,6.875mm) on Bottom Layer, SMT Small Component C66-UCL1C470MCL6GS (140.75mm,6.875mm) on Bottom Layer, has isolated copper
+   SMT Small Component C50-UZS1C220MCL1GB (100.365mm,5.95mm) on Top Layer, SMT Small Component C50-UZS1C220MCL1GB (100.365mm,5.95mm) on Top Layer, has isolated copper
+   SMT Small Component C45-UZS1C220MCL1GB (140.25mm,85.25mm) on Top Layer, SMT Small Component C45-UZS1C220MCL1GB (140.25mm,85.25mm) on Top Layer, has isolated copper
+
+Processing Rule : Clearance Constraint (Gap=0.203mm) (HasFootprint('MICRO_USB_AB_MOLEX_0475900001')),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.254mm) (HasFootprint('XDCR_LIS3DHTR')),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.203mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.203mm) (Max=0.203mm) (Preferred=0.203mm) ((InNet('3V3') AND InComponent('U2')))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.145mm) (Max=0.508mm) (Preferred=0.254mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=50.00ohms) (Max=50.00ohms) (Preferred=50.00ohms) ((InNetClass('FMC_A[0..11]') OR InNetClass('FMC_D[0..15]') OR InNetClass('FMC_CTL')))
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0.025mm) (Max=3.048mm) (All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.038mm) (HasFootprint('XDCR_LIS3DHTR')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.038mm) (HasFootprint('SOT-363_6-TSSOP_SC-88')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.025mm) (HasFootprint('HRS_DM3BT-DSF-PEJS')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.076mm) (HasFootprint('TC2030-MCP-NL-')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.038mm) (HasFootprint('MICRO_USB_AB_MOLEX_0475900001')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.114mm) (HasFootprint('10VSON')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.051mm) (HasFootprint('PMG_NX3DV221TKX')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.013mm) (HasFootprint('QFP50P2600X2600X160-176N')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.013mm) (HasFootprint('86TSOPII')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.013mm) (HasFootprint('CONN_MOLEX_0512964033')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.038mm) (HasFootprint('SC70-5_SOT-353_5-TSSOP')),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.076mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.051mm) (HasFootprint('14VSON')),(All)
+Rule Violations :0
+
+Processing Rule : Silk to Silk (Clearance=0.127mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Length Constraint (Min=40mm) (Max=70mm) ((InNetClass('FMC_A[0..11]') OR InNetClass('FMC_D[0..15]') OR InNetClass('FMC_CTL')))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=38mm) (InNet('SDMMC1_CLK'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=38mm) (InNet('SDMMC1_CMD'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=28mm) (InNetClass('FMC_A[0..11]'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=28mm) (InNetClass('FMC_D[0..15]'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=28mm) (InNetClass('FMC_CTL'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=38mm) (InNet('QUADSPI_BK1_CLK'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=38mm) (InNetClass('QUADSPI_BK1_IO[0..3]'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=38mm) (InNetClass('SDMMC1_D[0..3]'))
+Rule Violations :0
+
+Processing Rule : Matched Lengths(Tolerance=38mm) (InNet('QUADSPI_BK1_NCS'))
+Rule Violations :0
+
+Processing Rule : Component Clearance Constraint ( Horizontal Gap = 0.254mm, Vertical Gap = 0.254mm ) (All),(All) 
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+
+Violations Detected : 0
+Waived Violations : 0
+Time Elapsed        : 00:00:02

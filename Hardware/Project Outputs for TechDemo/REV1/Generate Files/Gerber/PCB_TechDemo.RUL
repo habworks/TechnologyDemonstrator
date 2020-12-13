@@ -1,0 +1,9 @@
+DRC Rules Export File for PCB: C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc
+RuleKind=Clearance|RuleName=CC_J6|Scope=Board|Minimum=8.00
+RuleKind=Clearance|RuleName=CC_U7|Scope=Board|Minimum=10.00
+RuleKind=Width|RuleName=Width_SDRAM|Scope=Board|Minimum=5.70
+RuleKind=Width|RuleName=SDRAM_3V3_WIDTH|Scope=Board|Minimum=7.99
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=5.71
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=8.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0

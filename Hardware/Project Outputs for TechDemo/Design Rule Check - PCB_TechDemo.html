@@ -1,0 +1,457 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD19\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">12/12/2020</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">7:07:37 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc" class="file"><acronym title="C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc">C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">7</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+</table>
+</td>
+</table><a name="IDJ5G11MBDNPUBE4QEYD2EJHRQFC1LLZKJZ0YA4MKIAIBQHRQZQIPK"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDB0M2SPH0XX1SFCF1AA21PXPOFHY0WCIU4FIDBCF3Z12FJVWCIS5B">7 Net Ties failed verification</a></td>
+<td class="column2">7</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">7</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZMLWRDOUUVB0B2V4CQXZ55B40E42LTKYDONUQKGJS1OT40QZFKGI">Clearance Constraint (Gap=0.203mm) (HasFootprint('MICRO_USB_AB_MOLEX_0475900001')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCIG0BWJCTZ5QD15KJSGEB45DIL2IFWT3AZHPY3EMT1FFVTU1NRQM">Clearance Constraint (Gap=0.254mm) (HasFootprint('XDCR_LIS3DHTR')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWO304AOH1AP5LDHEYBO2LJ2WEN3WBEWMBHUU3ELDOO4N22QJ4YB">Clearance Constraint (Gap=0.203mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDM0DRGIY5DIO5ICYKA5Z0NB0R4B5CGLPIBNQG3FHKQJWLS2DFE0QM">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOBMXFPZ2UDE1KFYA0TFQMVZEUKLY5F2WMHKDG5GZOPHKN1IGXXCI">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOBHN2QEIMZR2JQPQXGJSSF3JRDXYLKISESBPXYHJPGQEGVRRB1LO">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDD0NIKKP2PJU0IJQISBH4JN4LHEANRPGXLXUR2LIKEWG43PJQMQGM">Width Constraint (Min=0.203mm) (Max=0.203mm) (Preferred=0.203mm) ((InNet('3V3') AND InComponent('U2')))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLX501YLRFS45KYWW3KV103FTV4WGEZYJ2RROUFOTHANRRIZTTKK">Width Constraint (Min=0.145mm) (Max=0.508mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHOR4GIYFB0WJJUDPK4DEDUM1GHHIZR3SJ0J2XNKWVVKC0TWGUJ5C">Width Constraint (Min=50.00ohms) (Max=50.00ohms) (Preferred=50.00ohms) ((InNetClass('FMC_A[0..11]') OR InNetClass('FMC_D[0..15]') OR InNetClass('FMC_CTL')))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBDSPHYLRY1OVJPXJQVK2USAOCHTQVXOQJSGXK1C3SA2PAU2BNPFJ">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2QXDGHQLINJ0EGQBGB1CDEOQ4JYEAEWA4LCYZZCAD2OM10QPZFYF">Hole Size Constraint (Min=0.025mm) (Max=3.048mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIKI35GLBR0SPMJPOVSAXCZ2YSJEBE0WHDLP4LFDRJHQFEUEIYUEI">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDO4LIVKIDBALSKLDOAJYFEVG3BC5ZPXF4CCH1QIG0A4HUFYP1H5ND">Minimum Solder Mask Sliver (Gap=0.038mm) (HasFootprint('XDCR_LIS3DHTR')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDXNVI3UEVPOPLV3KGCQQFTEXEGSY0DIFJ0OCCZJK21UP1FB0HNLM">Minimum Solder Mask Sliver (Gap=0.038mm) (HasFootprint('SOT-363_6-TSSOP_SC-88')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID34WX2WU1HUJTFXMRWIUDTW5KWOFNTTX12TAZZCENYAKDN4X04GHE">Minimum Solder Mask Sliver (Gap=0.025mm) (HasFootprint('HRS_DM3BT-DSF-PEJS')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRSNW155CY4YSPGKPCKSNU5TSK3XI0GQRZFR0AFYA4O3GYAHFETB">Minimum Solder Mask Sliver (Gap=0.076mm) (HasFootprint('TC2030-MCP-NL-')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGNOSAASBCW5SKTHUDQLZHYSZCHIP4SK2MFY405ID2GJ3NOXDYE4K">Minimum Solder Mask Sliver (Gap=0.038mm) (HasFootprint('MICRO_USB_AB_MOLEX_0475900001')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRFJAIG3AWNOWDJBNRMSDPW4LPKINFSGD5WIXLGN5WENOH3AIYM2D">Minimum Solder Mask Sliver (Gap=0.114mm) (HasFootprint('10VSON')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWSPGEDOFGEXLJOELJWEUEGU3UIFJ4EL11IXGM3IBTH4JDPHIMU2I">Minimum Solder Mask Sliver (Gap=0.051mm) (HasFootprint('PMG_NX3DV221TKX')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDHNCK213R2VOHHWTFOVIDAOK1POWPLIT1VH0VCLMEHJBODQBXKDF">Minimum Solder Mask Sliver (Gap=0.013mm) (HasFootprint('QFP50P2600X2600X160-176N')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDG0GNMLZXFNMLBNUI1VAA1OB4JIAT05HV3BYCSRDWHY52J2UE5SQD">Minimum Solder Mask Sliver (Gap=0.013mm) (HasFootprint('86TSOPII')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID01GKLBO23FMQODUAWM4HTIH2LCE3HTSE3EEUQ0OLLY4OSDUBNRAN">Minimum Solder Mask Sliver (Gap=0.013mm) (HasFootprint('CONN_MOLEX_0512964033')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKCCY24VNZM54DR13QYSLANZTXCX4H02MRFV3MUMFKA5NHGIF1QHE">Minimum Solder Mask Sliver (Gap=0.038mm) (HasFootprint('SC70-5_SOT-353_5-TSSOP')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOHWBHF4XCZQZPKRWQMXZU2V3VFIENMLSBASXVWESG1XXMTSNCSJP">Minimum Solder Mask Sliver (Gap=0.076mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDP3K5J52E1HQANXGNRIIHOISHFF4RHGXUCVFV2LKYJVCOGLOGKGKO">Minimum Solder Mask Sliver (Gap=0.051mm) (HasFootprint('14VSON')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQWFH3RKOSEAXO0IGUZFGHHBHRHDNWLIXX55XDWIVIUCA23P2VFVH">Silk to Silk (Clearance=0.127mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTPMHIJXNAVJGDH3NNN0VLJXULF1RB4FJM1RDDFOB0SVWQ0J1P4MM">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYJ0O3FYZ2ULPEELOVUO54PND1MQS50EZENTEKYMT1NOMIFP2Z5FL">Length Constraint (Min=40mm) (Max=70mm) ((InNetClass('FMC_A[0..11]') OR InNetClass('FMC_D[0..15]') OR InNetClass('FMC_CTL')))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSZDJV0331EH3GC3L2WZOCIUZOGUW2BNXYTM5HADYK2IXVO1POZSL">Matched Lengths(Tolerance=38mm) (InNet('SDMMC1_CLK'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOSMKK030GN4SICTYF35YWQTSEKK4FBYSDIANLEDS30EWBHX3QI5L">Matched Lengths(Tolerance=38mm) (InNet('SDMMC1_CMD'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDA1H2L3VFSOMHMYQQ5JW0ZELHTB2S31FB4DJWMFBBJ1LSFDRBKIRI">Matched Lengths(Tolerance=28mm) (InNetClass('FMC_A[0..11]'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYUBE4YC10WGFJKUDRY3CVQYAMONXLQ3CKEXCHFM3UOFESKUWVHNE">Matched Lengths(Tolerance=28mm) (InNetClass('FMC_D[0..15]'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0YSBEL40LEM3N2NGI4RWBKT4QKQBLA2NHQQ2CTD41F1XXUN45ZOC">Matched Lengths(Tolerance=28mm) (InNetClass('FMC_CTL'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDF0GRWEY3IZMDESN5CAIBNZTKMCJ0S5JYSMNK1OIT20GYJDVYJRVP">Matched Lengths(Tolerance=38mm) (InNet('QUADSPI_BK1_CLK'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4KVS2ZXZSZEOOMMDI2SAZOKLUPUPUCIZ5UKOOOBTLASKSNDVH3EF">Matched Lengths(Tolerance=38mm) (InNetClass('QUADSPI_BK1_IO[0..3]'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVNQQ4TFIH2GCMHOKMIPUQ1QJWMZPWUGXXRMFJVV0EQSGHIZWUP">Matched Lengths(Tolerance=38mm) (InNetClass('SDMMC1_D[0..3]'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSSEBA1DFUBFMJEZ3XRAYYY0LCDXCABA4UV1WGLFOBESYSJLPW13C">Matched Lengths(Tolerance=38mm) (InNet('QUADSPI_BK1_NCS'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVFU3KUFL1QURHLYPDAFSEW3JUZSYPCF41HGHUCSKAGC40RJXDK">Component Clearance Constraint ( Horizontal Gap = 0.254mm, Vertical Gap = 0.254mm ) (All),(All) </a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4VW0CKLJ40JNC2SN1G1B1ITK5I4E5SIYQW5DRVGHHFDL5WAJIGGC">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><a name="IDBV2AKM0B0QYZKLDO4WIP131CFLLLTXBKZKJJFBUCODK1FOPMBTF"><h2>Warnings</h2></a><a name="IDB0M2SPH0XX1SFCF1AA21PXPOFHY0WCIU4FIDBCF3Z12FJVWCIS5B"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">7 Net Ties failed verification</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6516.654mil|Location2.X=6824.669mil|Location1.Y=2620mil|Location2.Y=2832.762mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6516.654mil|Location2.X=6824.669mil|Location1.Y=2620mil|Location2.Y=2832.762mil|Absolute=True">SMT Small Component C59-TRJC226K016RRJ (141.75mm,44.75mm) on Top Layer</acronym></a>, SMT Small Component C59-TRJC226K016RRJ (141.75mm,44.75mm) on Top Layer, has isolated copper</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5981.102mil|Location2.X=6186.102mil|Location1.Y=3959.646mil|Location2.Y=4103.292mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5981.102mil|Location2.X=6186.102mil|Location1.Y=3959.646mil|Location2.Y=4103.292mil|Absolute=True">SMT Small Component C49-TAJA226M010RNJ (129mm,76.25mm) on Bottom Layer</acronym></a>, SMT Small Component C49-TAJA226M010RNJ (129mm,76.25mm) on Bottom Layer, has isolated copper</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4925.134mil|Location2.X=5384.16mil|Location1.Y=1021.575mil|Location2.Y=1307.165mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4925.134mil|Location2.X=5384.16mil|Location1.Y=1021.575mil|Location2.Y=1307.165mil|Absolute=True">SMT Small Component C71-UZS1C220MCL1GB (104.25mm,4.175mm) on Bottom Layer</acronym></a>, SMT Small Component C71-UZS1C220MCL1GB (104.25mm,4.175mm) on Bottom Layer, has isolated copper</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3908.386mil|Location2.X=4255.44mil|Location1.Y=1558.992mil|Location2.Y=1917.386mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3908.386mil|Location2.X=4255.44mil|Location1.Y=1558.992mil|Location2.Y=1917.386mil|Absolute=True">SMT Small Component C68-UZS1C220MCL1GB (77.5mm,18.75mm) on Bottom Layer</acronym></a>, SMT Small Component C68-UZS1C220MCL1GB (77.5mm,18.75mm) on Bottom Layer, has isolated copper</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6398.543mil|Location2.X=6744.608mil|Location1.Y=1091.472mil|Location2.Y=1449.866mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6398.543mil|Location2.X=6744.608mil|Location1.Y=1091.472mil|Location2.Y=1449.866mil|Absolute=True">SMT Small Component C66-UCL1C470MCL6GS (140.75mm,6.875mm) on Bottom Layer</acronym></a>, SMT Small Component C66-UCL1C470MCL6GS (140.75mm,6.875mm) on Bottom Layer, has isolated copper</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4744.229mil|Location2.X=5094.173mil|Location1.Y=1055.056mil|Location2.Y=1413.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4744.229mil|Location2.X=5094.173mil|Location1.Y=1055.056mil|Location2.Y=1413.449mil|Absolute=True">SMT Small Component C50-UZS1C220MCL1GB (100.365mm,5.95mm) on Top Layer</acronym></a>, SMT Small Component C50-UZS1C220MCL1GB (100.365mm,5.95mm) on Top Layer, has isolated copper</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6342.457mil|Location2.X=6700.85mil|Location1.Y=4213.504mil|Location2.Y=4569.984mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6342.457mil|Location2.X=6700.85mil|Location1.Y=4213.504mil|Location2.Y=4569.984mil|Absolute=True">SMT Small Component C45-UZS1C220MCL1GB (140.25mm,85.25mm) on Top Layer</acronym></a>, SMT Small Component C45-UZS1C220MCL1GB (140.25mm,85.25mm) on Top Layer, has isolated copper</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
