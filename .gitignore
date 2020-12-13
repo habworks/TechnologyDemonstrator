@@ -80,5 +80,6 @@ Hardware/Libs/History/*
 Hardware/Project Logs for TechDemo/*
 *.SchDocPreview
 Hardware/SCH/__Previews/*.*
+Hardware/PCB/*.html
 
 

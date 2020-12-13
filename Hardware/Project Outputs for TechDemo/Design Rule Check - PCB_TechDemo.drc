@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc
-Date     : 12/12/2020
-Time     : 7:07:37 PM
+Date     : 12/13/2020
+Time     : 7:59:57 AM
 
 WARNING: 7 Net Ties failed verification
    SMT Small Component C59-TRJC226K016RRJ (141.75mm,44.75mm) on Top Layer, SMT Small Component C59-TRJC226K016RRJ (141.75mm,44.75mm) on Top Layer, has isolated copper
