@@ -1,13 +1,10 @@
-Output: NC Drill Files
-Type  : NC Drill
-From  : PCB Document [PCB_TechDemo.PcbDoc]
-   Generated File[PCB_TechDemo-RoundHoles.TXT]
-   Generated File[PCB_TechDemo-SlotHoles.TXT]
-   Generated File[PCB_TechDemo.LDP]
-   Generated File[PCB_TechDemo.DRR]
+Output: Export STEP
+Type  : ExportSTEP
+From  : Variant [[No Variations]] of PCB Document [PCB_TechDemo.PcbDoc]
+   Generated File[PCB_TechDemo.step]
 
 
-Files Generated   : 4
+Files Generated   : 1
 Documents Printed : 0
 
-Finished Output Generation At 10:42:56 AM On 12/13/2020
+Finished Output Generation At 10:00:09 PM On 12/18/2020

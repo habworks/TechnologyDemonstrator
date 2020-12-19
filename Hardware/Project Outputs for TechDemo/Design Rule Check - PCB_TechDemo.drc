@@ -1,16 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc
-Date     : 12/17/2020
-Time     : 1:03:42 PM
-
-WARNING: 7 Net Ties failed verification
-   SMT Small Component C59-TRJC226K016RRJ (5580.709mil,1761.811mil) on Top Layer, SMT Small Component C59-TRJC226K016RRJ (5580.709mil,1761.811mil) on Top Layer, has isolated copper
-   SMT Small Component C49-TAJA226M010RNJ (5078.74mil,3001.968mil) on Bottom Layer, SMT Small Component C49-TAJA226M010RNJ (5078.74mil,3001.968mil) on Bottom Layer, has isolated copper
-   SMT Small Component C71-UZS1C220MCL1GB (4104.331mil,164.37mil) on Bottom Layer, SMT Small Component C71-UZS1C220MCL1GB (4104.331mil,164.37mil) on Bottom Layer, has isolated copper
-   SMT Small Component C68-UZS1C220MCL1GB (3051.181mil,738.189mil) on Bottom Layer, SMT Small Component C68-UZS1C220MCL1GB (3051.181mil,738.189mil) on Bottom Layer, has isolated copper
-   SMT Small Component C66-UCL1C470MCL6GS (5541.338mil,270.669mil) on Bottom Layer, SMT Small Component C66-UCL1C470MCL6GS (5541.338mil,270.669mil) on Bottom Layer, has isolated copper
-   SMT Small Component C50-UZS1C220MCL1GB (3951.378mil,234.252mil) on Top Layer, SMT Small Component C50-UZS1C220MCL1GB (3951.378mil,234.252mil) on Top Layer, has isolated copper
-   SMT Small Component C45-UZS1C220MCL1GB (5521.654mil,3356.299mil) on Top Layer, SMT Small Component C45-UZS1C220MCL1GB (5521.654mil,3356.299mil) on Top Layer, has isolated copper
+Date     : 12/18/2020
+Time     : 10:51:19 PM
 
 Processing Rule : Clearance Constraint (Gap=8mil) (HasFootprint('MICRO_USB_AB_MOLEX_0475900001')),(All)
 Rule Violations :0
@@ -132,4 +123,4 @@ Rule Violations :0
 
 Violations Detected : 0
 Waived Violations : 0
-Time Elapsed        : 00:00:11
+Time Elapsed        : 00:00:03
