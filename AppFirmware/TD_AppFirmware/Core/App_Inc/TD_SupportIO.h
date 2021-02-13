@@ -1,0 +1,44 @@
+/*
+ * SupportIO.h
+ *
+ *  Created on: Feb 9, 2021
+ *      Author: IMR HabPC
+ */
+
+#ifndef APP_INC_TD_SUPPORTIO_H_
+#define APP_INC_TD_SUPPORTIO_H_
+#ifdef __cplusplus
+extern"C" {
+#endif
+
+#include "MainSupport.h"
+
+extern TIM_HandleTypeDef htim2;
+
+
+// BACKLIGH_DISPLAY DEFINED AS OUTPUT OR PWM
+#ifdef BACKLIGHT_AS_OUTPUT
+#define BACKLIGHT_ON()				HAL_GPIO_WritePin(PWM_DISPLAY_GPIO_Port, PWM_DISPLAY_Pin, GPIO_PIN_SET)
+#define BACKLIGHT_OFF()				HAL_GPIO_WritePin(PWM_DISPLAY_GPIO_Port, PWM_DISPLAY_Pin, GPIO_PIN_RESET)
+#define BACKLIGHT_TOGGLE()			HAL_GPIO_TogglePin(PWM_DISPLAY_GPIO_Port, PWM_DISPLAY_Pin)
+#define BACKLIGHT_STATUS()			HAL_GPIO_ReadPin(PWM_DISPLAY_GPIO_Port, PWM_DISPLAY_Pin)
+#else
+#define BACKLIGHT_ON()				HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1)
+#define BACKLIGHT_OFF()				HAL_TIM_PWM_Stop(&htim2, TIM_CHANNEL_1)
+#endif
+
+// STATUS LED
+#define STATUS_LED_ON()				HAL_GPIO_WritePin(STATUS_LED_GPIO_Port, STATUS_LED_Pin, GPIO_PIN_SET)
+#define STATUS_LED_OFF()			HAL_GPIO_WritePin(STATUS_LED_GPIO_Port, STATUS_LED_Pin, GPIO_PIN_RESET)
+#define STATUS_LED_TOGGLE() 		HAL_GPIO_TogglePin(STATUS_LED_GPIO_Port, STATUS_LED_Pin)
+
+// DISPLAY ENABLE
+#define DISPLAY_ON()				HAL_GPIO_WritePin(DISPLAY_EN_GPIO_Port, DISPLAY_EN_Pin, GPIO_PIN_SET)
+#define DISPLAY_OFF()				HAL_GPIO_WritePin(DISPLAY_EN_GPIO_Port, DISPLAY_EN_Pin, GPIO_PIN_RESET)
+#define DISPLAY_EN_TOGGLE() 		HAL_GPIO_TogglePin(DISPLAY_EN_GPIO_Port, DISPLAY_EN_Pin)
+#define DISPLAY_EN_STATUS()			HAL_GPIO_ReadPin(DISPLAY_EN_GPIO_Port, DISPLAY_EN_Pin)
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* APP_INC_TD_SUPPORTIO_H_ */

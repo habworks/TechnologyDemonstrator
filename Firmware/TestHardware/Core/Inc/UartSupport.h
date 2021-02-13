@@ -11,7 +11,7 @@
 #include "MainSupport.h"
 
 // DEFINES
-#define USE_USB_VCP_AS_DEBUG_PORT
+//#define USE_USB_VCP_AS_DEBUG_PORT
 
 // FUNCTION PROTOTYPE
 void Uart3_CommandHandler(void);
