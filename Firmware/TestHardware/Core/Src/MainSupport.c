@@ -490,6 +490,53 @@ void main_WhileLoop(void)
 				sprintf((char *)DebugUarOutputtMsg, "Virtual Com port not ready or not connected\r\n");
 			}
 			SendDebugUartMsg(DebugUarOutputtMsg);
+			break;
+		}
+
+		case 'f':
+		case 'F':
+		{
+			static bool_t DisplayEnable = FALSE;
+
+			if (DisplayEnable)
+			{
+				DISPLAY_OFF();
+				BACKLIGHT_OFF();
+				DisplayEnable = FALSE;
+				sprintf((char *)DebugUarOutputtMsg, "LCD Display OFF\r\n");
+			}
+			else
+			{
+				DISPLAY_ON();
+				BACKLIGHT_ON();
+				DisplayEnable = TRUE;
+				sprintf((char *)DebugUarOutputtMsg, "LCD Display ON\r\n");
+			}
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			break;
+		}
+
+		case 'g':
+		case 'G':
+		{
+			static uint32_t PixelColor = 0x55221155;
+			static uint8_t DelayDisplay = 10;
+			uint32_t Index = 0;
+			uint32_t WIDTH = 480;
+
+			for (uint16_t LineY = 0; LineY < 272; LineY++)
+			{
+				for (uint16_t LineX = 0; LineX < 480; LineX++)
+				{
+					*(__IO uint32_t*) (SDRAM_BANK_ADDR + (((LineY * WIDTH) + LineX)*sizeof(uint32_t))) = PixelColor;
+					Index++;
+				}
+				delayMiliSecond(DelayDisplay);
+			}
+
+			sprintf((char *)DebugUarOutputtMsg, "Background Color Set");
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			break;
 		}
 
 		default:
@@ -539,6 +586,10 @@ void printHelpMenu(void)
 	sprintf((char *)DebugUarOutputtMsg, "  D: SDRAM Test 1M of data\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
 	sprintf((char *)DebugUarOutputtMsg, "  E: Write test to USB Virtual Com Port\r\n");
+	SendDebugUartMsg(DebugUarOutputtMsg);
+	sprintf((char *)DebugUarOutputtMsg, "  F: Toggle LCD\r\n");
+	SendDebugUartMsg(DebugUarOutputtMsg);
+	sprintf((char *)DebugUarOutputtMsg, "  G: Change LCD Background color\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
 }
 
