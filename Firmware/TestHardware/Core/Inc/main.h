@@ -89,6 +89,8 @@ void Error_Handler(void);
 #define HEX_4_GPIO_Port GPIOD
 #define HEX_1_Pin GPIO_PIN_7
 #define HEX_1_GPIO_Port GPIOD
+#define ACEL_NEN_Pin GPIO_PIN_9
+#define ACEL_NEN_GPIO_Port GPIOG
 #define PWR_5V_EN_Pin GPIO_PIN_13
 #define PWR_5V_EN_GPIO_Port GPIOG
 #define PWR_5V_GOOD_Pin GPIO_PIN_14

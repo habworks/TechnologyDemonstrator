@@ -11,10 +11,13 @@
 #include "MainSupport.h"
 
 #define ADC_DEFINED_FOR_USE
+#define DAC_FULL_SCALE			((uint16_t)0x1000)
+#define DAC_REF_VOLTAGE			((float)3.300)
 
 
 // PROTOTYPE FUNCTIONS
 uint16_t ADC_FullScale(void);
+bool_t DAC_SetVoltage(float OutputVoltage);
 
 
 
