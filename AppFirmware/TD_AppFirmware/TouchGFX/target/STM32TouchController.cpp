@@ -19,8 +19,15 @@
 
 #include <STM32TouchController.hpp>
 
+// HAB ADD THESE 3
+#include <stm32746g_discovery_ts.h>
+static TS_DrvTypeDef* tsDriver;
+extern I2C_HandleTypeDef hi2c3; // THIS IS I2C CONNECTED TO TOUCH GFX
+
 void STM32TouchController::init()
 {
+	// HAB ADD
+	BSP_TS_Init(480, 272); // HAB TODO FIX MAGIC NUMBERS
     /**
      * Initialize touch controller and driver
      *
@@ -39,6 +46,16 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
      * By default sampleTouch is called every tick, this can be adjusted by HAL::setTouchSampleRate(int8_t);
      *
      */
+	// HAB ADD - BELOW - RETURN FALSE WAS ALREADY THERE
+	if (tsDriver)
+	    {
+	        if (tsDriver->DetectTouch(TS_I2C_ADDRESS))
+	        {
+	            /* Get each touch coordinates */
+	            tsDriver->GetXY(TS_I2C_ADDRESS, (uint16_t*)&y, (uint16_t*)&x);
+	            return true;
+	        }
+	    }
     return false;
 }
 

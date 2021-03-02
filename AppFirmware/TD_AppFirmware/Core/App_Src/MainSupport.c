@@ -27,11 +27,6 @@ void main_Init(void)
 		Error_Handler();
 	BACKLIGHT_ON();
 
-	// QUAD SPI INIT
-//	BSP_QSPI_Init();
-//	BSP_QSPI_MemoryMappedMode();
-//	HAL_NVIC_DisableIRQ(QUADSPI_IRQn);
-
 } //END OF FUNCTION main_Init
 
 
@@ -42,7 +37,7 @@ void main_WhileLoop(void)
 	static uint32_t StatusLED_Counter = 0;
 
 	StatusLED_Counter++;
-	if (StatusLED_Counter > 250)
+	if (StatusLED_Counter > 150)
 	{
 		STATUS_LED_TOGGLE();
 		StatusLED_Counter = 0;

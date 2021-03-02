@@ -85,6 +85,20 @@
 #define QSPI_RELEASE_RESET()       __HAL_RCC_QSPI_RELEASE_RESET()
 
 /* Definition for QSPI Pins */
+ // HAB EDIT FOR TECH DEMO PROJECT
+#define QSPI_CS_PIN                GPIO_PIN_6
+#define QSPI_CS_GPIO_PORT          GPIOB
+#define QSPI_CLK_PIN               GPIO_PIN_2
+#define QSPI_CLK_GPIO_PORT         GPIOB
+#define QSPI_D0_PIN                GPIO_PIN_8
+#define QSPI_D0_GPIO_PORT          GPIOF
+#define QSPI_D1_PIN                GPIO_PIN_9
+#define QSPI_D1_GPIO_PORT          GPIOF
+#define QSPI_D2_PIN                GPIO_PIN_2
+#define QSPI_D2_GPIO_PORT          GPIOE
+#define QSPI_D3_PIN                GPIO_PIN_6
+#define QSPI_D3_GPIO_PORT          GPIOF
+/* Hab MODIFY REPLACE WITH ABOVE
 #define QSPI_CS_PIN                GPIO_PIN_6
 #define QSPI_CS_GPIO_PORT          GPIOB
 #define QSPI_CLK_PIN               GPIO_PIN_2
@@ -97,6 +111,7 @@
 #define QSPI_D2_GPIO_PORT          GPIOE
 #define QSPI_D3_PIN                GPIO_PIN_13
 #define QSPI_D3_GPIO_PORT          GPIOD
+*/
 
 /* N25Q128A13EF840E Micron memory */
 /* Size of the flash */

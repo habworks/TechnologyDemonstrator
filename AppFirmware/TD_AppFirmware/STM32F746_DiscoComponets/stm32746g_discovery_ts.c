@@ -156,7 +156,7 @@ uint8_t BSP_TS_Init(uint16_t ts_SizeX, uint16_t ts_SizeY)
     /* Initialize the TS driver structure */
     tsDriver = &ft5336_ts_drv;
     I2cAddress = TS_I2C_ADDRESS;
-    tsOrientation = TS_SWAP_XY;
+    tsOrientation = TS_SWAP_XY;		// HAB IF TOUCH IS BACKWARD FROM WHAT YOU EXPECT CHANGE THIS
 
     /* Initialize the TS driver */
     tsDriver->Start(I2cAddress);

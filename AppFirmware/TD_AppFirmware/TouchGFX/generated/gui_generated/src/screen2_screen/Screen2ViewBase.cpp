@@ -3,8 +3,8 @@
 /*********************************************************************************/
 #include <gui_generated/screen2_screen/Screen2ViewBase.hpp>
 #include <touchgfx/Color.hpp>
-#include <texts/TextKeysAndLanguages.hpp>
 #include "BitmapDatabase.hpp"
+#include <texts/TextKeysAndLanguages.hpp>
 
 Screen2ViewBase::Screen2ViewBase() :
     buttonCallback(this, &Screen2ViewBase::buttonCallbackHandler)
@@ -16,19 +16,19 @@ Screen2ViewBase::Screen2ViewBase() :
     box1.setPosition(0, 0, 480, 272);
     box1.setColor(touchgfx::Color::getColorFrom24BitRGB(35, 35, 35));
 
-    textArea1.setXY(146, 124);
-    textArea1.setColor(touchgfx::Color::getColorFrom24BitRGB(52, 255, 20));
+    button2.setXY(310, 212);
+    button2.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_PRESSED_ID));
+    button2.setAction(buttonCallback);
+
+    textArea1.setXY(183, 124);
+    textArea1.setColor(touchgfx::Color::getColorFrom24BitRGB(20, 255, 55));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID2));
 
-    button1.setXY(310, 212);
-    button1.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_PRESSED_ID));
-    button1.setAction(buttonCallback);
-
     add(__background);
     add(box1);
+    add(button2);
     add(textArea1);
-    add(button1);
 }
 
 void Screen2ViewBase::setupScreen()
@@ -38,15 +38,10 @@ void Screen2ViewBase::setupScreen()
 
 void Screen2ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
-    if (&src == &button1)
+    if (&src == &button2)
     {
         //Interaction1
-        //When button1 clicked change screen to Screen2
-        //Go to Screen2 with no screen transition
-        application().gotoScreen2ScreenNoTransition();
-
-        //Interaction2
-        //When button1 clicked change screen to Screen1
+        //When button2 clicked change screen to Screen1
         //Go to Screen1 with screen transition towards West
         application().gotoScreen1ScreenSlideTransitionWest();
     }
