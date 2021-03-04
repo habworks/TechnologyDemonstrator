@@ -5,33 +5,13 @@
         "Components": [
           {
             "Type": "Image",
-            "RelativeFilename": "DigitalRed2.png",
+            "RelativeFilename": "BackSplash.PNG",
             "Alpha": 255,
-            "Name": "image1",
-            "X": 0,
-            "Y": 0,
-            "Width": 800,
-            "Height": 566,
-            "Visible": true,
-            "LockPosition": true,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "Box",
-            "Color": {
-              "Red": 168,
-              "Green": 123,
-              "Blue": 151
-            },
-            "Alpha": 255,
-            "Name": "box1",
-            "X": 240,
-            "Y": 0,
-            "Width": 240,
-            "Height": 272,
+            "Name": "OpenScreenBackGround",
+            "X": -74,
+            "Y": -49,
+            "Width": 628,
+            "Height": 373,
             "Visible": true,
             "LockPosition": false,
             "Draggable": false,
@@ -40,76 +20,15 @@
             "Moveable": false
           },
           {
-            "Type": "Box",
-            "Color": {
-              "Red": 0,
-              "Green": 255,
-              "Blue": 0
-            },
-            "Alpha": 255,
-            "Name": "box2",
-            "X": 182,
-            "Y": 87,
-            "Width": 117,
-            "Height": 99,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "Box",
-            "Color": {
-              "Red": 255,
-              "Green": 0,
-              "Blue": 0
-            },
-            "Alpha": 255,
-            "Name": "box2_1",
-            "X": 16,
-            "Y": 87,
-            "Width": 117,
-            "Height": 99,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "Box",
-            "Color": {
-              "Red": 0,
-              "Green": 0,
-              "Blue": 255
-            },
-            "Alpha": 255,
-            "Name": "box2_2",
-            "X": 345,
-            "Y": 87,
-            "Width": 117,
-            "Height": 99,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "Button",
-            "Pressed": "__designer\\Blue_Buttons_Round_Edge_small_pressed.png",
-            "Released": "__designer\\Blue_Buttons_Round_Edge_small.png",
-            "Alpha": 255,
-            "Style": "Style4",
-            "Name": "button1",
-            "X": 310,
-            "Y": 212,
-            "Width": 170,
-            "Height": 60,
+            "Type": "ScalableImage",
+            "Filename": "IMRLogoWhiteBackGround.png",
+            "Alpha": 20,
+            "ScalingAlgorithm": "Nearest-neighbor",
+            "Name": "Logo",
+            "X": 24,
+            "Y": 94,
+            "Width": 432,
+            "Height": 111,
             "Visible": true,
             "LockPosition": false,
             "Draggable": false,
@@ -119,21 +38,21 @@
           },
           {
             "Type": "TextArea",
-            "TextId": "SingleUseId1",
+            "TextId": "SingleUseId5",
             "TextRotation": "0",
             "Color": {
-              "Red": 0,
-              "Green": 0,
-              "Blue": 0
+              "Red": 225,
+              "Green": 50,
+              "Blue": 50
             },
             "Alpha": 255,
             "AutoSize": true,
             "LineSpacing": 0,
             "Name": "textArea1",
-            "X": 192,
-            "Y": 48,
-            "Width": 96,
-            "Height": 25,
+            "X": 11,
+            "Y": 13,
+            "Width": 458,
+            "Height": 44,
             "Visible": true,
             "LockPosition": false,
             "Draggable": false,
@@ -145,20 +64,35 @@
         "Interactions": [
           {
             "InteractionName": "Interaction1",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionFade",
+              "Alpha": 255,
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "Duration": 2000,
+              "ActionComponent": "Logo"
+            }
+          },
+          {
+            "InteractionName": "Interaction2",
             "HasCompletedTrigger": false,
             "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button1"
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "Interaction1"
             },
             "Action": {
               "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionType": "ScreenTransitionWipe",
               "ScreenTransitionDirection": "East",
-              "ActionComponent": "Screen2"
+              "ActionComponent": "Screen_MainMenu"
             }
           }
         ],
-        "Name": "Screen1",
+        "Name": "Screen_Opening",
         "OverrideDefaultBufferSize": false,
         "CanvasBufferSize": 0
       },
@@ -167,9 +101,9 @@
           {
             "Type": "Box",
             "Color": {
-              "Red": 35,
-              "Green": 35,
-              "Blue": 35
+              "Red": 40,
+              "Green": 40,
+              "Blue": 40
             },
             "Alpha": 255,
             "Name": "box1",
@@ -185,16 +119,22 @@
             "Moveable": false
           },
           {
-            "Type": "Button",
-            "Pressed": "__designer\\Blue_Buttons_Round_Edge_small_pressed.png",
-            "Released": "__designer\\Blue_Buttons_Round_Edge_small.png",
+            "Type": "TextArea",
+            "TextId": "SingleUseId6",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 57,
+              "Green": 224,
+              "Blue": 23
+            },
             "Alpha": 255,
-            "Style": "Style4",
-            "Name": "button2",
-            "X": 310,
-            "Y": 212,
-            "Width": 170,
-            "Height": 60,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea1",
+            "X": 134,
+            "Y": 6,
+            "Width": 187,
+            "Height": 44,
             "Visible": true,
             "LockPosition": false,
             "Draggable": false,
@@ -203,22 +143,38 @@
             "Moveable": false
           },
           {
-            "Type": "TextArea",
-            "TextId": "SingleUseId2",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 20,
-              "Green": 255,
-              "Blue": 55
-            },
+            "Type": "Image",
+            "RelativeFilename": "ADI-G.png",
             "Alpha": 255,
-            "AutoSize": true,
-            "LineSpacing": 0,
-            "Name": "textArea1",
-            "X": 183,
-            "Y": 124,
-            "Width": 115,
-            "Height": 25,
+            "Name": "image_AD",
+            "X": 31,
+            "Y": 72,
+            "Width": 64,
+            "Height": 64,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": true,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "ButtonWithIcon",
+            "Pressed": "__designer\\Blue_Buttons_Round_Edge_icon_button.png",
+            "Released": "__designer\\Blue_Buttons_Round_Edge_icon_button.png",
+            "Alpha": 255,
+            "IconPressed": "__designer\\Blue_Icons_Home_32.png",
+            "IconReleased": "__designer\\Blue_Icons_Home_32.png",
+            "IconX": 15,
+            "IconY": 16,
+            "IconHeight": 29,
+            "IconWidth": 30,
+            "IconStyle": "Icon27",
+            "Name": "buttonWithIcon1",
+            "X": 405,
+            "Y": 203,
+            "Width": 60,
+            "Height": 60,
             "Visible": true,
             "LockPosition": false,
             "Draggable": false,
@@ -233,17 +189,83 @@
             "HasCompletedTrigger": false,
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "button2"
+              "TriggerComponent": "buttonWithIcon1"
             },
             "Action": {
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionSlide",
               "ScreenTransitionDirection": "West",
-              "ActionComponent": "Screen1"
+              "ActionComponent": "Screen_Opening"
+            }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonWithIcon1"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionCover",
+              "ScreenTransitionDirection": "West",
+              "ActionComponent": "Screen_Opening"
             }
           }
         ],
-        "Name": "Screen2",
+        "Name": "Screen_MainMenu",
+        "OverrideDefaultBufferSize": false,
+        "CanvasBufferSize": 0
+      },
+      {
+        "Components": [
+          {
+            "Type": "Box",
+            "Color": {
+              "Red": 40,
+              "Green": 40,
+              "Blue": 40
+            },
+            "Alpha": 255,
+            "Name": "box1",
+            "X": 0,
+            "Y": 0,
+            "Width": 480,
+            "Height": 272,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId7",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 57,
+              "Green": 224,
+              "Blue": 23
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea1",
+            "X": 97,
+            "Y": 0,
+            "Width": 286,
+            "Height": 44,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          }
+        ],
+        "Interactions": [],
+        "Name": "Screen_AD",
         "OverrideDefaultBufferSize": false,
         "CanvasBufferSize": 0
       }
@@ -251,11 +273,15 @@
     "CustomContainerDefinitions": [],
     "TextEntries": [
       {
-        "TextEntryId": "SingleUseId1",
+        "TextEntryId": "SingleUseId5",
         "IsResource": false
       },
       {
-        "TextEntryId": "SingleUseId2",
+        "TextEntryId": "SingleUseId6",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId7",
         "IsResource": false
       }
     ],
@@ -265,7 +291,7 @@
       "Height": 272
     },
     "SelectedColorDepth": 24,
-    "StartupScreenName": "Screen1",
+    "StartupScreenName": "Screen_Opening",
     "SelectedStartupLanguage": "GB",
     "Skin": "Blue",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",

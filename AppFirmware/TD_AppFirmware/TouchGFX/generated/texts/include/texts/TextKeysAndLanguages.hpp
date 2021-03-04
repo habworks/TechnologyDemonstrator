@@ -14,8 +14,9 @@ typedef enum
 
 typedef enum
 {
-    T_SINGLEUSEID1,
-    T_SINGLEUSEID2,
+    T_SINGLEUSEID5,
+    T_SINGLEUSEID6,
+    T_SINGLEUSEID7,
     NUMBER_OF_TEXT_KEYS
 } TEXTS;
 
