@@ -66,7 +66,7 @@ extern TIM_HandleTypeDef htim2;
 // TOUCH RST
 #define TOUCH_RST_ENABLE()			HAL_GPIO_WritePin(TOUCH_NRST_GPIO_Port, TOUCH_NRST_Pin, GPIO_PIN_RESET)
 #define TOUCH_RST_DISABLE()			HAL_GPIO_WritePin(TOUCH_NRST_GPIO_Port, TOUCH_NRST_Pin, GPIO_PIN_SET)
-#define WIFI_STATUS()				HAL_GPIO_ReadPin(WIFI_EN_GPIO_Port, TOUCH_NRST_Pin)
+#define TOUCH_RST_STATUS()			HAL_GPIO_ReadPin(WIFI_EN_GPIO_Port, TOUCH_NRST_Pin)
 
 #ifdef __cplusplus
 }

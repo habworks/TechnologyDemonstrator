@@ -29,7 +29,7 @@
 #include "MainSupport.h"
 #include "TD_SDRAM.h"
 #include "TD_SupportIO.h"
-//#include "app_touchgfx.h"
+#include "app_touchgfx.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
