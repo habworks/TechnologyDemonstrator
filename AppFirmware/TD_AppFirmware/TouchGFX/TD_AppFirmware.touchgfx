@@ -4,6 +4,22 @@
       {
         "Components": [
           {
+            "Type": "Image",
+            "RelativeFilename": "DigitalRed2.png",
+            "Alpha": 255,
+            "Name": "image1",
+            "X": 0,
+            "Y": 0,
+            "Width": 800,
+            "Height": 566,
+            "Visible": true,
+            "LockPosition": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
             "Type": "Box",
             "Color": {
               "Red": 168,
@@ -12,9 +28,9 @@
             },
             "Alpha": 255,
             "Name": "box1",
-            "X": 0,
+            "X": 240,
             "Y": 0,
-            "Width": 480,
+            "Width": 240,
             "Height": 272,
             "Visible": true,
             "LockPosition": false,
@@ -106,17 +122,17 @@
             "TextId": "SingleUseId1",
             "TextRotation": "0",
             "Color": {
-              "Red": 52,
-              "Green": 255,
-              "Blue": 20
+              "Red": 0,
+              "Green": 0,
+              "Blue": 0
             },
             "Alpha": 255,
             "AutoSize": true,
             "LineSpacing": 0,
             "Name": "textArea1",
-            "X": 182,
-            "Y": 45,
-            "Width": 115,
+            "X": 192,
+            "Y": 48,
+            "Width": 96,
             "Height": 25,
             "Visible": true,
             "LockPosition": false,
@@ -169,22 +185,16 @@
             "Moveable": false
           },
           {
-            "Type": "TextArea",
-            "TextId": "SingleUseId2",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 52,
-              "Green": 255,
-              "Blue": 20
-            },
+            "Type": "Button",
+            "Pressed": "__designer\\Blue_Buttons_Round_Edge_small_pressed.png",
+            "Released": "__designer\\Blue_Buttons_Round_Edge_small.png",
             "Alpha": 255,
-            "AutoSize": true,
-            "LineSpacing": 0,
-            "Name": "textArea1",
-            "X": 146,
-            "Y": 124,
-            "Width": 188,
-            "Height": 25,
+            "Style": "Style4",
+            "Name": "button2",
+            "X": 310,
+            "Y": 212,
+            "Width": 170,
+            "Height": 60,
             "Visible": true,
             "LockPosition": false,
             "Draggable": false,
@@ -193,16 +203,22 @@
             "Moveable": false
           },
           {
-            "Type": "Button",
-            "Pressed": "__designer\\Blue_Buttons_Round_Edge_small_pressed.png",
-            "Released": "__designer\\Blue_Buttons_Round_Edge_small.png",
+            "Type": "TextArea",
+            "TextId": "SingleUseId2",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 20,
+              "Green": 255,
+              "Blue": 55
+            },
             "Alpha": 255,
-            "Style": "Style4",
-            "Name": "button1",
-            "X": 310,
-            "Y": 212,
-            "Width": 170,
-            "Height": 60,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea1",
+            "X": 183,
+            "Y": 124,
+            "Width": 115,
+            "Height": 25,
             "Visible": true,
             "LockPosition": false,
             "Draggable": false,
@@ -217,20 +233,7 @@
             "HasCompletedTrigger": false,
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "button1"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionNone",
-              "ActionComponent": "Screen2"
-            }
-          },
-          {
-            "InteractionName": "Interaction2",
-            "HasCompletedTrigger": false,
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button1"
+              "TriggerComponent": "button2"
             },
             "Action": {
               "Type": "ActionGotoScreen",

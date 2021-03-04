@@ -10,11 +10,16 @@
 #include "AdcSupport.h"
 #include "UartSupport.h"
 #include "TimerSupport.h"
+#include "TPL0401A.h"
+#include "LIS3DH.h"
+#include "FT5426.h"
 // ST DRIVRS
 #include "usart.h"
 #include "adc.h"
 #include "tim.h"
 #include "fmc.h"
+#include "dac.h"
+#include "i2c.h"
 // GENERIC LIBS
 #include "string.h"
 #include "stdio.h"
@@ -77,6 +82,18 @@ void main_Init(void)
 	HAL_TIM_Base_Start_IT(&htim1);
 #endif
 
+	// DAC INIT
+	HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
+	DAC_SetVoltage(0.0);
+
+	// ACCEL LIS3DH INIT
+	LIS3DH_CS_DISABLE();
+
+	// TOUCH INIT
+	TOUCH_RST_ENABLE();
+	delayMiliSecond(10);
+	TOUCH_RST_DISABLE();
+
 	// INIT SDRAM
 	//BSP_SDRAM_Initialization_Sequence(&hsdram1, &command);
 	SDRAM_InitSequence();
@@ -86,10 +103,7 @@ void main_Init(void)
 	while ((hUsbDeviceFS.dev_state != USBD_STATE_CONFIGURED));
 #endif
 	memset(DebugUarOutputtMsg, 0, sizeof(DebugUarOutputtMsg));
-	sprintf((char *)DebugUarOutputtMsg, "\r\n\n\n\n\n\n\n\nHab Technology Demonstrator\r\nDebug Monitor On line...\r\n\n\n");
-	SendDebugUartMsg(DebugUarOutputtMsg);
-	SendDebugUartMsg(DebugUarOutputtMsg);
-	SendDebugUartMsg(DebugUarOutputtMsg);
+	sprintf((char *)DebugUarOutputtMsg, "\r\n\n\n\n\n\n\n\nHab Technology Demonstrator\r\nDebug Monitor On line...\r\nHelp: ?\r\n\n\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
 
 } //END OF main_Init
@@ -534,16 +548,136 @@ void main_WhileLoop(void)
 				delayMiliSecond(DelayDisplay);
 			}
 
-			sprintf((char *)DebugUarOutputtMsg, "Background Color Set");
+			sprintf((char *)DebugUarOutputtMsg, "Background Color Set\r\n");
 			SendDebugUartMsg(DebugUarOutputtMsg);
 			break;
 		}
+
+		case 'h':
+		case 'H':
+		{
+			static uint8_t DAC_OutputChoice = 0;
+			DAC_OutputChoice++;
+			if (DAC_OutputChoice > 4)
+				DAC_OutputChoice = 0;
+			float OutputValue = (float)(DAC_OutputChoice * 1.0 / 4.0);
+			OutputValue *= DAC_REF_VOLTAGE;
+			if (DAC_SetVoltage(OutputValue))
+				sprintf((char *)DebugUarOutputtMsg, "DAC Output set: %2.3f\r\n", OutputValue);
+			else
+				sprintf((char *)DebugUarOutputtMsg, "DAC Output Error\r\n");
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			break;
+		}
+
+		case 'i':
+		case 'I':
+		{
+			static uint8_t DigitalPotOutputChoice = 0;
+			DigitalPotOutputChoice++;
+			if (DigitalPotOutputChoice > 4)
+				DigitalPotOutputChoice = 0;
+			float PercentValue = (float)(100.0 * DigitalPotOutputChoice / 4.0);
+			if (setDigitalPotAttenuation(PercentValue))
+				sprintf((char *)DebugUarOutputtMsg, "Digital Pot set percentage: %2.2f\r\n", PercentValue);
+			else
+				sprintf((char *)DebugUarOutputtMsg, "Digital Pot set Error\r\n");
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			break;
+		}
+
+		case 'j':
+		case 'J':
+		{
+			// UNIT TO OPERATE IN NORMAL MODE: SEE TABLE 10: OPERATING MODE SELECTION OF DATASHEET
+			// USE OF DEFAULT VALUES HERE ONLY SETTING THE ODR
+			uint8_t WriteBuffer[2];
+			WriteBuffer[0] = LIS3DH_REGISTER_CTRL_REG1;
+			WriteBuffer[1] = 0x57; // Enable 100Hz Update, x, y, z  HEX 0X50 IS ODER VALUE SHOULD OR THIS
+			// OTHER VALUE NECESSARY FOR 10 BIT OPERATION IS CTRL_REG4[3] WHICH BY DEFAULT IS WHAT WE WANT 0.  0 = 10BIT RESOLUTION
+			writeAccelerometerRegister(WriteBuffer, sizeof(WriteBuffer));
+			// ad for temp reading
+			WriteBuffer[0] = LIS3DH_REGISTER_CTRL_REG4;
+			WriteBuffer[1] = 0x80; // BDU is set
+			writeAccelerometerRegister(WriteBuffer, sizeof(WriteBuffer));
+			WriteBuffer[0] = LIS3DH_REGISTER_TEMP_CFG_REG;
+			WriteBuffer[1] = 0xC0; // ADC ENABLE AND TEMP ENABLE
+			writeAccelerometerRegister(WriteBuffer, sizeof(WriteBuffer));
+			sprintf((char *)DebugUarOutputtMsg, "Accelerometer: Setup Registers Completed\r\n");
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			break;
+		}
+
+		case 'k':
+		case 'K':
+		{
+			if (isAccelerometerOnLine())
+				sprintf((char *)DebugUarOutputtMsg, "Accelerometer: Online\r\n");
+			else
+				sprintf((char *)DebugUarOutputtMsg, "Accelerometer: Error\r\n");
+			SendDebugUartMsg(DebugUarOutputtMsg);
+
+			uint8_t RegisterValue = 0x00;
+			readAccelerometerRegister(LIS3DH_REGISTER_CTRL_REG1, &RegisterValue, 1);
+			sprintf((char *)DebugUarOutputtMsg, "  CTL_REG1: 0x%02X\r\n",RegisterValue);
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			readAccelerometerRegister(LIS3DH_REGISTER_CTRL_REG4, &RegisterValue, 1);
+			sprintf((char *)DebugUarOutputtMsg, "  CTL_REG4: 0x%02X\r\n",RegisterValue);
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			readAccelerometerRegister(LIS3DH_REGISTER_TEMP_CFG_REG, &RegisterValue, 1);
+			sprintf((char *)DebugUarOutputtMsg, "  TMP_CFG_REG: 0x%02X\r\n",RegisterValue);
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			break;
+		}
+
+		case 'l':
+		case 'L':
+		{
+			uint8_t LowByte;
+			uint8_t HighByte;
+			float G_Value;
+			// X AXSIS
+			readAccelerometerRegister(LIS3DH_REGISTER_OUT_X_L, &LowByte, 1);
+			readAccelerometerRegister(LIS3DH_REGISTER_OUT_X_H, &HighByte, 1);
+			G_Value = computeAcelerometerG(LowByte, HighByte, 10, 4);
+			sprintf((char *)DebugUarOutputtMsg, "  X AXIS LOW: 0x%02X   HIGH: 0x%02X    g: %2.3f\r\n",LowByte, HighByte, G_Value);
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			// Y AXSIS
+			readAccelerometerRegister(LIS3DH_REGISTER_OUT_Y_L, &LowByte, 1);
+			readAccelerometerRegister(LIS3DH_REGISTER_OUT_Y_H, &HighByte, 1);
+			G_Value = computeAcelerometerG(LowByte, HighByte, 10, 4);
+			sprintf((char *)DebugUarOutputtMsg, "  Y AXIS LOW: 0x%02X   HIGH: 0x%02X    g: %2.3f\r\n",LowByte, HighByte, G_Value);
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			// Z AXSIS
+			readAccelerometerRegister(LIS3DH_REGISTER_OUT_Z_L, &LowByte, 1);
+			readAccelerometerRegister(LIS3DH_REGISTER_OUT_Z_H, &HighByte, 1);
+			G_Value = computeAcelerometerG(LowByte, HighByte, 10, 4);
+			sprintf((char *)DebugUarOutputtMsg, "  Z AXIS LOW: 0x%02X   HIGH: 0x%02X    g: %2.3f\r\n\n",LowByte, HighByte, G_Value);
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			break;
+		}
+
+		case 'm':
+		case 'M':
+		{
+			uint8_t ByteBuffer;
+
+			sprintf((char *)DebugUarOutputtMsg, "Touch Controller not responding\r\n");
+			if (readTouchRegister(FT5426_REGISTER_DEVICE_ID, &ByteBuffer, sizeof(ByteBuffer)))
+			{
+				if (ByteBuffer == FT5426_DEVICE_ID)
+					sprintf((char *)DebugUarOutputtMsg, "Touch Controller Online\r\n  Device ID: 0x%02X\r\n", ByteBuffer);
+			}
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			break;
+		}
+
 
 		default:
 			break;
 		}
 		BoardStatus.UartCmdChar = 'z';
-	}
+	} // END OF CASE
 
 
 
@@ -590,6 +724,18 @@ void printHelpMenu(void)
 	sprintf((char *)DebugUarOutputtMsg, "  F: Toggle LCD\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
 	sprintf((char *)DebugUarOutputtMsg, "  G: Change LCD Background color\r\n");
+	SendDebugUartMsg(DebugUarOutputtMsg);
+	sprintf((char *)DebugUarOutputtMsg, "  H: Change DAC CH-1 voltage\r\n");
+	SendDebugUartMsg(DebugUarOutputtMsg);
+	sprintf((char *)DebugUarOutputtMsg, "  I: Change Digital Pot Set Percentage\r\n");
+	SendDebugUartMsg(DebugUarOutputtMsg);
+	sprintf((char *)DebugUarOutputtMsg, "  J: Accelerometer Set Operating Conditions FIRST\r\n");
+	SendDebugUartMsg(DebugUarOutputtMsg);
+	sprintf((char *)DebugUarOutputtMsg, "  K: Accelerometer Test\r\n");
+	SendDebugUartMsg(DebugUarOutputtMsg);
+	sprintf((char *)DebugUarOutputtMsg, "  L: Accelerometer Read Axis g\r\n");
+	SendDebugUartMsg(DebugUarOutputtMsg);
+	sprintf((char *)DebugUarOutputtMsg, "  M: Touch Controller Test\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
 }
 

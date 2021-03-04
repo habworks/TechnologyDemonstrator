@@ -8,6 +8,7 @@
 #include "AdcSupport.h"
 #include "SupportIO.h"
 #include "adc.h"
+#include "dac.h"
 
 extern uint16_t ADC_DMA_Buffer[ADC_DMA_SIZE];
 
@@ -94,3 +95,18 @@ uint16_t ADC_FullScale(void)
 		while(1);
 	}
 }
+
+
+
+bool_t DAC_SetVoltage(float OutputVoltage)
+{
+
+	uint32_t DAC_Value;
+
+	if ((OutputVoltage > DAC_REF_VOLTAGE) || (OutputVoltage < 0))
+		return(FALSE);
+	DAC_Value = (uint32_t)(((DAC_FULL_SCALE -1) * (OutputVoltage / DAC_REF_VOLTAGE)) + INTEGER_ROUNDING);
+	HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, DAC_Value);
+	return(TRUE);
+
+} // END OF DAC_SetVoltage

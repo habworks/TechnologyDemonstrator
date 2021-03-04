@@ -28,6 +28,7 @@
 /* USER CODE BEGIN Includes */
 #include "MainSupport.h"
 #include "TD_SDRAM.h"
+#include "TD_SupportIO.h"
 //#include "app_touchgfx.h"
 /* USER CODE END Includes */
 
@@ -130,6 +131,8 @@ void defaultTouchGFxTask(void *argument)
   /* USER CODE BEGIN defaultTouchGFxTask */
 	// INIT TOUCHGFX - TOUCHGFX REQUIRES SDRAM INIT TO WORK
 	SDRAM_InitSequence();
+	TOUCH_RST_DISABLE();
+	HAL_Delay(200);
 	MX_TouchGFX_Process();
   /* Infinite loop */
   for(;;)

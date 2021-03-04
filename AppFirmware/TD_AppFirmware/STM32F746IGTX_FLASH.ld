@@ -36,9 +36,9 @@ _Min_Stack_Size = 0xa00 ;	/* required amount of stack */
 /* Memories definition */
 MEMORY
 {
-  RAM    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 320K
-  FLASH    (rx)    : ORIGIN = 0x8000000,   LENGTH = 1024K
- /* QUADSPI (r)    : ORIGIN = 0x90000000,  LENGTH = 16M */
+  RAM     (xrw)    : ORIGIN = 0x20000000,   LENGTH = 320K
+  FLASH   (rx)     : ORIGIN = 0x8000000,   LENGTH = 1024K
+  QUADSPI (r)      : ORIGIN = 0x90000000,  LENGTH = 16M 
 }
 
   
@@ -177,7 +177,6 @@ SECTIONS
 
   .ARM.attributes 0 : { *(.ARM.attributes) }
  
- /* 
     ExtFlashSection :
 	{
 		*(ExtFlashSection ExtFlashSection.*)
@@ -198,7 +197,5 @@ SECTIONS
 		*(.gnu.linkonce.r.*)
         . = ALIGN(0x4);
 	} >QUADSPI
-	
-*/
 
 }

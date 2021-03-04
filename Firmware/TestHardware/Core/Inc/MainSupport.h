@@ -36,6 +36,7 @@
 #define SDRAM_MODEREG_WRITEBURST_MODE_PROGRAMMED ((uint16_t)0x0000)
 #define SDRAM_MODEREG_WRITEBURST_MODE_SINGLE     ((uint16_t)0x0200)
 
+#define INTEGER_ROUNDING							(0.5)
 // TYPEDEFS AND ENUMS
 typedef _Bool bool;
 
@@ -65,6 +66,12 @@ typedef struct
 }Type_BoardStatus;
 
 extern volatile Type_BoardStatus BoardStatus;
+
+#define TEST_RETURN_IF_FAIL(__condition__)    do { if(__condition__) \
+                                             {  \
+                                                ;  \
+                                             } \
+                                            }while(0)
 
 // PROTOTYPE FUNCTIONS
 void main_Init(void);

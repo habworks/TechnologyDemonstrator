@@ -19,12 +19,16 @@
 
 #include <STM32TouchController.hpp>
 
+// HAB ADD THESE 3
+#include <stm32746g_discovery_ts.h>
+
 void STM32TouchController::init()
 {
-    /**
-     * Initialize touch controller and driver
-     *
-     */
+	// HAB ADDED
+	uint16_t DisplayWidth_NHD_43_480272EF = 480;
+	uint16_t DisplayHeight_NHD_43_480272EF = 272;
+
+	BSP_TS_Init(DisplayWidth_NHD_43_480272EF, DisplayHeight_NHD_43_480272EF);
 }
 
 bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
@@ -39,7 +43,16 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
      * By default sampleTouch is called every tick, this can be adjusted by HAL::setTouchSampleRate(int8_t);
      *
      */
-    return false;
+	// HAB ADDED
+	TS_StateTypeDef TouchState = {0};
+	BSP_TS_GetState(&TouchState);
+	if (TouchState.touchDetected)
+	{
+		x = TouchState.touchX[0];
+		y = TouchState.touchY[0];
+		return(true);
+	}
+	return(false);
 }
 
 /* USER CODE END STM32TouchController */

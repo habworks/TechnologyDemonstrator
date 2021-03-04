@@ -13,7 +13,10 @@ Screen1ViewBase::Screen1ViewBase() :
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
 
-    box1.setPosition(0, 0, 480, 272);
+    image1.setXY(0, 0);
+    image1.setBitmap(touchgfx::Bitmap(BITMAP_DIGITALRED2_ID));
+
+    box1.setPosition(240, 0, 240, 272);
     box1.setColor(touchgfx::Color::getColorFrom24BitRGB(168, 123, 151));
 
     box2.setPosition(182, 87, 117, 99);
@@ -29,12 +32,13 @@ Screen1ViewBase::Screen1ViewBase() :
     button1.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_SMALL_PRESSED_ID));
     button1.setAction(buttonCallback);
 
-    textArea1.setXY(182, 45);
-    textArea1.setColor(touchgfx::Color::getColorFrom24BitRGB(52, 255, 20));
+    textArea1.setXY(192, 48);
+    textArea1.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID1));
 
     add(__background);
+    add(image1);
     add(box1);
     add(box2);
     add(box2_1);

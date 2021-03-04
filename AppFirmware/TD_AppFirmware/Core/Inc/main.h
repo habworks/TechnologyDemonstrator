@@ -59,12 +59,24 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define WIFI_EN_Pin GPIO_PIN_0
+#define WIFI_EN_GPIO_Port GPIOA
+#define TOUCH_IRQ_Pin GPIO_PIN_6
+#define TOUCH_IRQ_GPIO_Port GPIOH
+#define TOUCH_NRST_Pin GPIO_PIN_9
+#define TOUCH_NRST_GPIO_Port GPIOH
 #define STATUS_LED_Pin GPIO_PIN_2
 #define STATUS_LED_GPIO_Port GPIOG
+#define OTG_FS_VUSB_NEN_Pin GPIO_PIN_8
+#define OTG_FS_VUSB_NEN_GPIO_Port GPIOA
 #define DISPLAY_EN_Pin GPIO_PIN_1
 #define DISPLAY_EN_GPIO_Port GPIOI
 #define PWM_DISPLAY_Pin GPIO_PIN_15
 #define PWM_DISPLAY_GPIO_Port GPIOA
+#define PWR_5V_EN_Pin GPIO_PIN_13
+#define PWR_5V_EN_GPIO_Port GPIOG
+#define AUDIO_EN_Pin GPIO_PIN_7
+#define AUDIO_EN_GPIO_Port GPIOI
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

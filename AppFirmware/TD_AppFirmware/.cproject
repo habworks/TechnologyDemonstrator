@@ -60,6 +60,10 @@
                   <listOptionValue builtIn="false" value="../TouchGFX/generated/texts/include"/>
                   <listOptionValue builtIn="false" value="../TouchGFX/gui/include"/>
                   <listOptionValue builtIn="false" value="&quot;${workspace_loc:/TD_AppFirmware/Core/App_Inc}&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${workspace_loc:/TD_AppFirmware/Components/Common}&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${workspace_loc:/TD_AppFirmware/Components/ft5336}&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${workspace_loc:/TD_AppFirmware/Components/n25q128a}&quot;"/>
+                  <listOptionValue builtIn="false" value="&quot;${workspace_loc:/TD_AppFirmware/STM32F746_DiscoComponets}&quot;"/>
                 </option>
                 <inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1213410463" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
               </tool>
@@ -89,6 +93,7 @@
                   <listOptionValue builtIn="false" value="../TouchGFX/generated/images/include"/>
                   <listOptionValue builtIn="false" value="../TouchGFX/generated/texts/include"/>
                   <listOptionValue builtIn="false" value="../TouchGFX/gui/include"/>
+                  <listOptionValue builtIn="false" value="&quot;${workspace_loc:/TD_AppFirmware/STM32F746_DiscoComponets}&quot;"/>
                 </option>
                 <option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.cpp.compiler.option.otherflags.2829292578" name="Other flags" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.cpp.compiler.option.otherflags" useByScannerDiscovery="true" valueType="stringList">
                   <listOptionValue builtIn="false" value="-femit-class-debug-always"/>
@@ -120,10 +125,12 @@
             </toolChain>
           </folderInfo>
           <sourceEntries>
+            <entry excluding="ST/touchgfx/framework/source/platform/hal/simulator/sdl2/HALSDL2.cpp|ST/touchgfx/framework/source/platform/hal/simulator/sdl2/HALSDL2_icon.cpp|ST/touchgfx/framework/source/platform/hal/simulator/sdl2/OSWrappers.cpp|ST/touchgfx/os/OSWrappers_cmsis.cpp|ST/touchgfx/os/OSWrappers.cpp|ST/touchgfx/framework/source/platform/driver/touch/SDL2TouchController.cpp|ST/touchgfx/framework/source/touchgfx/widgets|ST/touchgfx/framework/source/touchgfx/containers" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
+            <entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Components"/>
+            <entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="STM32F746_DiscoComponets"/>
+            <entry excluding="generated/simulator/src/mainBase.cpp|simulator/main.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="TouchGFX"/>
             <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
             <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
-            <entry excluding="ST/touchgfx/framework/source/platform/hal/simulator/sdl2/HALSDL2.cpp|ST/touchgfx/framework/source/platform/hal/simulator/sdl2/HALSDL2_icon.cpp|ST/touchgfx/framework/source/platform/hal/simulator/sdl2/OSWrappers.cpp|ST/touchgfx/os/OSWrappers_cmsis.cpp|ST/touchgfx/os/OSWrappers.cpp|ST/touchgfx/framework/source/platform/driver/touch/SDL2TouchController.cpp|ST/touchgfx/framework/source/touchgfx/widgets|ST/touchgfx/framework/source/touchgfx/containers" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
-            <entry excluding="generated/simulator/src/mainBase.cpp|simulator/main.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="TouchGFX"/>
           </sourceEntries>
         </configuration>
       </storageModule>
