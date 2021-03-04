@@ -338,7 +338,7 @@ typedef struct
 
   /*  Possible values of FT5336_CHIP_ID_REG */
 //#define FT5336_ID_VALUE                     ((uint8_t)0x51)
-#define FT5336_ID_VALUE                     ((uint8_t)0x79)
+#define FT5336_ID_VALUE                     ((uint8_t)0x79) // HAB EDIT: RETURN VALUE FOR NHD-4.3-480272EF-xxxx-DTP (BOTH -ATXL and -ASXV)
 
   /* Release code version */
 #define FT5336_RELEASE_CODE_ID_REG          ((uint8_t)0xAF)

@@ -916,11 +916,11 @@ HAL_StatusTypeDef EEPROM_IO_IsDeviceReady(uint16_t DevAddress, uint32_t Trials)
 
 
 
-
-
-
-// HAB ADD ALL BELOW FROM MyApplicaiton3 TouchGFX applicaiton created project
-
+//****************************************************************************************************
+// HAB ADD ALL BELOW TO SUPPORT TOUCH GFX - TOUCH ON I2C3
+// THESE FUNCTIONS WERE CUT- AND PASTED FROM A KNOWN WORKING PROJECT - INSERTED HERE
+// This file needs a major clean up - there is much here that was copied from the development board that I do not use
+//****************************************************************************************************
 extern I2C_HandleTypeDef hi2c3;
 
 /**

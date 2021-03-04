@@ -21,16 +21,14 @@
 
 // HAB ADD THESE 3
 #include <stm32746g_discovery_ts.h>
-extern I2C_HandleTypeDef hi2c3; // HAB THIS IS I2C CONNECTED TO TOUCH GFX
 
 void STM32TouchController::init()
 {
-	// HAB ADD
-	BSP_TS_Init(480, 272); // HAB TODO FIX MAGIC NUMBERS
-    /**
-     * Initialize touch controller and driver
-     *
-     */
+	// HAB ADDED
+	uint16_t DisplayWidth_NHD_43_480272EF = 480;
+	uint16_t DisplayHeight_NHD_43_480272EF = 272;
+
+	BSP_TS_Init(DisplayWidth_NHD_43_480272EF, DisplayHeight_NHD_43_480272EF);
 }
 
 bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
@@ -45,24 +43,13 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
      * By default sampleTouch is called every tick, this can be adjusted by HAL::setTouchSampleRate(int8_t);
      *
      */
-	// HAB ADD - BELOW - RETURN FALSE WAS ALREADY THERE
-//	if (tsDriver)
-//	    {
-//	        if (tsDriver->DetectTouch(TS_I2C_ADDRESS))
-//	        {
-//	            /* Get each touch coordinates */
-//	            tsDriver->GetXY(TS_I2C_ADDRESS, (uint16_t*)&y, (uint16_t*)&x);
-//	            return true;
-//	        }
-//	    }
-//    return false;
-
-	TS_StateTypeDef state = {0};
-	BSP_TS_GetState(&state);
-	if (state.touchDetected)
+	// HAB ADDED
+	TS_StateTypeDef TouchState = {0};
+	BSP_TS_GetState(&TouchState);
+	if (TouchState.touchDetected)
 	{
-		x = state.touchX[0];
-		y = state.touchY[0];
+		x = TouchState.touchX[0];
+		y = TouchState.touchY[0];
 		return(true);
 	}
 	return(false);
