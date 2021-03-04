@@ -63,6 +63,10 @@ void Error_Handler(void);
 #define USD_DET_GPIO_Port GPIOC
 #define WIFI_EN_Pin GPIO_PIN_0
 #define WIFI_EN_GPIO_Port GPIOA
+#define TOUCH_IRQ_Pin GPIO_PIN_6
+#define TOUCH_IRQ_GPIO_Port GPIOH
+#define TOUCH_NRST_Pin GPIO_PIN_9
+#define TOUCH_NRST_GPIO_Port GPIOH
 #define PWM_GLED_Pin GPIO_PIN_12
 #define PWM_GLED_GPIO_Port GPIOD
 #define PWM_RLED_Pin GPIO_PIN_13

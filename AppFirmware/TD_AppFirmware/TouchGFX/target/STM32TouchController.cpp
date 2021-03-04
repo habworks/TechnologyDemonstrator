@@ -21,8 +21,7 @@
 
 // HAB ADD THESE 3
 #include <stm32746g_discovery_ts.h>
-static TS_DrvTypeDef* tsDriver;
-extern I2C_HandleTypeDef hi2c3; // THIS IS I2C CONNECTED TO TOUCH GFX
+extern I2C_HandleTypeDef hi2c3; // HAB THIS IS I2C CONNECTED TO TOUCH GFX
 
 void STM32TouchController::init()
 {
@@ -47,16 +46,26 @@ bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
      *
      */
 	// HAB ADD - BELOW - RETURN FALSE WAS ALREADY THERE
-	if (tsDriver)
-	    {
-	        if (tsDriver->DetectTouch(TS_I2C_ADDRESS))
-	        {
-	            /* Get each touch coordinates */
-	            tsDriver->GetXY(TS_I2C_ADDRESS, (uint16_t*)&y, (uint16_t*)&x);
-	            return true;
-	        }
-	    }
-    return false;
+//	if (tsDriver)
+//	    {
+//	        if (tsDriver->DetectTouch(TS_I2C_ADDRESS))
+//	        {
+//	            /* Get each touch coordinates */
+//	            tsDriver->GetXY(TS_I2C_ADDRESS, (uint16_t*)&y, (uint16_t*)&x);
+//	            return true;
+//	        }
+//	    }
+//    return false;
+
+	TS_StateTypeDef state = {0};
+	BSP_TS_GetState(&state);
+	if (state.touchDetected)
+	{
+		x = state.touchX[0];
+		y = state.touchY[0];
+		return(true);
+	}
+	return(false);
 }
 
 /* USER CODE END STM32TouchController */

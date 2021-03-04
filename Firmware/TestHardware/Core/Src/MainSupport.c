@@ -12,12 +12,14 @@
 #include "TimerSupport.h"
 #include "TPL0401A.h"
 #include "LIS3DH.h"
+#include "FT5426.h"
 // ST DRIVRS
 #include "usart.h"
 #include "adc.h"
 #include "tim.h"
 #include "fmc.h"
 #include "dac.h"
+#include "i2c.h"
 // GENERIC LIBS
 #include "string.h"
 #include "stdio.h"
@@ -87,7 +89,10 @@ void main_Init(void)
 	// ACCEL LIS3DH INIT
 	LIS3DH_CS_DISABLE();
 
-	// DIGIAL POT:
+	// TOUCH INIT
+	TOUCH_RST_ENABLE();
+	delayMiliSecond(10);
+	TOUCH_RST_DISABLE();
 
 	// INIT SDRAM
 	//BSP_SDRAM_Initialization_Sequence(&hsdram1, &command);
@@ -652,6 +657,21 @@ void main_WhileLoop(void)
 			break;
 		}
 
+		case 'm':
+		case 'M':
+		{
+			uint8_t ByteBuffer;
+
+			sprintf((char *)DebugUarOutputtMsg, "Touch Controller not responding\r\n");
+			if (readTouchRegister(FT5426_REGISTER_DEVICE_ID, &ByteBuffer, sizeof(ByteBuffer)))
+			{
+				if (ByteBuffer == FT5426_DEVICE_ID)
+					sprintf((char *)DebugUarOutputtMsg, "Touch Controller Online\r\n  Device ID: 0x%02X\r\n", ByteBuffer);
+			}
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			break;
+		}
+
 
 		default:
 			break;
@@ -714,6 +734,8 @@ void printHelpMenu(void)
 	sprintf((char *)DebugUarOutputtMsg, "  K: Accelerometer Test\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
 	sprintf((char *)DebugUarOutputtMsg, "  L: Accelerometer Read Axis g\r\n");
+	SendDebugUartMsg(DebugUarOutputtMsg);
+	sprintf((char *)DebugUarOutputtMsg, "  M: Touch Controller Test\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
 }
 

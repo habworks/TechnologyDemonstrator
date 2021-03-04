@@ -132,7 +132,7 @@
             "Name": "textArea1",
             "X": 192,
             "Y": 48,
-            "Width": 97,
+            "Width": 96,
             "Height": 25,
             "Visible": true,
             "LockPosition": false,

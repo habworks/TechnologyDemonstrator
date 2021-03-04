@@ -58,7 +58,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, WIFI_EN_Pin|OTG_FS_VUSB_NEN_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(TOUCH_NRST_GPIO_Port, TOUCH_NRST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(TOUCH_NRST_GPIO_Port, TOUCH_NRST_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOG, STATUS_LED_Pin|PWR_5V_EN_Pin, GPIO_PIN_RESET);

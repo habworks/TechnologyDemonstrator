@@ -67,6 +67,12 @@ typedef struct
 
 extern volatile Type_BoardStatus BoardStatus;
 
+#define TEST_RETURN_IF_FAIL(__condition__)    do { if(__condition__) \
+                                             {  \
+                                                ;  \
+                                             } \
+                                            }while(0)
+
 // PROTOTYPE FUNCTIONS
 void main_Init(void);
 void main_WhileLoop(void);
