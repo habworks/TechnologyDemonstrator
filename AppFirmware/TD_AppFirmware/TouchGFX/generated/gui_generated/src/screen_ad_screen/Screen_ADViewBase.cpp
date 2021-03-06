@@ -4,8 +4,10 @@
 #include <gui_generated/screen_ad_screen/Screen_ADViewBase.hpp>
 #include <touchgfx/Color.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
+#include "BitmapDatabase.hpp"
 
-Screen_ADViewBase::Screen_ADViewBase()
+Screen_ADViewBase::Screen_ADViewBase() :
+    buttonCallback(this, &Screen_ADViewBase::buttonCallbackHandler)
 {
 
     __background.setPosition(0, 0, 480, 272);
@@ -19,12 +21,29 @@ Screen_ADViewBase::Screen_ADViewBase()
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID7));
 
+    buttonWithIconAD_Home.setXY(420, 212);
+    buttonWithIconAD_Home.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_BLUE_ICONS_HOME_32_ID), touchgfx::Bitmap(BITMAP_BLUE_ICONS_HOME_32_ID));
+    buttonWithIconAD_Home.setIconXY(15, 16);
+    buttonWithIconAD_Home.setAction(buttonCallback);
+
     add(__background);
     add(box1);
     add(textArea1);
+    add(buttonWithIconAD_Home);
 }
 
 void Screen_ADViewBase::setupScreen()
 {
 
+}
+
+void Screen_ADViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
+{
+    if (&src == &buttonWithIconAD_Home)
+    {
+        //Interaction1
+        //When buttonWithIconAD_Home clicked change screen to Screen_MainMenu
+        //Go to Screen_MainMenu with screen transition towards West
+        application().gotoScreen_MainMenuScreenSlideTransitionWest();
+    }
 }

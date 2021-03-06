@@ -21,14 +21,14 @@
           },
           {
             "Type": "ScalableImage",
-            "Filename": "IMRLogoWhiteBackGround.png",
+            "Filename": "IMRLogoTransparent.png",
             "Alpha": 20,
             "ScalingAlgorithm": "Nearest-neighbor",
             "Name": "Logo",
             "X": 24,
             "Y": 94,
-            "Width": 432,
-            "Height": 111,
+            "Width": 433,
+            "Height": 113,
             "Visible": true,
             "LockPosition": false,
             "Draggable": false,
@@ -86,8 +86,7 @@
             },
             "Action": {
               "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionWipe",
-              "ScreenTransitionDirection": "East",
+              "ScreenTransitionType": "ScreenTransitionNone",
               "ActionComponent": "Screen_MainMenu"
             }
           }
@@ -144,11 +143,11 @@
           },
           {
             "Type": "Image",
-            "RelativeFilename": "ADI-G.png",
+            "RelativeFilename": "ADI-R.png",
             "Alpha": 255,
             "Name": "image_AD",
-            "X": 31,
-            "Y": 72,
+            "X": 266,
+            "Y": 193,
             "Width": 64,
             "Height": 64,
             "Visible": true,
@@ -160,21 +159,151 @@
           },
           {
             "Type": "ButtonWithIcon",
-            "Pressed": "__designer\\Blue_Buttons_Round_Edge_icon_button.png",
-            "Released": "__designer\\Blue_Buttons_Round_Edge_icon_button.png",
+            "Pressed": "__designer\\Dark_Buttons_Round_Edge_icon_button_pressed.png",
+            "Released": "__designer\\Dark_Buttons_Round_Edge_icon_button.png",
             "Alpha": 255,
-            "IconPressed": "__designer\\Blue_Icons_Home_32.png",
-            "IconReleased": "__designer\\Blue_Icons_Home_32.png",
+            "IconPressed": "__designer\\Blue_Icons_Refresh_32.png",
+            "IconReleased": "__designer\\Blue_Icons_Refresh_32.png",
             "IconX": 15,
             "IconY": 16,
-            "IconHeight": 29,
+            "IconHeight": 28,
             "IconWidth": 30,
-            "IconStyle": "Icon27",
+            "IconStyle": "Icon51",
             "Name": "buttonWithIcon1",
             "X": 405,
             "Y": 203,
             "Width": 60,
             "Height": 60,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "FlexButton",
+            "Alpha": 0,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "X": 0,
+                "Y": 0,
+                "Width": 63,
+                "Height": 64,
+                "LockToFlexButtonSize": true,
+                "BorderSize": 5,
+                "ColorReleased": {
+                  "Red": 0,
+                  "Green": 102,
+                  "Blue": 153
+                },
+                "ColorPressed": {
+                  "Red": 0,
+                  "Green": 153,
+                  "Blue": 204
+                },
+                "ColorBorderReleased": {
+                  "Red": 0,
+                  "Green": 51,
+                  "Blue": 102
+                },
+                "ColorBorderPressed": {
+                  "Red": 51,
+                  "Green": 102,
+                  "Blue": 153
+                }
+              }
+            ],
+            "Name": "flexButton_PA",
+            "X": 134,
+            "Y": 72,
+            "Width": 63,
+            "Height": 64,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "Image",
+            "RelativeFilename": "PA-G.png",
+            "Alpha": 255,
+            "Name": "image_PA",
+            "X": 134,
+            "Y": 72,
+            "Width": 64,
+            "Height": 64,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "Image",
+            "RelativeFilename": "ADI-G.png",
+            "Alpha": 255,
+            "Name": "image1",
+            "X": 26,
+            "Y": 72,
+            "Width": 64,
+            "Height": 64,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "FlexButton",
+            "Alpha": 0,
+            "ButtonTrigger": {
+              "Type": "ClickButtonTrigger"
+            },
+            "ButtonStyles": [
+              {
+                "Type": "BoxWithBorderButtonStyle",
+                "X": 0,
+                "Y": 0,
+                "Width": 64,
+                "Height": 64,
+                "LockToFlexButtonSize": true,
+                "BorderSize": 5,
+                "ColorReleased": {
+                  "Red": 0,
+                  "Green": 102,
+                  "Blue": 153
+                },
+                "ColorPressed": {
+                  "Red": 0,
+                  "Green": 153,
+                  "Blue": 204
+                },
+                "ColorBorderReleased": {
+                  "Red": 0,
+                  "Green": 51,
+                  "Blue": 102
+                },
+                "ColorBorderPressed": {
+                  "Red": 51,
+                  "Green": 102,
+                  "Blue": 153
+                }
+              }
+            ],
+            "Name": "flexButton_AD",
+            "X": 26,
+            "Y": 72,
+            "Width": 64,
+            "Height": 64,
             "Visible": true,
             "LockPosition": false,
             "Draggable": false,
@@ -210,6 +339,48 @@
               "ScreenTransitionType": "ScreenTransitionCover",
               "ScreenTransitionDirection": "West",
               "ActionComponent": "Screen_Opening"
+            }
+          },
+          {
+            "InteractionName": "Interaction3",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "flexButton_PA"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "East",
+              "ActionComponent": "Screen_AD"
+            }
+          },
+          {
+            "InteractionName": "Interaction4",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "flexButton_PA"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "East",
+              "ActionComponent": "Screen_PA"
+            }
+          },
+          {
+            "InteractionName": "Interaction5",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "flexButton_AD"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "East",
+              "ActionComponent": "Screen_AD"
             }
           }
         ],
@@ -262,10 +433,137 @@
             "Clickable": false,
             "Fadeable": false,
             "Moveable": false
+          },
+          {
+            "Type": "ButtonWithIcon",
+            "Pressed": "__designer\\Dark_Buttons_Round_Edge_icon_button_pressed.png",
+            "Released": "__designer\\Dark_Buttons_Round_Edge_icon_button.png",
+            "Alpha": 255,
+            "IconPressed": "__designer\\Blue_Icons_Home_32.png",
+            "IconReleased": "__designer\\Blue_Icons_Home_32.png",
+            "IconX": 15,
+            "IconY": 16,
+            "IconHeight": 29,
+            "IconWidth": 30,
+            "IconStyle": "Icon27",
+            "Name": "buttonWithIconAD_Home",
+            "X": 420,
+            "Y": 212,
+            "Width": 60,
+            "Height": 60,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
           }
         ],
-        "Interactions": [],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonWithIconAD_Home"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "West",
+              "ActionComponent": "Screen_MainMenu"
+            }
+          }
+        ],
         "Name": "Screen_AD",
+        "OverrideDefaultBufferSize": false,
+        "CanvasBufferSize": 0
+      },
+      {
+        "Components": [
+          {
+            "Type": "ScalableImage",
+            "Filename": "Background2.png",
+            "Alpha": 255,
+            "ScalingAlgorithm": "Nearest-neighbor",
+            "Name": "scalableImage1",
+            "X": 0,
+            "Y": 0,
+            "Width": 600,
+            "Height": 444,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId8",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 57,
+              "Green": 224,
+              "Blue": 23
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea1",
+            "X": 125,
+            "Y": 8,
+            "Width": 231,
+            "Height": 44,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "ButtonWithIcon",
+            "Pressed": "__designer\\Dark_Buttons_Round_Edge_icon_button_pressed.png",
+            "Released": "__designer\\Dark_Buttons_Round_Edge_icon_button.png",
+            "Alpha": 255,
+            "IconPressed": "__designer\\Blue_Icons_Home_32.png",
+            "IconReleased": "__designer\\Blue_Icons_Home_32.png",
+            "IconX": 15,
+            "IconY": 16,
+            "IconHeight": 29,
+            "IconWidth": 30,
+            "IconStyle": "Icon27",
+            "Name": "buttonWithIconPA_Home",
+            "X": 420,
+            "Y": 212,
+            "Width": 60,
+            "Height": 60,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonWithIconPA_Home"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "West",
+              "ActionComponent": "Screen_MainMenu"
+            }
+          }
+        ],
+        "Name": "Screen_PA",
         "OverrideDefaultBufferSize": false,
         "CanvasBufferSize": 0
       }
@@ -282,6 +580,10 @@
       },
       {
         "TextEntryId": "SingleUseId7",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId8",
         "IsResource": false
       }
     ],

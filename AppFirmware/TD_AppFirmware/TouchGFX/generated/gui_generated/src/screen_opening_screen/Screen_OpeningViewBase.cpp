@@ -16,8 +16,8 @@ Screen_OpeningViewBase::Screen_OpeningViewBase() :
     OpenScreenBackGround.setXY(-74, -49);
     OpenScreenBackGround.setBitmap(touchgfx::Bitmap(BITMAP_BACKSPLASH_ID));
 
-    Logo.setBitmap(touchgfx::Bitmap(BITMAP_IMRLOGOWHITEBACKGROUND_ID));
-    Logo.setPosition(24, 94, 432, 111);
+    Logo.setBitmap(touchgfx::Bitmap(BITMAP_IMRLOGOTRANSPARENT_ID));
+    Logo.setPosition(24, 94, 433, 113);
     Logo.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
     Logo.setAlpha(20);
 
@@ -48,6 +48,6 @@ void Screen_OpeningViewBase::interaction1EndedCallbackHandler(const touchgfx::Fa
 {
     //Interaction2
     //When Interaction1 completed change screen to Screen_MainMenu
-    //Go to Screen_MainMenu with screen transition towards East
-    application().gotoScreen_MainMenuScreenWipeTransitionEast();
+    //Go to Screen_MainMenu with no screen transition
+    application().gotoScreen_MainMenuScreenNoTransition();
 }

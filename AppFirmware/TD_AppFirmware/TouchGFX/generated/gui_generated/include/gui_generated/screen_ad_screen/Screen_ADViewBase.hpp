@@ -9,6 +9,7 @@
 #include <gui/screen_ad_screen/Screen_ADPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/ButtonWithIcon.hpp>
 
 class Screen_ADViewBase : public touchgfx::View<Screen_ADPresenter>
 {
@@ -28,8 +29,19 @@ protected:
     touchgfx::Box __background;
     touchgfx::Box box1;
     touchgfx::TextArea textArea1;
+    touchgfx::ButtonWithIcon buttonWithIconAD_Home;
 
 private:
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<Screen_ADViewBase, const touchgfx::AbstractButton&> buttonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

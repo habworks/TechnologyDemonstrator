@@ -7,7 +7,8 @@
 #include "BitmapDatabase.hpp"
 
 Screen_MainMenuViewBase::Screen_MainMenuViewBase() :
-    buttonCallback(this, &Screen_MainMenuViewBase::buttonCallbackHandler)
+    buttonCallback(this, &Screen_MainMenuViewBase::buttonCallbackHandler),
+    flexButtonCallback(this, &Screen_MainMenuViewBase::flexButtonCallbackHandler)
 {
 
     __background.setPosition(0, 0, 480, 272);
@@ -21,19 +22,43 @@ Screen_MainMenuViewBase::Screen_MainMenuViewBase() :
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID6));
 
-    image_AD.setXY(31, 72);
-    image_AD.setBitmap(touchgfx::Bitmap(BITMAP_ADI_G_ID));
+    image_AD.setXY(266, 193);
+    image_AD.setBitmap(touchgfx::Bitmap(BITMAP_ADI_R_ID));
 
     buttonWithIcon1.setXY(405, 203);
-    buttonWithIcon1.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_BLUE_ICONS_HOME_32_ID), touchgfx::Bitmap(BITMAP_BLUE_ICONS_HOME_32_ID));
+    buttonWithIcon1.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_BLUE_ICONS_REFRESH_32_ID), touchgfx::Bitmap(BITMAP_BLUE_ICONS_REFRESH_32_ID));
     buttonWithIcon1.setIconXY(15, 16);
     buttonWithIcon1.setAction(buttonCallback);
+
+    flexButton_PA.setBoxWithBorderPosition(0, 0, 63, 64);
+    flexButton_PA.setBorderSize(5);
+    flexButton_PA.setBoxWithBorderColors(touchgfx::Color::getColorFrom24BitRGB(0, 102, 153), touchgfx::Color::getColorFrom24BitRGB(0, 153, 204), touchgfx::Color::getColorFrom24BitRGB(0, 51, 102), touchgfx::Color::getColorFrom24BitRGB(51, 102, 153));
+    flexButton_PA.setPosition(134, 72, 63, 64);
+    flexButton_PA.setAlpha(0);
+    flexButton_PA.setAction(flexButtonCallback);
+
+    image_PA.setXY(134, 72);
+    image_PA.setBitmap(touchgfx::Bitmap(BITMAP_PA_G_ID));
+
+    image1.setXY(26, 72);
+    image1.setBitmap(touchgfx::Bitmap(BITMAP_ADI_G_ID));
+
+    flexButton_AD.setBoxWithBorderPosition(0, 0, 64, 64);
+    flexButton_AD.setBorderSize(5);
+    flexButton_AD.setBoxWithBorderColors(touchgfx::Color::getColorFrom24BitRGB(0, 102, 153), touchgfx::Color::getColorFrom24BitRGB(0, 153, 204), touchgfx::Color::getColorFrom24BitRGB(0, 51, 102), touchgfx::Color::getColorFrom24BitRGB(51, 102, 153));
+    flexButton_AD.setPosition(26, 72, 64, 64);
+    flexButton_AD.setAlpha(0);
+    flexButton_AD.setAction(flexButtonCallback);
 
     add(__background);
     add(box1);
     add(textArea1);
     add(image_AD);
     add(buttonWithIcon1);
+    add(flexButton_PA);
+    add(image_PA);
+    add(image1);
+    add(flexButton_AD);
 }
 
 void Screen_MainMenuViewBase::setupScreen()
@@ -54,5 +79,28 @@ void Screen_MainMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButt
         //When buttonWithIcon1 clicked change screen to Screen_Opening
         //Go to Screen_Opening with screen transition towards West
         application().gotoScreen_OpeningScreenCoverTransitionWest();
+    }
+}
+
+void Screen_MainMenuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
+{
+    if (&src == &flexButton_PA)
+    {
+        //Interaction3
+        //When flexButton_PA clicked change screen to Screen_AD
+        //Go to Screen_AD with screen transition towards East
+        application().gotoScreen_ADScreenSlideTransitionEast();
+
+        //Interaction4
+        //When flexButton_PA clicked change screen to Screen_PA
+        //Go to Screen_PA with screen transition towards East
+        application().gotoScreen_PAScreenSlideTransitionEast();
+    }
+    else if (&src == &flexButton_AD)
+    {
+        //Interaction5
+        //When flexButton_AD clicked change screen to Screen_AD
+        //Go to Screen_AD with screen transition towards East
+        application().gotoScreen_ADScreenSlideTransitionEast();
     }
 }

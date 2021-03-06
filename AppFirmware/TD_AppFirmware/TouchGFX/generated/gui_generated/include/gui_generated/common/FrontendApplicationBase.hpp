@@ -23,7 +23,15 @@ public:
     void gotoScreen_OpeningScreenCoverTransitionWest();
 
     // Screen_MainMenu
-    void gotoScreen_MainMenuScreenWipeTransitionEast();
+    void gotoScreen_MainMenuScreenNoTransition();
+
+    void gotoScreen_MainMenuScreenSlideTransitionWest();
+
+    // Screen_AD
+    void gotoScreen_ADScreenSlideTransitionEast();
+
+    // Screen_PA
+    void gotoScreen_PAScreenSlideTransitionEast();
 
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
@@ -38,7 +46,15 @@ protected:
     void gotoScreen_OpeningScreenCoverTransitionWestImpl();
 
     // Screen_MainMenu
-    void gotoScreen_MainMenuScreenWipeTransitionEastImpl();
+    void gotoScreen_MainMenuScreenNoTransitionImpl();
+
+    void gotoScreen_MainMenuScreenSlideTransitionWestImpl();
+
+    // Screen_AD
+    void gotoScreen_ADScreenSlideTransitionEastImpl();
+
+    // Screen_PA
+    void gotoScreen_PAScreenSlideTransitionEastImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

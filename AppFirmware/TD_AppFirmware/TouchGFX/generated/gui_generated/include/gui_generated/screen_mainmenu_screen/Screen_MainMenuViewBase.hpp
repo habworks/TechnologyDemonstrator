@@ -11,6 +11,7 @@
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/ButtonWithIcon.hpp>
+#include <touchgfx/containers/buttons/Buttons.hpp>
 #include <touchgfx/mixins/ClickListener.hpp>
 
 class Screen_MainMenuViewBase : public touchgfx::View<Screen_MainMenuPresenter>
@@ -33,6 +34,10 @@ protected:
     touchgfx::TextArea textArea1;
     touchgfx::ClickListener< touchgfx::Image > image_AD;
     touchgfx::ButtonWithIcon buttonWithIcon1;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger > flexButton_PA;
+    touchgfx::Image image_PA;
+    touchgfx::Image image1;
+    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger > flexButton_AD;
 
 private:
 
@@ -40,11 +45,13 @@ private:
      * Callback Declarations
      */
     touchgfx::Callback<Screen_MainMenuViewBase, const touchgfx::AbstractButton&> buttonCallback;
+    touchgfx::Callback<Screen_MainMenuViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
 
     /*
      * Callback Handler Declarations
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 
