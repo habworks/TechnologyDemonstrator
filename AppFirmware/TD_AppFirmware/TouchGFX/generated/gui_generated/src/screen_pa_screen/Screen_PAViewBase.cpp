@@ -27,15 +27,59 @@ Screen_PAViewBase::Screen_PAViewBase() :
     buttonWithIconPA_Home.setIconXY(15, 16);
     buttonWithIconPA_Home.setAction(buttonCallback);
 
+    box1.setPosition(41, 63, 115, 102);
+    box1.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
+
+    slider1.setXY(186, 63);
+    slider1.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_SLIDER_VERTICAL_SMALL_SLIDER3_VERTICAL_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_BLUE_SLIDER_VERTICAL_SMALL_SLIDER3_VERTICAL_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_BLUE_SLIDER_VERTICAL_SMALL_INDICATORS_SLIDER3_VERTICAL_ROUND_EDGE_NOB_ID));
+    slider1.setupVerticalSlider(7, 3, 0, 0, 125);
+    slider1.setValueRange(0, 100);
+    slider1.setValue(0);
+
+    textAreaXaxis.setXY(333, 75);
+    textAreaXaxis.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 0, 0));
+    textAreaXaxis.setLinespacing(0);
+    textAreaXaxis.setWildcard(touchgfx::TypedText(T_SINGLEUSEID19).getText());
+    textAreaXaxis.resizeToCurrentText();
+    textAreaXaxis.setTypedText(touchgfx::TypedText(T_SINGLEUSEID18));
+
+    textAreaYaxis.setXY(333, 114);
+    textAreaYaxis.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 0, 0));
+    textAreaYaxis.setLinespacing(0);
+    textAreaYaxis.setWildcard(touchgfx::TypedText(T_SINGLEUSEID21).getText());
+    textAreaYaxis.resizeToCurrentText();
+    textAreaYaxis.setTypedText(touchgfx::TypedText(T_SINGLEUSEID20));
+
+    textAreaZaxis.setXY(333, 152);
+    textAreaZaxis.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 0, 0));
+    textAreaZaxis.setLinespacing(0);
+    textAreaZaxis.setWildcard(touchgfx::TypedText(T_SINGLEUSEID23).getText());
+    textAreaZaxis.resizeToCurrentText();
+    textAreaZaxis.setTypedText(touchgfx::TypedText(T_SINGLEUSEID22));
+
     add(__background);
     add(scalableImage1);
     add(textArea1);
     add(buttonWithIconPA_Home);
+    add(box1);
+    add(slider1);
+    add(textAreaXaxis);
+    add(textAreaYaxis);
+    add(textAreaZaxis);
 }
 
 void Screen_PAViewBase::setupScreen()
 {
 
+}
+
+//Called when the screen transition ends
+void Screen_PAViewBase::afterTransition()
+{
+    //Interaction2
+    //When screen transition ends call virtual function
+    //Call updateScreen_PA
+    updateScreen_PA();
 }
 
 void Screen_PAViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)

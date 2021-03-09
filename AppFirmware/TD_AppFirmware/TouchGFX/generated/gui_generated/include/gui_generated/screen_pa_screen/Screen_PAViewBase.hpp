@@ -11,6 +11,8 @@
 #include <touchgfx/widgets/ScalableImage.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/ButtonWithIcon.hpp>
+#include <touchgfx/containers/Slider.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 
 class Screen_PAViewBase : public touchgfx::View<Screen_PAPresenter>
 {
@@ -18,6 +20,15 @@ public:
     Screen_PAViewBase();
     virtual ~Screen_PAViewBase() {}
     virtual void setupScreen();
+    virtual void afterTransition();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void updateScreen_PA()
+    {
+        // Override and implement this function in Screen_PA
+    }
 
 protected:
     FrontendApplication& application() {
@@ -31,6 +42,11 @@ protected:
     touchgfx::ScalableImage scalableImage1;
     touchgfx::TextArea textArea1;
     touchgfx::ButtonWithIcon buttonWithIconPA_Home;
+    touchgfx::Box box1;
+    touchgfx::Slider slider1;
+    touchgfx::TextAreaWithOneWildcard textAreaXaxis;
+    touchgfx::TextAreaWithOneWildcard textAreaYaxis;
+    touchgfx::TextAreaWithOneWildcard textAreaZaxis;
 
 private:
 

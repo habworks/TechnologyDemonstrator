@@ -10,6 +10,12 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/ButtonWithIcon.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/widgets/canvas/Line.hpp>
+#include <touchgfx/widgets/canvas/PainterRGB888.hpp>
+#include <touchgfx/widgets/graph/GraphWrapAndOverwrite.hpp>
+#include <touchgfx/widgets/graph/GraphElements.hpp>
+#include <touchgfx/widgets/graph/GraphLabels.hpp>
 
 class Screen_ADViewBase : public touchgfx::View<Screen_ADPresenter>
 {
@@ -17,6 +23,15 @@ public:
     Screen_ADViewBase();
     virtual ~Screen_ADViewBase() {}
     virtual void setupScreen();
+    virtual void afterTransition();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void updateScreen_AD()
+    {
+        // Override and implement this function in Screen_AD
+    }
 
 protected:
     FrontendApplication& application() {
@@ -28,8 +43,29 @@ protected:
      */
     touchgfx::Box __background;
     touchgfx::Box box1;
+    touchgfx::Box box1_1;
     touchgfx::TextArea textArea1;
     touchgfx::ButtonWithIcon buttonWithIconAD_Home;
+    touchgfx::TextAreaWithOneWildcard textAreaDigital;
+    touchgfx::TextAreaWithOneWildcard textAreaAnalog;
+    touchgfx::TextArea textArea1_1;
+    touchgfx::Line line1;
+    touchgfx::PainterRGB888 line1Painter;
+    touchgfx::GraphWrapAndOverwrite<100> dynamicGraph1;
+    touchgfx::GraphElementLine dynamicGraph1Line1;
+    touchgfx::PainterRGB888 dynamicGraph1Line1Painter;
+    touchgfx::GraphElementGridX dynamicGraph1MajorXAxisGrid;
+    touchgfx::GraphElementGridY dynamicGraph1MajorYAxisGrid;
+    touchgfx::GraphLabelsX dynamicGraph1MajorXAxisLabel;
+    touchgfx::GraphLabelsY dynamicGraph1MajorYAxisLabel;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t TEXTAREADIGITAL_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar textAreaDigitalBuffer[TEXTAREADIGITAL_SIZE];
+    static const uint16_t TEXTAREAANALOG_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar textAreaAnalogBuffer[TEXTAREAANALOG_SIZE];
 
 private:
 
@@ -43,6 +79,11 @@ private:
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
+    /*
+     * Canvas Buffer Size
+     */
+    static const uint16_t CANVAS_BUFFER_SIZE = 7200;
+    uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
 };
 
 #endif // SCREEN_ADVIEWBASE_HPP

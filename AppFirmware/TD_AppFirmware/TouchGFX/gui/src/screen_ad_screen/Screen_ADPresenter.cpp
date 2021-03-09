@@ -16,3 +16,10 @@ void Screen_ADPresenter::deactivate()
 {
 
 }
+
+
+// HAB ADDED:
+void Screen_ADPresenter::analogDigitalUpdate_Presenter(float AnalogValue, char DigitalValueChar)
+{
+	view.analogDigitalUpdate_View(AnalogValue, DigitalValueChar);
+}

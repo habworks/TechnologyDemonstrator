@@ -12,8 +12,10 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
 
-    // Hab Add: Declaring callback Main Menu ICONs
+    // HAB ADDED:
+    // Declaring callback Main Menu ICONs
     void image_AD_ClickHandler(const Image& i, const ClickEvent& e);
+    virtual void updateScreen_MainMenu(void);
 
 protected:
     // Hab Add: Declaring callback types

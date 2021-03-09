@@ -3,21 +3,21 @@
 /*********************************************************************************/
 #include <gui_generated/screen_mainmenu_screen/Screen_MainMenuViewBase.hpp>
 #include <touchgfx/Color.hpp>
-#include <texts/TextKeysAndLanguages.hpp>
 #include "BitmapDatabase.hpp"
+#include <texts/TextKeysAndLanguages.hpp>
 
 Screen_MainMenuViewBase::Screen_MainMenuViewBase() :
-    buttonCallback(this, &Screen_MainMenuViewBase::buttonCallbackHandler),
-    flexButtonCallback(this, &Screen_MainMenuViewBase::flexButtonCallbackHandler)
+    buttonCallback(this, &Screen_MainMenuViewBase::buttonCallbackHandler)
 {
 
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
 
-    box1.setPosition(0, 0, 480, 272);
-    box1.setColor(touchgfx::Color::getColorFrom24BitRGB(40, 40, 40));
+    scalableImage1.setBitmap(touchgfx::Bitmap(BITMAP_BACKGROUND2_ID));
+    scalableImage1.setPosition(-2, 0, 600, 444);
+    scalableImage1.setScalingAlgorithm(touchgfx::ScalableImage::NEAREST_NEIGHBOR);
 
-    textArea1.setXY(134, 6);
+    textArea1.setXY(147, 6);
     textArea1.setColor(touchgfx::Color::getColorFrom24BitRGB(57, 224, 23));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID6));
@@ -30,40 +30,35 @@ Screen_MainMenuViewBase::Screen_MainMenuViewBase() :
     buttonWithIcon1.setIconXY(15, 16);
     buttonWithIcon1.setAction(buttonCallback);
 
-    flexButton_PA.setBoxWithBorderPosition(0, 0, 63, 64);
-    flexButton_PA.setBorderSize(5);
-    flexButton_PA.setBoxWithBorderColors(touchgfx::Color::getColorFrom24BitRGB(0, 102, 153), touchgfx::Color::getColorFrom24BitRGB(0, 153, 204), touchgfx::Color::getColorFrom24BitRGB(0, 51, 102), touchgfx::Color::getColorFrom24BitRGB(51, 102, 153));
-    flexButton_PA.setPosition(134, 72, 63, 64);
-    flexButton_PA.setAlpha(0);
-    flexButton_PA.setAction(flexButtonCallback);
+    button_AD.setXY(32, 60);
+    button_AD.setBitmaps(touchgfx::Bitmap(BITMAP_ADI_G_ID), touchgfx::Bitmap(BITMAP_ADI_G_ID));
+    button_AD.setAction(buttonCallback);
 
-    image_PA.setXY(134, 72);
-    image_PA.setBitmap(touchgfx::Bitmap(BITMAP_PA_G_ID));
-
-    image1.setXY(26, 72);
-    image1.setBitmap(touchgfx::Bitmap(BITMAP_ADI_G_ID));
-
-    flexButton_AD.setBoxWithBorderPosition(0, 0, 64, 64);
-    flexButton_AD.setBorderSize(5);
-    flexButton_AD.setBoxWithBorderColors(touchgfx::Color::getColorFrom24BitRGB(0, 102, 153), touchgfx::Color::getColorFrom24BitRGB(0, 153, 204), touchgfx::Color::getColorFrom24BitRGB(0, 51, 102), touchgfx::Color::getColorFrom24BitRGB(51, 102, 153));
-    flexButton_AD.setPosition(26, 72, 64, 64);
-    flexButton_AD.setAlpha(0);
-    flexButton_AD.setAction(flexButtonCallback);
+    button_PA.setXY(134, 60);
+    button_PA.setBitmaps(touchgfx::Bitmap(BITMAP_PA_G_ID), touchgfx::Bitmap(BITMAP_PA_G_ID));
+    button_PA.setAction(buttonCallback);
 
     add(__background);
-    add(box1);
+    add(scalableImage1);
     add(textArea1);
     add(image_AD);
     add(buttonWithIcon1);
-    add(flexButton_PA);
-    add(image_PA);
-    add(image1);
-    add(flexButton_AD);
+    add(button_AD);
+    add(button_PA);
 }
 
 void Screen_MainMenuViewBase::setupScreen()
 {
 
+}
+
+//Called when the screen transition ends
+void Screen_MainMenuViewBase::afterTransition()
+{
+    //Interaction5
+    //When screen transition ends call virtual function
+    //Call updateScreen_MainMenu
+    updateScreen_MainMenu();
 }
 
 void Screen_MainMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
@@ -80,27 +75,18 @@ void Screen_MainMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButt
         //Go to Screen_Opening with screen transition towards West
         application().gotoScreen_OpeningScreenCoverTransitionWest();
     }
-}
-
-void Screen_MainMenuViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
-{
-    if (&src == &flexButton_PA)
+    else if (&src == &button_AD)
     {
         //Interaction3
-        //When flexButton_PA clicked change screen to Screen_AD
+        //When button_AD clicked change screen to Screen_AD
         //Go to Screen_AD with screen transition towards East
         application().gotoScreen_ADScreenSlideTransitionEast();
-
+    }
+    else if (&src == &button_PA)
+    {
         //Interaction4
-        //When flexButton_PA clicked change screen to Screen_PA
+        //When button_PA clicked change screen to Screen_PA
         //Go to Screen_PA with screen transition towards East
         application().gotoScreen_PAScreenSlideTransitionEast();
-    }
-    else if (&src == &flexButton_AD)
-    {
-        //Interaction5
-        //When flexButton_AD clicked change screen to Screen_AD
-        //Go to Screen_AD with screen transition towards East
-        application().gotoScreen_ADScreenSlideTransitionEast();
     }
 }

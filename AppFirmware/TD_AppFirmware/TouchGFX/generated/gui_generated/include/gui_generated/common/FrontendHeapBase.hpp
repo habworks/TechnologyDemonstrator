@@ -19,10 +19,10 @@
 #include <gui/screen_opening_screen/Screen_OpeningPresenter.hpp>
 #include <gui/screen_mainmenu_screen/Screen_MainMenuView.hpp>
 #include <gui/screen_mainmenu_screen/Screen_MainMenuPresenter.hpp>
-#include <gui/screen_ad_screen/Screen_ADView.hpp>
-#include <gui/screen_ad_screen/Screen_ADPresenter.hpp>
 #include <gui/screen_pa_screen/Screen_PAView.hpp>
 #include <gui/screen_pa_screen/Screen_PAPresenter.hpp>
+#include <gui/screen_ad_screen/Screen_ADView.hpp>
+#include <gui/screen_ad_screen/Screen_ADPresenter.hpp>
 
 
 /**
@@ -47,8 +47,8 @@ public:
      */
     typedef touchgfx::meta::TypeList< Screen_OpeningView,
             touchgfx::meta::TypeList< Screen_MainMenuView,
-            touchgfx::meta::TypeList< Screen_ADView,
             touchgfx::meta::TypeList< Screen_PAView,
+            touchgfx::meta::TypeList< Screen_ADView,
             touchgfx::meta::Nil > > >
             > GeneratedViewTypes;
 
@@ -63,8 +63,8 @@ public:
      */
     typedef touchgfx::meta::TypeList< Screen_OpeningPresenter,
             touchgfx::meta::TypeList< Screen_MainMenuPresenter,
-            touchgfx::meta::TypeList< Screen_ADPresenter,
             touchgfx::meta::TypeList< Screen_PAPresenter,
+            touchgfx::meta::TypeList< Screen_ADPresenter,
             touchgfx::meta::Nil > > >
             > GeneratedPresenterTypes;
 

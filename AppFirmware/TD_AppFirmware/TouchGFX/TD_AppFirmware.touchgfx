@@ -98,18 +98,15 @@
       {
         "Components": [
           {
-            "Type": "Box",
-            "Color": {
-              "Red": 40,
-              "Green": 40,
-              "Blue": 40
-            },
+            "Type": "ScalableImage",
+            "Filename": "Background2.png",
             "Alpha": 255,
-            "Name": "box1",
-            "X": 0,
+            "ScalingAlgorithm": "Nearest-neighbor",
+            "Name": "scalableImage1",
+            "X": -2,
             "Y": 0,
-            "Width": 480,
-            "Height": 272,
+            "Width": 600,
+            "Height": 444,
             "Visible": true,
             "LockPosition": false,
             "Draggable": false,
@@ -130,7 +127,7 @@
             "AutoSize": true,
             "LineSpacing": 0,
             "Name": "textArea1",
-            "X": 134,
+            "X": 147,
             "Y": 6,
             "Width": 187,
             "Height": 44,
@@ -182,61 +179,13 @@
             "Moveable": false
           },
           {
-            "Type": "FlexButton",
-            "Alpha": 0,
-            "ButtonTrigger": {
-              "Type": "ClickButtonTrigger"
-            },
-            "ButtonStyles": [
-              {
-                "Type": "BoxWithBorderButtonStyle",
-                "X": 0,
-                "Y": 0,
-                "Width": 63,
-                "Height": 64,
-                "LockToFlexButtonSize": true,
-                "BorderSize": 5,
-                "ColorReleased": {
-                  "Red": 0,
-                  "Green": 102,
-                  "Blue": 153
-                },
-                "ColorPressed": {
-                  "Red": 0,
-                  "Green": 153,
-                  "Blue": 204
-                },
-                "ColorBorderReleased": {
-                  "Red": 0,
-                  "Green": 51,
-                  "Blue": 102
-                },
-                "ColorBorderPressed": {
-                  "Red": 51,
-                  "Green": 102,
-                  "Blue": 153
-                }
-              }
-            ],
-            "Name": "flexButton_PA",
-            "X": 134,
-            "Y": 72,
-            "Width": 63,
-            "Height": 64,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "Image",
-            "RelativeFilename": "PA-G.png",
+            "Type": "Button",
+            "Pressed": "ADI-G.png",
+            "Released": "ADI-G.png",
             "Alpha": 255,
-            "Name": "image_PA",
-            "X": 134,
-            "Y": 72,
+            "Name": "button_AD",
+            "X": 32,
+            "Y": 60,
             "Width": 64,
             "Height": 64,
             "Visible": true,
@@ -247,61 +196,13 @@
             "Moveable": false
           },
           {
-            "Type": "Image",
-            "RelativeFilename": "ADI-G.png",
+            "Type": "Button",
+            "Pressed": "PA-G.png",
+            "Released": "PA-G.png",
             "Alpha": 255,
-            "Name": "image1",
-            "X": 26,
-            "Y": 72,
-            "Width": 64,
-            "Height": 64,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "FlexButton",
-            "Alpha": 0,
-            "ButtonTrigger": {
-              "Type": "ClickButtonTrigger"
-            },
-            "ButtonStyles": [
-              {
-                "Type": "BoxWithBorderButtonStyle",
-                "X": 0,
-                "Y": 0,
-                "Width": 64,
-                "Height": 64,
-                "LockToFlexButtonSize": true,
-                "BorderSize": 5,
-                "ColorReleased": {
-                  "Red": 0,
-                  "Green": 102,
-                  "Blue": 153
-                },
-                "ColorPressed": {
-                  "Red": 0,
-                  "Green": 153,
-                  "Blue": 204
-                },
-                "ColorBorderReleased": {
-                  "Red": 0,
-                  "Green": 51,
-                  "Blue": 102
-                },
-                "ColorBorderPressed": {
-                  "Red": 51,
-                  "Green": 102,
-                  "Blue": 153
-                }
-              }
-            ],
-            "Name": "flexButton_AD",
-            "X": 26,
-            "Y": 72,
+            "Name": "button_PA",
+            "X": 134,
+            "Y": 60,
             "Width": 64,
             "Height": 64,
             "Visible": true,
@@ -346,7 +247,7 @@
             "HasCompletedTrigger": false,
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "flexButton_PA"
+              "TriggerComponent": "button_AD"
             },
             "Action": {
               "Type": "ActionGotoScreen",
@@ -360,7 +261,7 @@
             "HasCompletedTrigger": false,
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "flexButton_PA"
+              "TriggerComponent": "button_PA"
             },
             "Action": {
               "Type": "ActionGotoScreen",
@@ -373,109 +274,15 @@
             "InteractionName": "Interaction5",
             "HasCompletedTrigger": false,
             "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "flexButton_AD"
+              "Type": "TriggerScreenEntered"
             },
             "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionSlide",
-              "ScreenTransitionDirection": "East",
-              "ActionComponent": "Screen_AD"
+              "Type": "ActionCustom",
+              "FunctionName": "updateScreen_MainMenu"
             }
           }
         ],
         "Name": "Screen_MainMenu",
-        "OverrideDefaultBufferSize": false,
-        "CanvasBufferSize": 0
-      },
-      {
-        "Components": [
-          {
-            "Type": "Box",
-            "Color": {
-              "Red": 40,
-              "Green": 40,
-              "Blue": 40
-            },
-            "Alpha": 255,
-            "Name": "box1",
-            "X": 0,
-            "Y": 0,
-            "Width": 480,
-            "Height": 272,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "TextArea",
-            "TextId": "SingleUseId7",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 57,
-              "Green": 224,
-              "Blue": 23
-            },
-            "Alpha": 255,
-            "AutoSize": true,
-            "LineSpacing": 0,
-            "Name": "textArea1",
-            "X": 97,
-            "Y": 0,
-            "Width": 286,
-            "Height": 44,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "ButtonWithIcon",
-            "Pressed": "__designer\\Dark_Buttons_Round_Edge_icon_button_pressed.png",
-            "Released": "__designer\\Dark_Buttons_Round_Edge_icon_button.png",
-            "Alpha": 255,
-            "IconPressed": "__designer\\Blue_Icons_Home_32.png",
-            "IconReleased": "__designer\\Blue_Icons_Home_32.png",
-            "IconX": 15,
-            "IconY": 16,
-            "IconHeight": 29,
-            "IconWidth": 30,
-            "IconStyle": "Icon27",
-            "Name": "buttonWithIconAD_Home",
-            "X": 420,
-            "Y": 212,
-            "Width": 60,
-            "Height": 60,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          }
-        ],
-        "Interactions": [
-          {
-            "InteractionName": "Interaction1",
-            "HasCompletedTrigger": false,
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "buttonWithIconAD_Home"
-            },
-            "Action": {
-              "Type": "ActionGotoScreen",
-              "ScreenTransitionType": "ScreenTransitionSlide",
-              "ScreenTransitionDirection": "West",
-              "ActionComponent": "Screen_MainMenu"
-            }
-          }
-        ],
-        "Name": "Screen_AD",
         "OverrideDefaultBufferSize": false,
         "CanvasBufferSize": 0
       },
@@ -545,6 +352,139 @@
             "Clickable": false,
             "Fadeable": false,
             "Moveable": false
+          },
+          {
+            "Type": "Box",
+            "Color": {
+              "Red": 0,
+              "Green": 0,
+              "Blue": 0
+            },
+            "Alpha": 255,
+            "Name": "box1",
+            "X": 41,
+            "Y": 63,
+            "Width": 115,
+            "Height": 102,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "Slider",
+            "IsHorizontalSlider": false,
+            "BackgroundUnselected": "__designer\\Blue_Slider_Vertical_Small_Slider3_Vertical_Round_back.png",
+            "BackgroundSelected": "__designer\\Blue_Slider_Vertical_Small_Slider3_Vertical_Round_fill.png",
+            "Indicator": "__designer\\Blue_Slider_Vertical_Small_Indicators_Slider3_Vertical_Round_Edge_nob.png",
+            "BackgroundX": 7,
+            "BackgroundY": 3,
+            "IndicatorPos": 0,
+            "IndicatorMax": 125,
+            "IndicatorMin": 0,
+            "ValueMax": 100,
+            "ValueMin": 0,
+            "InitValue": 0,
+            "Name": "slider1",
+            "X": 186,
+            "Y": 63,
+            "Width": 34,
+            "Height": 179,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId18",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 0,
+              "Blue": 0
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "SingleUseId19",
+              "UseBuffer": false,
+              "BufferSize": 0
+            },
+            "Name": "textAreaXaxis",
+            "X": 333,
+            "Y": 75,
+            "Width": 100,
+            "Height": 26,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId20",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 0,
+              "Blue": 0
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "SingleUseId21",
+              "UseBuffer": false,
+              "BufferSize": 0
+            },
+            "Name": "textAreaYaxis",
+            "X": 333,
+            "Y": 114,
+            "Width": 100,
+            "Height": 26,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId22",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 0,
+              "Blue": 0
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "SingleUseId23",
+              "UseBuffer": false,
+              "BufferSize": 0
+            },
+            "Name": "textAreaZaxis",
+            "X": 333,
+            "Y": 152,
+            "Width": 100,
+            "Height": 26,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
           }
         ],
         "Interactions": [
@@ -561,11 +501,353 @@
               "ScreenTransitionDirection": "West",
               "ActionComponent": "Screen_MainMenu"
             }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "Type": "TriggerScreenEntered"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "updateScreen_PA"
+            }
           }
         ],
         "Name": "Screen_PA",
         "OverrideDefaultBufferSize": false,
         "CanvasBufferSize": 0
+      },
+      {
+        "Components": [
+          {
+            "Type": "Box",
+            "Color": {
+              "Red": 1,
+              "Green": 46,
+              "Blue": 64
+            },
+            "Alpha": 255,
+            "Name": "box1",
+            "X": 0,
+            "Y": 0,
+            "Width": 240,
+            "Height": 272,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "Box",
+            "Color": {
+              "Red": 60,
+              "Green": 60,
+              "Blue": 60
+            },
+            "Alpha": 255,
+            "Name": "box1_1",
+            "X": 240,
+            "Y": 0,
+            "Width": 240,
+            "Height": 272,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId7",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 57,
+              "Green": 224,
+              "Blue": 23
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea1",
+            "X": 57,
+            "Y": 0,
+            "Width": 126,
+            "Height": 44,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "ButtonWithIcon",
+            "Pressed": "__designer\\Dark_Buttons_Round_Edge_icon_button_pressed.png",
+            "Released": "__designer\\Dark_Buttons_Round_Edge_icon_button.png",
+            "Alpha": 255,
+            "IconPressed": "__designer\\Blue_Icons_Home_32.png",
+            "IconReleased": "__designer\\Blue_Icons_Home_32.png",
+            "IconX": 15,
+            "IconY": 16,
+            "IconHeight": 29,
+            "IconWidth": 30,
+            "IconStyle": "Icon27",
+            "Name": "buttonWithIconAD_Home",
+            "X": 420,
+            "Y": 212,
+            "Width": 60,
+            "Height": 60,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId9",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 247,
+              "Green": 32,
+              "Blue": 32
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "SingleUseId13",
+              "UseBuffer": true,
+              "BufferSize": 3
+            },
+            "Name": "textAreaDigital",
+            "X": 308,
+            "Y": 44,
+            "Width": 104,
+            "Height": 194,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId10",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 20,
+              "Green": 151,
+              "Blue": 197
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "SingleUseId12",
+              "UseBuffer": true,
+              "BufferSize": 10
+            },
+            "Name": "textAreaAnalog",
+            "X": 60,
+            "Y": 216,
+            "Width": 120,
+            "Height": 26,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId11",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 57,
+              "Green": 224,
+              "Blue": 23
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea1_1",
+            "X": 297,
+            "Y": 0,
+            "Width": 115,
+            "Height": 44,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "Line",
+            "Color": {
+              "Red": 57,
+              "Green": 224,
+              "Blue": 23
+            },
+            "Alpha": 255,
+            "StartX": 1,
+            "StartY": 1,
+            "EndX": 1,
+            "EndY": 272,
+            "LineWidth": 2,
+            "LineEndingStyle": "Round",
+            "Name": "line1",
+            "X": 240,
+            "Y": 0,
+            "Width": 21,
+            "Height": 272,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "DynamicGraph",
+            "DataSeed": 1809551769,
+            "NumberOfValues": 100,
+            "MaxY": 100.0,
+            "MinY": 0.0,
+            "Precision": "1",
+            "UseCustomVisibleDataPointRange": false,
+            "FirstIndex": 0,
+            "LastIndex": 99,
+            "MapDataPointIndexToCustomValue": false,
+            "XAxisOffset": 0.0,
+            "XAxisScale": 1.0,
+            "InsertRandomValues": true,
+            "Alpha": 255,
+            "LabelSizeTop": 5,
+            "LabelSizeBottom": 15,
+            "LabelSizeLeft": 20,
+            "LabelSizeRight": 0,
+            "PaddingTop": 0,
+            "PaddingBottom": 0,
+            "PaddingLeft": 0,
+            "PaddingRight": 0,
+            "GraphType": "GraphWrapOverwrite",
+            "GraphDrawers": [
+              {
+                "Type": "LineDrawer",
+                "LineWidth": 2,
+                "FileNameImage": "",
+                "Color": {
+                  "Red": 20,
+                  "Green": 151,
+                  "Blue": 197
+                },
+                "Alpha": 255
+              }
+            ],
+            "XAxisGrid": {
+              "Type": "GraphGrid",
+              "Color": {
+                "Red": 255,
+                "Green": 255,
+                "Blue": 0
+              },
+              "Interval": 20.0,
+              "LineWidth": 1,
+              "Alpha": 255
+            },
+            "YAxisGrid": {
+              "Type": "GraphGrid",
+              "Color": {
+                "Red": 255,
+                "Green": 255,
+                "Blue": 0
+              },
+              "Interval": 20.0,
+              "LineWidth": 1,
+              "Alpha": 255
+            },
+            "XAxisLabel": {
+              "Type": "GraphLabel",
+              "Interval": 20.0,
+              "NumberOfDecimals": 0,
+              "DecimalSeparator": "Point",
+              "TextColor": {
+                "Red": 255,
+                "Green": 255,
+                "Blue": 0
+              },
+              "TextId": "SingleUseId16",
+              "Alpha": 255,
+              "TextRotation": "0",
+              "Position": "Bottom"
+            },
+            "YAxisLabel": {
+              "Type": "GraphLabel",
+              "Interval": 20.0,
+              "NumberOfDecimals": 0,
+              "DecimalSeparator": "Point",
+              "TextColor": {
+                "Red": 255,
+                "Green": 255,
+                "Blue": 0
+              },
+              "TextId": "SingleUseId17",
+              "Alpha": 255,
+              "TextRotation": "0",
+              "Position": "Left"
+            },
+            "Name": "dynamicGraph1",
+            "X": 0,
+            "Y": 52,
+            "Width": 240,
+            "Height": 152,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "buttonWithIconAD_Home"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionSlide",
+              "ScreenTransitionDirection": "West",
+              "ActionComponent": "Screen_MainMenu"
+            }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "Type": "TriggerScreenEntered"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "updateScreen_AD"
+            }
+          }
+        ],
+        "Name": "Screen_AD",
+        "OverrideDefaultBufferSize": false,
+        "CanvasBufferSize": 7200
       }
     ],
     "CustomContainerDefinitions": [],
@@ -584,6 +866,58 @@
       },
       {
         "TextEntryId": "SingleUseId8",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId9",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId10",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId11",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId12",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId13",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId16",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId17",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId18",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId19",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId20",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId21",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId22",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId23",
         "IsResource": false
       }
     ],

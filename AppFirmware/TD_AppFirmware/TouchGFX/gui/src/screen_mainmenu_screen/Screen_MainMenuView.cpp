@@ -1,4 +1,5 @@
 #include <gui/screen_mainmenu_screen/Screen_MainMenuView.hpp>
+#include "MainSupport.h"
 
 Screen_MainMenuView::Screen_MainMenuView():
 // Hab Add: Callback declaration and function to handle the event need to be bound to the view object, and bind which function to handle the event.
@@ -31,4 +32,10 @@ void Screen_MainMenuView::image_AD_ClickHandler(const Image& i, const ClickEvent
 		static int Count = 0;
 		Count++;
 	}
+}
+
+
+void Screen_MainMenuView::updateScreen_MainMenu(void)
+{
+	TechDemoStatus.ActiveScreen = MAIN_MENU_SCREEN;
 }

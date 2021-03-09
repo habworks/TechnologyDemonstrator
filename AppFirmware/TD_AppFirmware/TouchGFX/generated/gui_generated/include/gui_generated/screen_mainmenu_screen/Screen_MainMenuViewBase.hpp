@@ -8,10 +8,11 @@
 #include <mvp/View.hpp>
 #include <gui/screen_mainmenu_screen/Screen_MainMenuPresenter.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/widgets/ScalableImage.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/widgets/ButtonWithIcon.hpp>
-#include <touchgfx/containers/buttons/Buttons.hpp>
+#include <touchgfx/widgets/Button.hpp>
 #include <touchgfx/mixins/ClickListener.hpp>
 
 class Screen_MainMenuViewBase : public touchgfx::View<Screen_MainMenuPresenter>
@@ -20,6 +21,15 @@ public:
     Screen_MainMenuViewBase();
     virtual ~Screen_MainMenuViewBase() {}
     virtual void setupScreen();
+    virtual void afterTransition();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void updateScreen_MainMenu()
+    {
+        // Override and implement this function in Screen_MainMenu
+    }
 
 protected:
     FrontendApplication& application() {
@@ -30,14 +40,12 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::Box box1;
+    touchgfx::ScalableImage scalableImage1;
     touchgfx::TextArea textArea1;
     touchgfx::ClickListener< touchgfx::Image > image_AD;
     touchgfx::ButtonWithIcon buttonWithIcon1;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger > flexButton_PA;
-    touchgfx::Image image_PA;
-    touchgfx::Image image1;
-    touchgfx::BoxWithBorderButtonStyle< touchgfx::ClickButtonTrigger > flexButton_AD;
+    touchgfx::Button button_AD;
+    touchgfx::Button button_PA;
 
 private:
 
@@ -45,13 +53,11 @@ private:
      * Callback Declarations
      */
     touchgfx::Callback<Screen_MainMenuViewBase, const touchgfx::AbstractButton&> buttonCallback;
-    touchgfx::Callback<Screen_MainMenuViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
 
     /*
      * Callback Handler Declarations
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
-    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 

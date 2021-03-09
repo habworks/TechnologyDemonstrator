@@ -10,13 +10,18 @@ Screen_ADViewBase::Screen_ADViewBase() :
     buttonCallback(this, &Screen_ADViewBase::buttonCallbackHandler)
 {
 
+    touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
+
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
 
-    box1.setPosition(0, 0, 480, 272);
-    box1.setColor(touchgfx::Color::getColorFrom24BitRGB(40, 40, 40));
+    box1.setPosition(0, 0, 240, 272);
+    box1.setColor(touchgfx::Color::getColorFrom24BitRGB(1, 46, 64));
 
-    textArea1.setXY(97, 0);
+    box1_1.setPosition(240, 0, 240, 272);
+    box1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(60, 60, 60));
+
+    textArea1.setXY(57, 0);
     textArea1.setColor(touchgfx::Color::getColorFrom24BitRGB(57, 224, 23));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID7));
@@ -26,15 +31,196 @@ Screen_ADViewBase::Screen_ADViewBase() :
     buttonWithIconAD_Home.setIconXY(15, 16);
     buttonWithIconAD_Home.setAction(buttonCallback);
 
+    textAreaDigital.setXY(308, 44);
+    textAreaDigital.setColor(touchgfx::Color::getColorFrom24BitRGB(247, 32, 32));
+    textAreaDigital.setLinespacing(0);
+    Unicode::snprintf(textAreaDigitalBuffer, TEXTAREADIGITAL_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID13).getText());
+    textAreaDigital.setWildcard(textAreaDigitalBuffer);
+    textAreaDigital.resizeToCurrentText();
+    textAreaDigital.setTypedText(touchgfx::TypedText(T_SINGLEUSEID9));
+
+    textAreaAnalog.setXY(60, 216);
+    textAreaAnalog.setColor(touchgfx::Color::getColorFrom24BitRGB(20, 151, 197));
+    textAreaAnalog.setLinespacing(0);
+    Unicode::snprintf(textAreaAnalogBuffer, TEXTAREAANALOG_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID12).getText());
+    textAreaAnalog.setWildcard(textAreaAnalogBuffer);
+    textAreaAnalog.resizeToCurrentText();
+    textAreaAnalog.setTypedText(touchgfx::TypedText(T_SINGLEUSEID10));
+
+    textArea1_1.setXY(297, 0);
+    textArea1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(57, 224, 23));
+    textArea1_1.setLinespacing(0);
+    textArea1_1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID11));
+
+    line1.setPosition(240, 0, 21, 272);
+    line1Painter.setColor(touchgfx::Color::getColorFrom24BitRGB(57, 224, 23));
+    line1.setPainter(line1Painter);
+    line1.setStart(1, 1);
+    line1.setEnd(1, 272);
+    line1.setLineWidth(2);
+    line1.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
+
+    dynamicGraph1.setScale(1);
+    dynamicGraph1.setPosition(0, 52, 240, 152);
+    dynamicGraph1.setGraphAreaMargin(5, 20, 0, 15);
+    dynamicGraph1.setGraphAreaPadding(0, 0, 0, 0);
+    dynamicGraph1.setGraphRangeY(0, 100);
+
+    dynamicGraph1MajorXAxisGrid.setScale(1);
+    dynamicGraph1MajorXAxisGrid.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 0));
+    dynamicGraph1MajorXAxisGrid.setInterval(20);
+    dynamicGraph1MajorXAxisGrid.setLineWidth(1);
+    dynamicGraph1.addGraphElement(dynamicGraph1MajorXAxisGrid);
+
+    dynamicGraph1MajorYAxisGrid.setScale(1);
+    dynamicGraph1MajorYAxisGrid.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 0));
+    dynamicGraph1MajorYAxisGrid.setInterval(20);
+    dynamicGraph1MajorYAxisGrid.setLineWidth(1);
+    dynamicGraph1.addGraphElement(dynamicGraph1MajorYAxisGrid);
+
+    dynamicGraph1MajorXAxisLabel.setScale(1);
+    dynamicGraph1MajorXAxisLabel.setInterval(20);
+    dynamicGraph1MajorXAxisLabel.setLabelTypedText(touchgfx::TypedText(T_SINGLEUSEID16));
+    dynamicGraph1MajorXAxisLabel.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 0));
+    dynamicGraph1.addBottomElement(dynamicGraph1MajorXAxisLabel);
+
+    dynamicGraph1MajorYAxisLabel.setScale(1);
+    dynamicGraph1MajorYAxisLabel.setInterval(20);
+    dynamicGraph1MajorYAxisLabel.setLabelTypedText(touchgfx::TypedText(T_SINGLEUSEID17));
+    dynamicGraph1MajorYAxisLabel.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 0));
+    dynamicGraph1.addLeftElement(dynamicGraph1MajorYAxisLabel);
+
+    dynamicGraph1Line1.setScale(1);
+    dynamicGraph1Line1Painter.setColor(touchgfx::Color::getColorFrom24BitRGB(20, 151, 197));
+    dynamicGraph1Line1.setPainter(dynamicGraph1Line1Painter);
+    dynamicGraph1Line1.setLineWidth(2);
+    dynamicGraph1.addGraphElement(dynamicGraph1Line1);
+
+    dynamicGraph1.addDataPoint(38.6804472337105f);
+    dynamicGraph1.addDataPoint(27.8715102310345f);
+    dynamicGraph1.addDataPoint(17.5618020808234f);
+    dynamicGraph1.addDataPoint(10.6590220238315f);
+    dynamicGraph1.addDataPoint(9.41753470612338f);
+    dynamicGraph1.addDataPoint(14.8639211845144f);
+    dynamicGraph1.addDataPoint(26.5168332090349f);
+    dynamicGraph1.addDataPoint(42.4708690985044f);
+    dynamicGraph1.addDataPoint(59.8253041513078f);
+    dynamicGraph1.addDataPoint(75.354209324936f);
+    dynamicGraph1.addDataPoint(86.2554803398439f);
+    dynamicGraph1.addDataPoint(90.797035135518f);
+    dynamicGraph1.addDataPoint(88.7035300614541f);
+    dynamicGraph1.addDataPoint(81.1904229923778f);
+    dynamicGraph1.addDataPoint(70.6383650342142f);
+    dynamicGraph1.addDataPoint(59.988757247444f);
+    dynamicGraph1.addDataPoint(52.0093280268316f);
+    dynamicGraph1.addDataPoint(48.6101025006996f);
+    dynamicGraph1.addDataPoint(50.3775013124331f);
+    dynamicGraph1.addDataPoint(56.4405637852711f);
+    dynamicGraph1.addDataPoint(64.701664253701f);
+    dynamicGraph1.addDataPoint(72.374524497001f);
+    dynamicGraph1.addDataPoint(76.6968401677204f);
+    dynamicGraph1.addDataPoint(75.6418196109486f);
+    dynamicGraph1.addDataPoint(68.4530242304783f);
+    dynamicGraph1.addDataPoint(55.8700312265961f);
+    dynamicGraph1.addDataPoint(39.9880348909787f);
+    dynamicGraph1.addDataPoint(23.7841667556583f);
+    dynamicGraph1.addDataPoint(10.4249205226f);
+    dynamicGraph1.addDataPoint(2.52280789320518f);
+    dynamicGraph1.addDataPoint(1.52297127281387f);
+    dynamicGraph1.addDataPoint(7.36887622249487f);
+    dynamicGraph1.addDataPoint(18.5281690022503f);
+    dynamicGraph1.addDataPoint(32.3718788033598f);
+    dynamicGraph1.addDataPoint(45.8139675472057f);
+    dynamicGraph1.addDataPoint(56.0548017358093f);
+    dynamicGraph1.addDataPoint(61.2470113946248f);
+    dynamicGraph1.addDataPoint(60.9214783686574f);
+    dynamicGraph1.addDataPoint(56.0702155655132f);
+    dynamicGraph1.addDataPoint(48.8671181283367f);
+    dynamicGraph1.addDataPoint(42.0963983569709f);
+    dynamicGraph1.addDataPoint(38.4302317803154f);
+    dynamicGraph1.addDataPoint(39.7340662547329f);
+    dynamicGraph1.addDataPoint(46.5713119193906f);
+    dynamicGraph1.addDataPoint(58.0302116716892f);
+    dynamicGraph1.addDataPoint(71.9166799229004f);
+    dynamicGraph1.addDataPoint(85.2671194670867f);
+    dynamicGraph1.addDataPoint(95.0566162154103f);
+    dynamicGraph1.addDataPoint(98.9298275594371f);
+    dynamicGraph1.addDataPoint(95.7759985435122f);
+    dynamicGraph1.addDataPoint(86.0073922962699f);
+    dynamicGraph1.addDataPoint(71.4726990079475f);
+    dynamicGraph1.addDataPoint(55.0260617162338f);
+    dynamicGraph1.addDataPoint(39.8563666326402f);
+    dynamicGraph1.addDataPoint(28.739892503478f);
+    dynamicGraph1.addDataPoint(23.3979730353685f);
+    dynamicGraph1.addDataPoint(24.1154278471728f);
+    dynamicGraph1.addDataPoint(29.7116205935709f);
+    dynamicGraph1.addDataPoint(37.8695838121175f);
+    dynamicGraph1.addDataPoint(45.7410393183114f);
+    dynamicGraph1.addDataPoint(50.6776834425303f);
+    dynamicGraph1.addDataPoint(50.9083262248399f);
+    dynamicGraph1.addDataPoint(45.9949707847968f);
+    dynamicGraph1.addDataPoint(36.9552593779191f);
+    dynamicGraph1.addDataPoint(26.0207076092692f);
+    dynamicGraph1.addDataPoint(16.0896214029089f);
+    dynamicGraph1.addDataPoint(10.0086759917801f);
+    dynamicGraph1.addDataPoint(9.85939692014106f);
+    dynamicGraph1.addDataPoint(16.4249011726473f);
+    dynamicGraph1.addDataPoint(28.9684009499316f);
+    dynamicGraph1.addDataPoint(45.3788785783028f);
+    dynamicGraph1.addDataPoint(62.6496700284889f);
+    dynamicGraph1.addDataPoint(77.5742829185508f);
+    dynamicGraph1.addDataPoint(87.490715120888f);
+    dynamicGraph1.addDataPoint(90.8936563756477f);
+    dynamicGraph1.addDataPoint(87.7662561803435f);
+    dynamicGraph1.addDataPoint(79.5517122710248f);
+    dynamicGraph1.addDataPoint(68.7729110560886f);
+    dynamicGraph1.addDataPoint(58.3943392601808f);
+    dynamicGraph1.addDataPoint(51.0832988504936f);
+    dynamicGraph1.addDataPoint(48.5518253629236f);
+    dynamicGraph1.addDataPoint(51.140629375049f);
+    dynamicGraph1.addDataPoint(57.7468049720352f);
+    dynamicGraph1.addDataPoint(66.1125602089149f);
+    dynamicGraph1.addDataPoint(73.4035314648276f);
+    dynamicGraph1.addDataPoint(76.9340802507157f);
+    dynamicGraph1.addDataPoint(74.8607262447137f);
+    dynamicGraph1.addDataPoint(66.6725331246115f);
+    dynamicGraph1.addDataPoint(53.3568093597324f);
+    dynamicGraph1.addDataPoint(37.197941826386f);
+    dynamicGraph1.addDataPoint(21.2570037093735f);
+    dynamicGraph1.addDataPoint(8.6579779225969f);
+    dynamicGraph1.addDataPoint(1.85395500412351f);
+    dynamicGraph1.addDataPoint(2.05170914105144f);
+    dynamicGraph1.addDataPoint(8.93454019699258f);
+    dynamicGraph1.addDataPoint(20.7505086500232f);
+    dynamicGraph1.addDataPoint(34.744033359915f);
+    dynamicGraph1.addDataPoint(47.8250776517271f);
+    dynamicGraph1.addDataPoint(57.3122999195112f);
+    dynamicGraph1.addDataPoint(61.568756101146f);
+
     add(__background);
     add(box1);
+    add(box1_1);
     add(textArea1);
     add(buttonWithIconAD_Home);
+    add(textAreaDigital);
+    add(textAreaAnalog);
+    add(textArea1_1);
+    add(line1);
+    add(dynamicGraph1);
 }
 
 void Screen_ADViewBase::setupScreen()
 {
 
+}
+
+//Called when the screen transition ends
+void Screen_ADViewBase::afterTransition()
+{
+    //Interaction2
+    //When screen transition ends call virtual function
+    //Call updateScreen_AD
+    updateScreen_AD();
 }
 
 void Screen_ADViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)

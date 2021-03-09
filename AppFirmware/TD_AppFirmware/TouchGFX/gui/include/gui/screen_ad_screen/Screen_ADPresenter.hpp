@@ -27,6 +27,9 @@ public:
 
     virtual ~Screen_ADPresenter() {};
 
+    // HAB ADDED:
+    virtual void analogDigitalUpdate_Presenter(float AnalogValue, char DigitalValueChar);
+
 private:
     Screen_ADPresenter();
 

@@ -11,6 +11,9 @@ public:
     virtual ~Screen_ADView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+    // HAB ADDED:
+    virtual void analogDigitalUpdate_View(float, char);
+    virtual void updateScreen_AD(void);
 protected:
 };
 

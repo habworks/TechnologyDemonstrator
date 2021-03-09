@@ -21,6 +21,15 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
     case Typography::ICELAND_45:
         // Iceland_Regular_45_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[3]);
+    case Typography::ICELAND_200:
+        // Iceland_Regular_200_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[4]);
+    case Typography::DIGITAL_DREAM_25:
+        // digital_dream_fat_skew_25_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
+    case Typography::DIGITAL_DREAM_100:
+        // digital_dream_fat_skew_100_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[6]);
     default:
         return 0;
     }

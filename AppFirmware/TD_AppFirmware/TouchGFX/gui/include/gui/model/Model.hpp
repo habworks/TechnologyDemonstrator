@@ -14,6 +14,8 @@ public:
     }
 
     void tick();
+    // HAB ADDED:
+    void analogDigitalUpdate(void);
 protected:
     ModelListener* modelListener;
 };
