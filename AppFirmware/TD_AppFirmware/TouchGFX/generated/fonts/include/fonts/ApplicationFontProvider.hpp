@@ -16,14 +16,22 @@ struct Typography
     static const touchgfx::FontId DEFAULT = 0;
     static const touchgfx::FontId LARGE = 1;
     static const touchgfx::FontId SMALL = 2;
+    static const touchgfx::FontId ICELAND_45 = 3;
+    static const touchgfx::FontId ICELAND_200 = 4;
+    static const touchgfx::FontId DIGITAL_DREAM_25 = 5;
+    static const touchgfx::FontId DIGITAL_DREAM_100 = 6;
 };
 
 struct TypographyFontIndex
 {
-    static const touchgfx::FontId DEFAULT = 0; // verdana_20_4bpp
-    static const touchgfx::FontId LARGE = 1;   // verdana_40_4bpp
-    static const touchgfx::FontId SMALL = 2;   // verdana_10_4bpp
-    static const uint16_t NUMBER_OF_FONTS = 3;
+    static const touchgfx::FontId DEFAULT = 0;           // verdana_20_4bpp
+    static const touchgfx::FontId LARGE = 1;             // verdana_40_4bpp
+    static const touchgfx::FontId SMALL = 2;             // verdana_10_4bpp
+    static const touchgfx::FontId ICELAND_45 = 3;        // Iceland_Regular_45_4bpp
+    static const touchgfx::FontId ICELAND_200 = 4;       // Iceland_Regular_200_4bpp
+    static const touchgfx::FontId DIGITAL_DREAM_25 = 5;  // digital_dream_fat_skew_25_4bpp
+    static const touchgfx::FontId DIGITAL_DREAM_100 = 6; // digital_dream_fat_skew_100_4bpp
+    static const uint16_t NUMBER_OF_FONTS = 7;
 };
 
 class ApplicationFontProvider : public touchgfx::FontProvider

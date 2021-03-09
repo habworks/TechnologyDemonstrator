@@ -8,7 +8,7 @@
 #include "MainSupport.h"
 #include "TD_SupportIO.h"
 
-//#include "stm32746g_discovery_qspi.h"
+Type_TechDemoStatus TechDemoStatus;
 
 
 void main_Init(void)
@@ -50,4 +50,8 @@ void main_WhileLoop(void)
 
 
 
-
+// CONSIDER MOVING
+void defaultTouchGFxTask_Init(void)
+{
+	TechDemoStatus.ActiveScreen = NO_ACTIVE_SCREEN;
+}

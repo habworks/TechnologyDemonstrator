@@ -20,12 +20,18 @@
     <ClCompile Include="..\..\gui\src\common\FrontendApplication.cpp"/>
     <ClCompile Include="..\..\generated\gui_generated\src\common\FrontendApplicationBase.cpp"/>
     <ClCompile Include="..\..\gui\src\model\Model.cpp"/>
-    <ClCompile Include="..\..\gui\src\screen1_screen\Screen1Presenter.cpp"/>
-    <ClCompile Include="..\..\gui\src\screen1_screen\Screen1View.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\screen1_screen\Screen1ViewBase.cpp"/>
-    <ClCompile Include="..\..\gui\src\screen2_screen\Screen2Presenter.cpp"/>
-    <ClCompile Include="..\..\gui\src\screen2_screen\Screen2View.cpp"/>
-    <ClCompile Include="..\..\generated\gui_generated\src\screen2_screen\Screen2ViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_opening_screen\Screen_OpeningPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_opening_screen\Screen_OpeningView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_opening_screen\Screen_OpeningViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_ad_screen\Screen_ADPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_ad_screen\Screen_ADView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_ad_screen\Screen_ADViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_mainmenu_screen\Screen_MainMenuPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_mainmenu_screen\Screen_MainMenuView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_mainmenu_screen\Screen_MainMenuViewBase.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_pa_screen\Screen_PAPresenter.cpp"/>
+    <ClCompile Include="..\..\gui\src\screen_pa_screen\Screen_PAView.cpp"/>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_pa_screen\Screen_PAViewBase.cpp"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(ApplicationRoot)\assets\texts\texts.xlsx"/>
@@ -172,13 +178,19 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\FrontendHeapBase.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\model\Model.hpp"/>
     <ClInclude Include="..\..\gui\include\gui\model\ModelListener.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen1_screen\Screen1Presenter.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen1_screen\Screen1View.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen1_screen\Screen1ViewBase.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen2_screen\Screen2Presenter.hpp"/>
-    <ClInclude Include="..\..\gui\include\gui\screen2_screen\Screen2View.hpp"/>
-    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen2_screen\Screen2ViewBase.hpp"/>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\common\SimConstants.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_opening_screen\Screen_OpeningPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_opening_screen\Screen_OpeningView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_opening_screen\Screen_OpeningViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_ad_screen\Screen_ADPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_ad_screen\Screen_ADView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_ad_screen\Screen_ADViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_mainmenu_screen\Screen_MainMenuPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_mainmenu_screen\Screen_MainMenuView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_mainmenu_screen\Screen_MainMenuViewBase.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_pa_screen\Screen_PAPresenter.hpp"/>
+    <ClInclude Include="..\..\gui\include\gui\screen_pa_screen\Screen_PAView.hpp"/>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_pa_screen\Screen_PAViewBase.hpp"/>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(ApplicationRoot)\generated\simulator\touchgfx.rc"/>

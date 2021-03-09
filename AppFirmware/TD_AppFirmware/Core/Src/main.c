@@ -20,7 +20,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "adc.h"
 #include "crc.h"
+#include "dma.h"
 #include "dma2d.h"
 #include "i2c.h"
 #include "ltdc.h"
@@ -102,6 +104,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_DMA2D_Init();
   MX_FMC_Init();
   MX_LTDC_Init();
@@ -110,6 +113,8 @@ int main(void)
   MX_I2C3_Init();
   MX_TIM2_Init();
   MX_USART3_UART_Init();
+  MX_ADC1_Init();
+  MX_TIM1_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
 

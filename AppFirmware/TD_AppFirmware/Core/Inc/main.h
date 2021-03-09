@@ -73,6 +73,14 @@ void Error_Handler(void);
 #define DISPLAY_EN_GPIO_Port GPIOI
 #define PWM_DISPLAY_Pin GPIO_PIN_15
 #define PWM_DISPLAY_GPIO_Port GPIOA
+#define HEX_8_Pin GPIO_PIN_3
+#define HEX_8_GPIO_Port GPIOD
+#define HEX_2_Pin GPIO_PIN_4
+#define HEX_2_GPIO_Port GPIOD
+#define HEX_4_Pin GPIO_PIN_5
+#define HEX_4_GPIO_Port GPIOD
+#define HEX_1_Pin GPIO_PIN_7
+#define HEX_1_GPIO_Port GPIOD
 #define PWR_5V_EN_Pin GPIO_PIN_13
 #define PWR_5V_EN_GPIO_Port GPIOG
 #define AUDIO_EN_Pin GPIO_PIN_7

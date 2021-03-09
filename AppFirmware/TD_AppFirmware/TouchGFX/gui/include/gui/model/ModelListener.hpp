@@ -2,6 +2,7 @@
 #define MODELLISTENER_HPP
 
 #include <gui/model/Model.hpp>
+#include "main.h"
 
 class ModelListener
 {
@@ -9,6 +10,11 @@ public:
     ModelListener() : model(0) {}
     
     virtual ~ModelListener() {}
+
+    // START HAB ADDED:
+    virtual void analogDigitalUpdate_Presenter(float, char) {}
+
+    // END HAB ADDED
 
     void bind(Model* m)
     {
