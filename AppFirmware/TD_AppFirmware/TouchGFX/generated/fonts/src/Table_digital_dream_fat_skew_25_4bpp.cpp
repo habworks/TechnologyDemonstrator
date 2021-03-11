@@ -17,7 +17,15 @@ KEEP extern const touchgfx::GlyphNode glyphs_digital_dream_fat_skew_25_4bpp[] FO
     {  1687, 0x0037,  17,  22,  20,   1,  20,   0,   0, 0x00 },
     {  1885, 0x0038,  20,  25,  20,  -1,  20,   0,   0, 0x00 },
     {  2135, 0x0039,  19,  25,  20,   0,  20,   0,   0, 0x00 },
-    {  2385, 0x0056,  19,  21,  19,   0,  20,   0,   0, 0x00 }
+    {  2385, 0x003A,   6,  11,  13,   6,  20,   0,   0, 0x00 },
+    {  2418, 0x003F,  16,  24,  20,   3,  20,   0,   0, 0x00 },
+    {  2610, 0x0049,  18,  25,  20,   0,  20,   0,   0, 0x00 },
+    {  2835, 0x004C,  16,  24,  19,  -1,  20,   0,   0, 0x00 },
+    {  3027, 0x0054,  15,  24,  20,   3,  20,   0,   0, 0x00 },
+    {  3219, 0x0056,  19,  21,  19,   0,  20,   0,   0, 0x00 },
+    {  3429, 0x0058,  16,  20,  18,   1,  20,   0,   0, 0x00 },
+    {  3589, 0x0059,  13,  21,  18,   4,  20,   0,   0, 0x00 },
+    {  3736, 0x005A,  18,  25,  20,   0,  20,   0,   0, 0x00 }
 };
 
 // digital_dream_fat_skew_25_4bpp
@@ -33,6 +41,6 @@ touchgfx::GeneratedFont& getFont_digital_dream_fat_skew_25_4bpp();
 
 touchgfx::GeneratedFont& getFont_digital_dream_fat_skew_25_4bpp()
 {
-    static touchgfx::GeneratedFont digital_dream_fat_skew_25_4bpp(glyphs_digital_dream_fat_skew_25_4bpp, 13, 25, 5, 4, 1, 1, 0, unicodes_digital_dream_fat_skew_25_4bpp, kerning_digital_dream_fat_skew_25_4bpp, 45, 0, 0);
+    static touchgfx::GeneratedFont digital_dream_fat_skew_25_4bpp(glyphs_digital_dream_fat_skew_25_4bpp, 21, 25, 5, 4, 1, 1, 0, unicodes_digital_dream_fat_skew_25_4bpp, kerning_digital_dream_fat_skew_25_4bpp, 63, 0, 0);
     return digital_dream_fat_skew_25_4bpp;
 }

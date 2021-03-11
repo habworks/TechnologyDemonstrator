@@ -16,6 +16,7 @@ public:
     void tick();
     // HAB ADDED:
     void analogDigitalUpdate(void);
+    void PWM_AccelerometerUpdate(void);
 protected:
     ModelListener* modelListener;
 };

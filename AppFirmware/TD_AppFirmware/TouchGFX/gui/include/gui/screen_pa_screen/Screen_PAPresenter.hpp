@@ -3,6 +3,7 @@
 
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
+#include "Driver_LSI3DH.h"
 
 using namespace touchgfx;
 
@@ -26,6 +27,9 @@ public:
     virtual void deactivate();
 
     virtual ~Screen_PAPresenter() {};
+
+    // HAB ADDED:
+    virtual void PWM_AccelerometerUpdate_Presenter(Type_PWM_AccelerometerScreen ScreenStatus);
 
 private:
     Screen_PAPresenter();

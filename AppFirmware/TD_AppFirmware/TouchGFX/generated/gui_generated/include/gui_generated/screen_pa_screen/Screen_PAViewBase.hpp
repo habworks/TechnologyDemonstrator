@@ -11,8 +11,8 @@
 #include <touchgfx/widgets/ScalableImage.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/ButtonWithIcon.hpp>
-#include <touchgfx/containers/Slider.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/Slider.hpp>
 
 class Screen_PAViewBase : public touchgfx::View<Screen_PAPresenter>
 {
@@ -30,6 +30,16 @@ public:
         // Override and implement this function in Screen_PA
     }
 
+    virtual void greenSliderValueChanged(int value)
+    {
+        // Override and implement this function in Screen_PA
+    }
+
+    virtual void redSliderValueChanged(int value)
+    {
+        // Override and implement this function in Screen_PA
+    }
+
 protected:
     FrontendApplication& application() {
         return *static_cast<FrontendApplication*>(touchgfx::Application::getInstance());
@@ -42,11 +52,26 @@ protected:
     touchgfx::ScalableImage scalableImage1;
     touchgfx::TextArea textArea1;
     touchgfx::ButtonWithIcon buttonWithIconPA_Home;
-    touchgfx::Box box1;
-    touchgfx::Slider slider1;
+    touchgfx::Box boxColor;
     touchgfx::TextAreaWithOneWildcard textAreaXaxis;
     touchgfx::TextAreaWithOneWildcard textAreaYaxis;
     touchgfx::TextAreaWithOneWildcard textAreaZaxis;
+    touchgfx::Slider sliderRed;
+    touchgfx::Slider sliderGreen;
+    touchgfx::TextArea textArea2;
+    touchgfx::TextArea textArea2_1;
+    touchgfx::TextArea textArea2_1_1;
+    touchgfx::TextArea textArea2_2;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t TEXTAREAXAXIS_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar textAreaXaxisBuffer[TEXTAREAXAXIS_SIZE];
+    static const uint16_t TEXTAREAYAXIS_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar textAreaYaxisBuffer[TEXTAREAYAXIS_SIZE];
+    static const uint16_t TEXTAREAZAXIS_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar textAreaZaxisBuffer[TEXTAREAZAXIS_SIZE];
 
 private:
 
@@ -54,11 +79,13 @@ private:
      * Callback Declarations
      */
     touchgfx::Callback<Screen_PAViewBase, const touchgfx::AbstractButton&> buttonCallback;
+    touchgfx::Callback<Screen_PAViewBase, const touchgfx::Slider&, int> sliderValueChangedCallback;
 
     /*
      * Callback Handler Declarations
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+    void sliderValueChangedCallbackHandler(const touchgfx::Slider& src, int value);
 
 };
 

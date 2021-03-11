@@ -16,3 +16,10 @@ void Screen_PAPresenter::deactivate()
 {
 
 }
+
+
+// HAB ADDED:
+void Screen_PAPresenter::PWM_AccelerometerUpdate_Presenter(Type_PWM_AccelerometerScreen ScreenStatus)
+{
+	view.PWM_AccelerometerUpdate_View(ScreenStatus);
+}

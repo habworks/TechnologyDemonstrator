@@ -17,16 +17,7 @@ extern"C" {
 // DEFINES
 #define FIRMWARE_REV_MAJOR			1U
 #define FIRMWARE_REV_MINOR			0U
-
-// MACROS
-#define UNUSED_FUNCTION(X) 					(void)X      // To avoid gcc/g++ warnings
-#define TEST_RETURN_IF_FAIL(__condition__)	do \
-											{ \
-												if(__condition__) \
-												{  \
-													;  \
-												} \
-                                            } while(0)
+#define ROUNDING					0.5
 
 // TYPEDEFS AND ENUMS
 //typedef _Bool bool;
@@ -65,17 +56,53 @@ typedef struct
 
 typedef struct
 {
+	uint8_t		Red_LED;
+	uint8_t		Green_LED;
+}Type_LED_PWM_Percentage;
+
+typedef struct
+{
+	float 	X_Degrees;
+	float	Y_Degrees;
+	float	Z_Degrees;
+}Type_AccelerometerAngle;
+
+typedef struct
+{
+	Type_LED_PWM_Percentage		PWM_Percent;
+	Type_AccelerometerAngle		AccelerometerAngle;
+}Type_PWM_AccelerometerScreen;
+
+typedef struct
+{
 	Type_ActiveScreen				ActiveScreen;
 	Type_AnalogDigitalScreen		AnalogDigitalScreen;
+	Type_PWM_AccelerometerScreen	PWM_AccelerometerScreen;
 }Type_TechDemoStatus;
 extern Type_TechDemoStatus TechDemoStatus;
+
+
+// MACROS
+#define SUPPRESS_WARNING(FunctionName) 				(void)FunctionName      // To avoid gcc/g++ warnings
+#define TEST_RETURN_TRUE_OR_FAIL(__condition__)		do \
+													{ \
+														if(__condition__) \
+															return(TRUE);  \
+														else \
+															Error_Handler(); \
+													} while(0)
+#define TEST_FAIL_IF_FALSE(__condition__)		do \
+													{ \
+														if((__condition__) != TRUE) \
+															Error_Handler(); \
+													} while(0)
+
 
 // FUNCTION PROTOTYPES
 void main_Init(void);
 void main_WhileLoop(void);
 // CONSIDER MOVING
 void defaultTouchGFxTask_Init(void);
-
 
 #ifdef __cplusplus
 }
