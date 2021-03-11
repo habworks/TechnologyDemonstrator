@@ -61,7 +61,7 @@ typedef struct
 }Type_AnalogDigitalSupportTask;
 
 // FUNCTION PROTOTYPES
-void analogDigitaTask_Init(void);
+void analogDigitalTask_Init(void);
 void analogDigitalTask_ForLoop(void);
 void avgAndConvertAnalogChannels(const Type_AnalogDigitalSupportTask *);
 bool_t ADC_FullScale(ADC_HandleTypeDef *ADC_Handle, uint16_t *FullScale);

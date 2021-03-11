@@ -55,7 +55,7 @@ Type_AnalogDigitalSupportTask AnalogDigitalSupport;
 * STEP 1: Clear the DMA memory buffer and start DMA for ADC
 * STEP 2: Start the Timer associated with the DMA channel
 ****************************************************************************************************** */
-void analogDigitaTask_Init(void)
+void analogDigitalTask_Init(void)
 {
 	// STEP 1: Clear the DMA memory buffer and start DMA for ADC
 	memset(ADC_DMA_Buffer, 0, ADC_DMA_SIZE * sizeof(uint16_t));

@@ -361,37 +361,11 @@
               "Blue": 0
             },
             "Alpha": 255,
-            "Name": "box1",
-            "X": 41,
-            "Y": 63,
-            "Width": 115,
-            "Height": 102,
-            "Visible": true,
-            "LockPosition": false,
-            "Draggable": false,
-            "Clickable": false,
-            "Fadeable": false,
-            "Moveable": false
-          },
-          {
-            "Type": "Slider",
-            "IsHorizontalSlider": false,
-            "BackgroundUnselected": "__designer\\Blue_Slider_Vertical_Small_Slider3_Vertical_Round_back.png",
-            "BackgroundSelected": "__designer\\Blue_Slider_Vertical_Small_Slider3_Vertical_Round_fill.png",
-            "Indicator": "__designer\\Blue_Slider_Vertical_Small_Indicators_Slider3_Vertical_Round_Edge_nob.png",
-            "BackgroundX": 7,
-            "BackgroundY": 3,
-            "IndicatorPos": 0,
-            "IndicatorMax": 125,
-            "IndicatorMin": 0,
-            "ValueMax": 100,
-            "ValueMin": 0,
-            "InitValue": 0,
-            "Name": "slider1",
-            "X": 186,
-            "Y": 63,
-            "Width": 34,
-            "Height": 179,
+            "Name": "boxColor",
+            "X": 16,
+            "Y": 56,
+            "Width": 179,
+            "Height": 106,
             "Visible": true,
             "LockPosition": false,
             "Draggable": false,
@@ -405,7 +379,7 @@
             "TextRotation": "0",
             "Color": {
               "Red": 255,
-              "Green": 0,
+              "Green": 175,
               "Blue": 0
             },
             "Alpha": 255,
@@ -413,13 +387,13 @@
             "LineSpacing": 0,
             "Wildcard1": {
               "TextId": "SingleUseId19",
-              "UseBuffer": false,
-              "BufferSize": 0
+              "UseBuffer": true,
+              "BufferSize": 10
             },
             "Name": "textAreaXaxis",
-            "X": 333,
-            "Y": 75,
-            "Width": 100,
+            "X": 302,
+            "Y": 66,
+            "Width": 160,
             "Height": 26,
             "Visible": true,
             "LockPosition": false,
@@ -434,7 +408,7 @@
             "TextRotation": "0",
             "Color": {
               "Red": 255,
-              "Green": 0,
+              "Green": 175,
               "Blue": 0
             },
             "Alpha": 255,
@@ -442,13 +416,13 @@
             "LineSpacing": 0,
             "Wildcard1": {
               "TextId": "SingleUseId21",
-              "UseBuffer": false,
-              "BufferSize": 0
+              "UseBuffer": true,
+              "BufferSize": 10
             },
             "Name": "textAreaYaxis",
-            "X": 333,
-            "Y": 114,
-            "Width": 100,
+            "X": 302,
+            "Y": 102,
+            "Width": 160,
             "Height": 26,
             "Visible": true,
             "LockPosition": false,
@@ -463,7 +437,7 @@
             "TextRotation": "0",
             "Color": {
               "Red": 255,
-              "Green": 0,
+              "Green": 175,
               "Blue": 0
             },
             "Alpha": 255,
@@ -471,13 +445,161 @@
             "LineSpacing": 0,
             "Wildcard1": {
               "TextId": "SingleUseId23",
-              "UseBuffer": false,
-              "BufferSize": 0
+              "UseBuffer": true,
+              "BufferSize": 10
             },
             "Name": "textAreaZaxis",
-            "X": 333,
-            "Y": 152,
-            "Width": 100,
+            "X": 302,
+            "Y": 139,
+            "Width": 160,
+            "Height": 26,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "Slider",
+            "IsHorizontalSlider": true,
+            "BackgroundUnselected": "__designer\\Blue_Slider_Horizontal_Small_slider_horizontal_small_round_edge_back.png",
+            "BackgroundSelected": "__designer\\Blue_Slider_Horizontal_Small_slider_horizontal_small_round_edge_back.png",
+            "Indicator": "__designer\\Dark_Slider_Horizontal_Small_Indicators_slider_horizontal_small_round_edge_knob.png",
+            "BackgroundX": 3,
+            "BackgroundY": 7,
+            "IndicatorPos": 0,
+            "IndicatorMax": 125,
+            "IndicatorMin": 0,
+            "ValueMax": 100,
+            "ValueMin": 0,
+            "InitValue": 0,
+            "Name": "sliderRed",
+            "X": 16,
+            "Y": 173,
+            "Width": 179,
+            "Height": 34,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "Slider",
+            "IsHorizontalSlider": true,
+            "BackgroundUnselected": "__designer\\Blue_Slider_Horizontal_Small_slider_horizontal_small_round_edge_back.png",
+            "BackgroundSelected": "__designer\\Blue_Slider_Horizontal_Small_slider_horizontal_small_round_edge_back.png",
+            "Indicator": "__designer\\Dark_Slider_Horizontal_Small_Indicators_slider_horizontal_small_round_edge_knob.png",
+            "BackgroundX": 3,
+            "BackgroundY": 7,
+            "IndicatorPos": 0,
+            "IndicatorMax": 125,
+            "IndicatorMin": 0,
+            "ValueMax": 100,
+            "ValueMin": 0,
+            "InitValue": 0,
+            "Name": "sliderGreen",
+            "X": 16,
+            "Y": 217,
+            "Width": 179,
+            "Height": 34,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId24",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 0,
+              "Blue": 0
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea2",
+            "X": 208,
+            "Y": 178,
+            "Width": 42,
+            "Height": 25,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId25",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 0,
+              "Green": 255,
+              "Blue": 0
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea2_1",
+            "X": 208,
+            "Y": 222,
+            "Width": 70,
+            "Height": 25,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId26",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 0,
+              "Green": 0,
+              "Blue": 255
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea2_1_1",
+            "X": 66,
+            "Y": 85,
+            "Width": 78,
+            "Height": 49,
+            "Visible": true,
+            "LockPosition": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Type": "TextArea",
+            "TextId": "SingleUseId27",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 175,
+              "Blue": 0
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Name": "textArea2_2",
+            "X": 342,
+            "Y": 173,
+            "Width": 80,
             "Height": 26,
             "Visible": true,
             "LockPosition": false,
@@ -511,6 +633,30 @@
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "updateScreen_PA"
+            }
+          },
+          {
+            "InteractionName": "Interaction3",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "Type": "TriggerSliderValueChanged",
+              "TriggerComponent": "sliderGreen"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "greenSliderValueChanged"
+            }
+          },
+          {
+            "InteractionName": "Interaction4",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "Type": "TriggerSliderValueChanged",
+              "TriggerComponent": "sliderRed"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "redSliderValueChanged"
             }
           }
         ],
@@ -918,6 +1064,22 @@
       },
       {
         "TextEntryId": "SingleUseId23",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId24",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId25",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId26",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId27",
         "IsResource": false
       }
     ],

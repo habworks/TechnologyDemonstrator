@@ -7,7 +7,8 @@
 #include <texts/TextKeysAndLanguages.hpp>
 
 Screen_PAViewBase::Screen_PAViewBase() :
-    buttonCallback(this, &Screen_PAViewBase::buttonCallbackHandler)
+    buttonCallback(this, &Screen_PAViewBase::buttonCallbackHandler),
+    sliderValueChangedCallback(this, &Screen_PAViewBase::sliderValueChangedCallbackHandler)
 {
 
     __background.setPosition(0, 0, 480, 272);
@@ -27,45 +28,81 @@ Screen_PAViewBase::Screen_PAViewBase() :
     buttonWithIconPA_Home.setIconXY(15, 16);
     buttonWithIconPA_Home.setAction(buttonCallback);
 
-    box1.setPosition(41, 63, 115, 102);
-    box1.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
+    boxColor.setPosition(16, 56, 179, 106);
+    boxColor.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 0));
 
-    slider1.setXY(186, 63);
-    slider1.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_SLIDER_VERTICAL_SMALL_SLIDER3_VERTICAL_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_BLUE_SLIDER_VERTICAL_SMALL_SLIDER3_VERTICAL_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_BLUE_SLIDER_VERTICAL_SMALL_INDICATORS_SLIDER3_VERTICAL_ROUND_EDGE_NOB_ID));
-    slider1.setupVerticalSlider(7, 3, 0, 0, 125);
-    slider1.setValueRange(0, 100);
-    slider1.setValue(0);
-
-    textAreaXaxis.setXY(333, 75);
-    textAreaXaxis.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 0, 0));
+    textAreaXaxis.setXY(302, 66);
+    textAreaXaxis.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 175, 0));
     textAreaXaxis.setLinespacing(0);
-    textAreaXaxis.setWildcard(touchgfx::TypedText(T_SINGLEUSEID19).getText());
+    Unicode::snprintf(textAreaXaxisBuffer, TEXTAREAXAXIS_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID19).getText());
+    textAreaXaxis.setWildcard(textAreaXaxisBuffer);
     textAreaXaxis.resizeToCurrentText();
     textAreaXaxis.setTypedText(touchgfx::TypedText(T_SINGLEUSEID18));
 
-    textAreaYaxis.setXY(333, 114);
-    textAreaYaxis.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 0, 0));
+    textAreaYaxis.setXY(302, 102);
+    textAreaYaxis.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 175, 0));
     textAreaYaxis.setLinespacing(0);
-    textAreaYaxis.setWildcard(touchgfx::TypedText(T_SINGLEUSEID21).getText());
+    Unicode::snprintf(textAreaYaxisBuffer, TEXTAREAYAXIS_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID21).getText());
+    textAreaYaxis.setWildcard(textAreaYaxisBuffer);
     textAreaYaxis.resizeToCurrentText();
     textAreaYaxis.setTypedText(touchgfx::TypedText(T_SINGLEUSEID20));
 
-    textAreaZaxis.setXY(333, 152);
-    textAreaZaxis.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 0, 0));
+    textAreaZaxis.setXY(302, 139);
+    textAreaZaxis.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 175, 0));
     textAreaZaxis.setLinespacing(0);
-    textAreaZaxis.setWildcard(touchgfx::TypedText(T_SINGLEUSEID23).getText());
+    Unicode::snprintf(textAreaZaxisBuffer, TEXTAREAZAXIS_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID23).getText());
+    textAreaZaxis.setWildcard(textAreaZaxisBuffer);
     textAreaZaxis.resizeToCurrentText();
     textAreaZaxis.setTypedText(touchgfx::TypedText(T_SINGLEUSEID22));
+
+    sliderRed.setXY(16, 173);
+    sliderRed.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_SLIDER_HORIZONTAL_SMALL_SLIDER_HORIZONTAL_SMALL_ROUND_EDGE_BACK_ID), touchgfx::Bitmap(BITMAP_BLUE_SLIDER_HORIZONTAL_SMALL_SLIDER_HORIZONTAL_SMALL_ROUND_EDGE_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_SMALL_INDICATORS_SLIDER_HORIZONTAL_SMALL_ROUND_EDGE_KNOB_ID));
+    sliderRed.setupHorizontalSlider(3, 7, 0, 0, 125);
+    sliderRed.setValueRange(0, 100);
+    sliderRed.setValue(0);
+    sliderRed.setNewValueCallback(sliderValueChangedCallback);
+
+    sliderGreen.setXY(16, 217);
+    sliderGreen.setBitmaps(touchgfx::Bitmap(BITMAP_BLUE_SLIDER_HORIZONTAL_SMALL_SLIDER_HORIZONTAL_SMALL_ROUND_EDGE_BACK_ID), touchgfx::Bitmap(BITMAP_BLUE_SLIDER_HORIZONTAL_SMALL_SLIDER_HORIZONTAL_SMALL_ROUND_EDGE_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_SMALL_INDICATORS_SLIDER_HORIZONTAL_SMALL_ROUND_EDGE_KNOB_ID));
+    sliderGreen.setupHorizontalSlider(3, 7, 0, 0, 125);
+    sliderGreen.setValueRange(0, 100);
+    sliderGreen.setValue(0);
+    sliderGreen.setNewValueCallback(sliderValueChangedCallback);
+
+    textArea2.setXY(208, 178);
+    textArea2.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 0, 0));
+    textArea2.setLinespacing(0);
+    textArea2.setTypedText(touchgfx::TypedText(T_SINGLEUSEID24));
+
+    textArea2_1.setXY(208, 222);
+    textArea2_1.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 255, 0));
+    textArea2_1.setLinespacing(0);
+    textArea2_1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID25));
+
+    textArea2_1_1.setXY(66, 85);
+    textArea2_1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 255));
+    textArea2_1_1.setLinespacing(0);
+    textArea2_1_1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID26));
+
+    textArea2_2.setXY(342, 173);
+    textArea2_2.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 175, 0));
+    textArea2_2.setLinespacing(0);
+    textArea2_2.setTypedText(touchgfx::TypedText(T_SINGLEUSEID27));
 
     add(__background);
     add(scalableImage1);
     add(textArea1);
     add(buttonWithIconPA_Home);
-    add(box1);
-    add(slider1);
+    add(boxColor);
     add(textAreaXaxis);
     add(textAreaYaxis);
     add(textAreaZaxis);
+    add(sliderRed);
+    add(sliderGreen);
+    add(textArea2);
+    add(textArea2_1);
+    add(textArea2_1_1);
+    add(textArea2_2);
 }
 
 void Screen_PAViewBase::setupScreen()
@@ -90,5 +127,23 @@ void Screen_PAViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& sr
         //When buttonWithIconPA_Home clicked change screen to Screen_MainMenu
         //Go to Screen_MainMenu with screen transition towards West
         application().gotoScreen_MainMenuScreenSlideTransitionWest();
+    }
+}
+
+void Screen_PAViewBase::sliderValueChangedCallbackHandler(const touchgfx::Slider& src, int value)
+{
+    if (&src == &sliderRed)
+    {
+        //Interaction4
+        //When sliderRed value changed call virtual function
+        //Call redSliderValueChanged
+        redSliderValueChanged(value);
+    }
+    else if (&src == &sliderGreen)
+    {
+        //Interaction3
+        //When sliderGreen value changed call virtual function
+        //Call greenSliderValueChanged
+        greenSliderValueChanged(value);
     }
 }

@@ -33,6 +33,14 @@ extern"C" {
 
 #include "MainSupport.h"
 
+// DEFINES
+#define RED_LED_CHANNEL		TIM_CHANNEL_2
+#define GREEN_LED_CHANNEL	TIM_CHANNEL_1
+
+// FUNCTION PROTOTYPES
+void PWM_AccelerometerTask_Init(void);
+void PWM_AccelerometerTask_ForLoop(void);
+bool_t updateLED_PWM(TIM_HandleTypeDef *Timer, uint32_t LED_Channel, uint8_t PercentPWM);
 
 #ifdef __cplusplus
 }

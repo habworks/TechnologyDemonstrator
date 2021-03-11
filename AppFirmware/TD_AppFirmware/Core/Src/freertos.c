@@ -31,6 +31,7 @@
 #include "TD_SupportIO.h"
 #include "app_touchgfx.h"
 #include "AnalogDigitalTaskSupport.h"
+#include "PWM_AccelerometerTaskSupport.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -78,7 +79,7 @@ osThreadId_t PWM_AccelerometHandle;
 const osThreadAttr_t PWM_Acceleromet_attributes = {
   .name = "PWM_Acceleromet",
   .priority = (osPriority_t) osPriorityLow,
-  .stack_size = 128 * 4
+  .stack_size = 1024 * 4
 };
 /* Definitions for BinarySemAnalogDigital */
 osSemaphoreId_t BinarySemAnalogDigitalHandle;
@@ -213,7 +214,7 @@ void generalHardwareTask(void *argument)
 void analogDigitalTask(void *argument)
 {
   /* USER CODE BEGIN analogDigitalTask */
-	analogDigitaTask_Init();
+	analogDigitalTask_Init();
   /* Infinite loop */
   for(;;)
   {
@@ -233,9 +234,11 @@ void analogDigitalTask(void *argument)
 void PWM_AccelerometerTask(void *argument)
 {
   /* USER CODE BEGIN PWM_AccelerometerTask */
+	PWM_AccelerometerTask_Init();
   /* Infinite loop */
   for(;;)
   {
+	PWM_AccelerometerTask_ForLoop();
     osDelay(1);
   }
   /* USER CODE END PWM_AccelerometerTask */

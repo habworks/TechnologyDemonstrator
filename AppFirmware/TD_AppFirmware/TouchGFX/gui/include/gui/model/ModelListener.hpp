@@ -3,6 +3,7 @@
 
 #include <gui/model/Model.hpp>
 #include "main.h"
+#include "MainSupport.h"
 
 class ModelListener
 {
@@ -13,6 +14,7 @@ public:
 
     // START HAB ADDED:
     virtual void analogDigitalUpdate_Presenter(float, char) {}
+    virtual void PWM_AccelerometerUpdate_Presenter(Type_PWM_AccelerometerScreen) {}
 
     // END HAB ADDED
 
