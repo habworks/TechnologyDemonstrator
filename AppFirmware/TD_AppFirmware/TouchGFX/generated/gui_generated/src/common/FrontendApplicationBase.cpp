@@ -17,6 +17,8 @@
 #include <gui/screen_pa_screen/Screen_PAPresenter.hpp>
 #include <gui/screen_ad_screen/Screen_ADView.hpp>
 #include <gui/screen_ad_screen/Screen_ADPresenter.hpp>
+#include <gui/screen_wifi_screen/Screen_WIFIView.hpp>
+#include <gui/screen_wifi_screen/Screen_WIFIPresenter.hpp>
 
 using namespace touchgfx;
 
@@ -46,17 +48,6 @@ void FrontendApplicationBase::gotoScreen_OpeningScreenNoTransition()
 void FrontendApplicationBase::gotoScreen_OpeningScreenNoTransitionImpl()
 {
     touchgfx::makeTransition<Screen_OpeningView, Screen_OpeningPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
-}
-
-void FrontendApplicationBase::gotoScreen_OpeningScreenSlideTransitionWest()
-{
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoScreen_OpeningScreenSlideTransitionWestImpl);
-    pendingScreenTransitionCallback = &transitionCallback;
-}
-
-void FrontendApplicationBase::gotoScreen_OpeningScreenSlideTransitionWestImpl()
-{
-    touchgfx::makeTransition<Screen_OpeningView, Screen_OpeningPresenter, touchgfx::SlideTransition<WEST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
 void FrontendApplicationBase::gotoScreen_OpeningScreenCoverTransitionWest()
@@ -94,6 +85,17 @@ void FrontendApplicationBase::gotoScreen_MainMenuScreenSlideTransitionWestImpl()
     touchgfx::makeTransition<Screen_MainMenuView, Screen_MainMenuPresenter, touchgfx::SlideTransition<WEST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
+void FrontendApplicationBase::gotoScreen_MainMenuScreenSlideTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoScreen_MainMenuScreenSlideTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreen_MainMenuScreenSlideTransitionEastImpl()
+{
+    touchgfx::makeTransition<Screen_MainMenuView, Screen_MainMenuPresenter, touchgfx::SlideTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
 // Screen_PA
 
 void FrontendApplicationBase::gotoScreen_PAScreenSlideTransitionEast()
@@ -118,4 +120,17 @@ void FrontendApplicationBase::gotoScreen_ADScreenSlideTransitionEast()
 void FrontendApplicationBase::gotoScreen_ADScreenSlideTransitionEastImpl()
 {
     touchgfx::makeTransition<Screen_ADView, Screen_ADPresenter, touchgfx::SlideTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// Screen_WIFI
+
+void FrontendApplicationBase::gotoScreen_WIFIScreenSlideTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoScreen_WIFIScreenSlideTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreen_WIFIScreenSlideTransitionEastImpl()
+{
+    touchgfx::makeTransition<Screen_WIFIView, Screen_WIFIPresenter, touchgfx::SlideTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

@@ -43,10 +43,8 @@ void MX_QUADSPI_Init(void)
   {
     Error_Handler();
   }
-
-  // HAB ADDED:
+  // HAB ADDED: Note this must be added everything the .ioc file is rebuild as it removes it
   quadSPI_InitSupport();
-
 }
 
 void HAL_QSPI_MspInit(QSPI_HandleTypeDef* qspiHandle)

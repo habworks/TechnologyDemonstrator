@@ -18,8 +18,6 @@ public:
     // Screen_Opening
     void gotoScreen_OpeningScreenNoTransition();
 
-    void gotoScreen_OpeningScreenSlideTransitionWest();
-
     void gotoScreen_OpeningScreenCoverTransitionWest();
 
     // Screen_MainMenu
@@ -27,11 +25,16 @@ public:
 
     void gotoScreen_MainMenuScreenSlideTransitionWest();
 
+    void gotoScreen_MainMenuScreenSlideTransitionEast();
+
     // Screen_PA
     void gotoScreen_PAScreenSlideTransitionEast();
 
     // Screen_AD
     void gotoScreen_ADScreenSlideTransitionEast();
+
+    // Screen_WIFI
+    void gotoScreen_WIFIScreenSlideTransitionEast();
 
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
@@ -41,8 +44,6 @@ protected:
     // Screen_Opening
     void gotoScreen_OpeningScreenNoTransitionImpl();
 
-    void gotoScreen_OpeningScreenSlideTransitionWestImpl();
-
     void gotoScreen_OpeningScreenCoverTransitionWestImpl();
 
     // Screen_MainMenu
@@ -50,11 +51,16 @@ protected:
 
     void gotoScreen_MainMenuScreenSlideTransitionWestImpl();
 
+    void gotoScreen_MainMenuScreenSlideTransitionEastImpl();
+
     // Screen_PA
     void gotoScreen_PAScreenSlideTransitionEastImpl();
 
     // Screen_AD
     void gotoScreen_ADScreenSlideTransitionEastImpl();
+
+    // Screen_WIFI
+    void gotoScreen_WIFIScreenSlideTransitionEastImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

@@ -43,9 +43,10 @@ protected:
     touchgfx::ScalableImage scalableImage1;
     touchgfx::TextArea textArea1;
     touchgfx::ClickListener< touchgfx::Image > image_AD;
-    touchgfx::ButtonWithIcon buttonWithIcon1;
+    touchgfx::ButtonWithIcon buttonRestart;
     touchgfx::Button button_AD;
     touchgfx::Button button_PA;
+    touchgfx::Button button_WIFI;
 
 private:
 
