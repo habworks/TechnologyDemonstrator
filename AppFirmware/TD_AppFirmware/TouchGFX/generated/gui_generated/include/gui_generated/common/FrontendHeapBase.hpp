@@ -9,8 +9,8 @@
 #include <mvp/MVPHeap.hpp>
 
 #include <touchgfx/transitions/NoTransition.hpp>
-#include <touchgfx/transitions/SlideTransition.hpp>
 #include <touchgfx/transitions/CoverTransition.hpp>
+#include <touchgfx/transitions/SlideTransition.hpp>
 
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/model/Model.hpp>
@@ -23,6 +23,8 @@
 #include <gui/screen_pa_screen/Screen_PAPresenter.hpp>
 #include <gui/screen_ad_screen/Screen_ADView.hpp>
 #include <gui/screen_ad_screen/Screen_ADPresenter.hpp>
+#include <gui/screen_wifi_screen/Screen_WIFIView.hpp>
+#include <gui/screen_wifi_screen/Screen_WIFIPresenter.hpp>
 
 
 /**
@@ -49,7 +51,8 @@ public:
             touchgfx::meta::TypeList< Screen_MainMenuView,
             touchgfx::meta::TypeList< Screen_PAView,
             touchgfx::meta::TypeList< Screen_ADView,
-            touchgfx::meta::Nil > > >
+            touchgfx::meta::TypeList< Screen_WIFIView,
+            touchgfx::meta::Nil > > > >
             > GeneratedViewTypes;
 
     /**
@@ -65,7 +68,8 @@ public:
             touchgfx::meta::TypeList< Screen_MainMenuPresenter,
             touchgfx::meta::TypeList< Screen_PAPresenter,
             touchgfx::meta::TypeList< Screen_ADPresenter,
-            touchgfx::meta::Nil > > >
+            touchgfx::meta::TypeList< Screen_WIFIPresenter,
+            touchgfx::meta::Nil > > > >
             > GeneratedPresenterTypes;
 
     /**
@@ -78,9 +82,9 @@ public:
      * @note All transition types used in the application MUST be added to this list!
      */
     typedef touchgfx::meta::TypeList< touchgfx::NoTransition,
-            touchgfx::meta::TypeList< SlideTransition<WEST>,
             touchgfx::meta::TypeList< CoverTransition<WEST>,
             touchgfx::meta::TypeList< SlideTransition<EAST>,
+            touchgfx::meta::TypeList< SlideTransition<WEST>,
             touchgfx::meta::Nil > > >
             > GeneratedTransitionTypes;
 

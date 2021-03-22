@@ -41,7 +41,8 @@ typedef enum
 	SPLASH_SCREEN,
 	MAIN_MENU_SCREEN,
 	AD_SCREEN,
-	PA_SCREEN
+	PA_SCREEN,
+	WIFI_SCREEN
 }Type_ActiveScreen;
 
 typedef struct
@@ -75,9 +76,19 @@ typedef struct
 
 typedef struct
 {
+	uint8_t						UartMsgDataRx[6];
+	uint8_t						UastMsgDataTx[6];
+	bool_t						PacketReceive;
+	uint8_t						UpdateCount1;
+	uint8_t						UpdateCount2;
+}Type_WifiScreen;
+
+typedef struct
+{
 	Type_ActiveScreen				ActiveScreen;
 	Type_AnalogDigitalScreen		AnalogDigitalScreen;
 	Type_PWM_AccelerometerScreen	PWM_AccelerometerScreen;
+	Type_WifiScreen					WifiScreen;
 }Type_TechDemoStatus;
 extern Type_TechDemoStatus TechDemoStatus;
 

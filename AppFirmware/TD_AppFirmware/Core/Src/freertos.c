@@ -81,6 +81,13 @@ const osThreadAttr_t PWM_Acceleromet_attributes = {
   .priority = (osPriority_t) osPriorityLow,
   .stack_size = 1024 * 4
 };
+/* Definitions for WIFI_AP */
+osThreadId_t WIFI_APHandle;
+const osThreadAttr_t WIFI_AP_attributes = {
+  .name = "WIFI_AP",
+  .priority = (osPriority_t) osPriorityLow,
+  .stack_size = 256 * 4
+};
 /* Definitions for BinarySemAnalogDigital */
 osSemaphoreId_t BinarySemAnalogDigitalHandle;
 const osSemaphoreAttr_t BinarySemAnalogDigital_attributes = {
@@ -90,6 +97,11 @@ const osSemaphoreAttr_t BinarySemAnalogDigital_attributes = {
 osSemaphoreId_t BinarySemPWM_AccelerometerHandle;
 const osSemaphoreAttr_t BinarySemPWM_Accelerometer_attributes = {
   .name = "BinarySemPWM_Accelerometer"
+};
+/* Definitions for BinarySemWIFI_AP */
+osSemaphoreId_t BinarySemWIFI_APHandle;
+const osSemaphoreAttr_t BinarySemWIFI_AP_attributes = {
+  .name = "BinarySemWIFI_AP"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -101,6 +113,7 @@ void defaultTouchGFxTask(void *argument);
 void generalHardwareTask(void *argument);
 void analogDigitalTask(void *argument);
 void PWM_AccelerometerTask(void *argument);
+void WIFI_AP_Task(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -124,6 +137,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of BinarySemPWM_Accelerometer */
   BinarySemPWM_AccelerometerHandle = osSemaphoreNew(1, 1, &BinarySemPWM_Accelerometer_attributes);
+
+  /* creation of BinarySemWIFI_AP */
+  BinarySemWIFI_APHandle = osSemaphoreNew(1, 1, &BinarySemWIFI_AP_attributes);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
@@ -149,6 +165,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of PWM_Acceleromet */
   PWM_AccelerometHandle = osThreadNew(PWM_AccelerometerTask, NULL, &PWM_Acceleromet_attributes);
+
+  /* creation of WIFI_AP */
+  WIFI_APHandle = osThreadNew(WIFI_AP_Task, NULL, &WIFI_AP_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -242,6 +261,26 @@ void PWM_AccelerometerTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END PWM_AccelerometerTask */
+}
+
+/* USER CODE BEGIN Header_WIFI_AP_Task */
+/**
+* @brief Function implementing the WIFI_AP thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_WIFI_AP_Task */
+void WIFI_AP_Task(void *argument)
+{
+  /* USER CODE BEGIN WIFI_AP_Task */
+	WIFI_AP_Task_Init();
+  /* Infinite loop */
+  for(;;)
+  {
+	WIFI_AP_Task_ForLoop();
+    osDelay(1);
+  }
+  /* USER CODE END WIFI_AP_Task */
 }
 
 /* Private application code --------------------------------------------------*/

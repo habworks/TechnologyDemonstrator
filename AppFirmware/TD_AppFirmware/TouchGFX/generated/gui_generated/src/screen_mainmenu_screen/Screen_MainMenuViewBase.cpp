@@ -25,10 +25,10 @@ Screen_MainMenuViewBase::Screen_MainMenuViewBase() :
     image_AD.setXY(266, 193);
     image_AD.setBitmap(touchgfx::Bitmap(BITMAP_ADI_R_ID));
 
-    buttonWithIcon1.setXY(405, 203);
-    buttonWithIcon1.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_BLUE_ICONS_REFRESH_32_ID), touchgfx::Bitmap(BITMAP_BLUE_ICONS_REFRESH_32_ID));
-    buttonWithIcon1.setIconXY(15, 16);
-    buttonWithIcon1.setAction(buttonCallback);
+    buttonRestart.setXY(405, 203);
+    buttonRestart.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_BLUE_ICONS_REFRESH_32_ID), touchgfx::Bitmap(BITMAP_BLUE_ICONS_REFRESH_32_ID));
+    buttonRestart.setIconXY(15, 16);
+    buttonRestart.setAction(buttonCallback);
 
     button_AD.setXY(32, 60);
     button_AD.setBitmaps(touchgfx::Bitmap(BITMAP_ADI_G_ID), touchgfx::Bitmap(BITMAP_ADI_G_ID));
@@ -38,13 +38,18 @@ Screen_MainMenuViewBase::Screen_MainMenuViewBase() :
     button_PA.setBitmaps(touchgfx::Bitmap(BITMAP_PA_G_ID), touchgfx::Bitmap(BITMAP_PA_G_ID));
     button_PA.setAction(buttonCallback);
 
+    button_WIFI.setXY(240, 60);
+    button_WIFI.setBitmaps(touchgfx::Bitmap(BITMAP_WIFI_G_ID), touchgfx::Bitmap(BITMAP_WIFI_G_ID));
+    button_WIFI.setAction(buttonCallback);
+
     add(__background);
     add(scalableImage1);
     add(textArea1);
     add(image_AD);
-    add(buttonWithIcon1);
+    add(buttonRestart);
     add(button_AD);
     add(button_PA);
+    add(button_WIFI);
 }
 
 void Screen_MainMenuViewBase::setupScreen()
@@ -63,15 +68,10 @@ void Screen_MainMenuViewBase::afterTransition()
 
 void Screen_MainMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
-    if (&src == &buttonWithIcon1)
+    if (&src == &buttonRestart)
     {
-        //Interaction1
-        //When buttonWithIcon1 clicked change screen to Screen_Opening
-        //Go to Screen_Opening with screen transition towards West
-        application().gotoScreen_OpeningScreenSlideTransitionWest();
-
         //Interaction2
-        //When buttonWithIcon1 clicked change screen to Screen_Opening
+        //When buttonRestart clicked change screen to Screen_Opening
         //Go to Screen_Opening with screen transition towards West
         application().gotoScreen_OpeningScreenCoverTransitionWest();
     }
@@ -88,5 +88,12 @@ void Screen_MainMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButt
         //When button_PA clicked change screen to Screen_PA
         //Go to Screen_PA with screen transition towards East
         application().gotoScreen_PAScreenSlideTransitionEast();
+    }
+    else if (&src == &button_WIFI)
+    {
+        //Interaction6
+        //When button_WIFI clicked change screen to Screen_WIFI
+        //Go to Screen_WIFI with screen transition towards East
+        application().gotoScreen_WIFIScreenSlideTransitionEast();
     }
 }

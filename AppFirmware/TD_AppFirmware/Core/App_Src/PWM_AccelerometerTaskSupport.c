@@ -104,9 +104,11 @@ void PWM_AccelerometerTask_Init(void)
 * @param void
 * @return void
 *
-* STEP 1:
-* STEP 2:
-* STEP 3:
+* STEP 1: Get Accelerometer readings for all 3 axis
+* STEP 2: Compute Tilt Angles
+* STEP 3: Set PWM for Red LED
+* STEP 4: Set PWM for Green LED
+* STEP 5: Update display with new information
 ****************************************************************************************************** */
 void PWM_AccelerometerTask_ForLoop(void)
 {
@@ -149,7 +151,7 @@ void PWM_AccelerometerTask_ForLoop(void)
 				LastPWM_Value.Red_LED = TechDemoStatus.PWM_AccelerometerScreen.PWM_Percent.Red_LED;
 			}
 
-			// STEP 4: Set PWM for Red LED
+			// STEP 4: Set PWM for Green LED
 			if (LastPWM_Value.Green_LED != TechDemoStatus.PWM_AccelerometerScreen.PWM_Percent.Green_LED)
 			{
 				bool_t LED_UpdateStatus;
