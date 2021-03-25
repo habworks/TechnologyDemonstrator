@@ -36,6 +36,9 @@ public:
     // Screen_WIFI
     void gotoScreen_WIFIScreenSlideTransitionEast();
 
+    // Screen_Music
+    void gotoScreen_MusicScreenSlideTransitionEast();
+
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
     FrontendHeap& frontendHeap;
@@ -61,6 +64,9 @@ protected:
 
     // Screen_WIFI
     void gotoScreen_WIFIScreenSlideTransitionEastImpl();
+
+    // Screen_Music
+    void gotoScreen_MusicScreenSlideTransitionEastImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

@@ -47,6 +47,7 @@ protected:
     touchgfx::Button button_AD;
     touchgfx::Button button_PA;
     touchgfx::Button button_WIFI;
+    touchgfx::Button button_Music;
 
 private:
 

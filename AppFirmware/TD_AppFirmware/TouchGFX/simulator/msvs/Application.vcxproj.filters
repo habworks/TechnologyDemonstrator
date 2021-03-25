@@ -220,6 +220,18 @@
     <Filter Include="Header Files\generated\gui_generated\screen_wifi_screen">
       <UniqueIdentifier>E6CBC483-09FA-BE9C-E4AC-F399E6917397</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gui\screen_music_screen">
+      <UniqueIdentifier>77C47482-DAD0-9791-9BF8-B1ADE952EA75</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\screen_music_screen">
+      <UniqueIdentifier>6511F3EF-8F04-540E-2DAF-12DD209A10FB</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\screen_music_screen">
+      <UniqueIdentifier>D9EB294C-17AD-047F-3C66-B7769EEC27AD</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\screen_music_screen">
+      <UniqueIdentifier>D7F34F7E-9BC5-96DB-576E-765B2D53ADB3</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\driver\touch\SDL2TouchController.cpp">
@@ -293,6 +305,15 @@
     </ClCompile>
     <ClCompile Include="..\..\generated\gui_generated\src\screen_wifi_screen\Screen_WIFIViewBase.cpp">
       <Filter>Source Files\generated\gui_generated\screen_wifi_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_music_screen\Screen_MusicPresenter.cpp">
+      <Filter>Source Files\gui\screen_music_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\screen_music_screen\Screen_MusicView.cpp">
+      <Filter>Source Files\gui\screen_music_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\screen_music_screen\Screen_MusicViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\screen_music_screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -771,6 +792,15 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_wifi_screen\Screen_WIFIViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\screen_wifi_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_music_screen\Screen_MusicPresenter.hpp">
+      <Filter>Header Files\gui\screen_music_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\screen_music_screen\Screen_MusicView.hpp">
+      <Filter>Header Files\gui\screen_music_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\screen_music_screen\Screen_MusicViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\screen_music_screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

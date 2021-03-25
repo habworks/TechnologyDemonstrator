@@ -42,7 +42,8 @@ typedef enum
 	MAIN_MENU_SCREEN,
 	AD_SCREEN,
 	PA_SCREEN,
-	WIFI_SCREEN
+	WIFI_SCREEN,
+	MUSIC_SCREEN
 }Type_ActiveScreen;
 
 typedef struct
@@ -85,10 +86,22 @@ typedef struct
 
 typedef struct
 {
+	char						AudioFileName[20];
+	bool_t						IsMusic;
+}Type_AudioMsg;
+
+typedef struct
+{
+	Type_AudioMsg				AudioMsg;
+}Type_MusicScreen;
+
+typedef struct
+{
 	Type_ActiveScreen				ActiveScreen;
 	Type_AnalogDigitalScreen		AnalogDigitalScreen;
 	Type_PWM_AccelerometerScreen	PWM_AccelerometerScreen;
 	Type_WifiScreen					WifiScreen;
+	Type_MusicScreen				MusicScreen;
 }Type_TechDemoStatus;
 extern Type_TechDemoStatus TechDemoStatus;
 

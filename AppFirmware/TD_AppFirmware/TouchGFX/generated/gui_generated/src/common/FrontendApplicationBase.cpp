@@ -19,6 +19,8 @@
 #include <gui/screen_ad_screen/Screen_ADPresenter.hpp>
 #include <gui/screen_wifi_screen/Screen_WIFIView.hpp>
 #include <gui/screen_wifi_screen/Screen_WIFIPresenter.hpp>
+#include <gui/screen_music_screen/Screen_MusicView.hpp>
+#include <gui/screen_music_screen/Screen_MusicPresenter.hpp>
 
 using namespace touchgfx;
 
@@ -133,4 +135,17 @@ void FrontendApplicationBase::gotoScreen_WIFIScreenSlideTransitionEast()
 void FrontendApplicationBase::gotoScreen_WIFIScreenSlideTransitionEastImpl()
 {
     touchgfx::makeTransition<Screen_WIFIView, Screen_WIFIPresenter, touchgfx::SlideTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// Screen_Music
+
+void FrontendApplicationBase::gotoScreen_MusicScreenSlideTransitionEast()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplication::gotoScreen_MusicScreenSlideTransitionEastImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoScreen_MusicScreenSlideTransitionEastImpl()
+{
+    touchgfx::makeTransition<Screen_MusicView, Screen_MusicPresenter, touchgfx::SlideTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

@@ -25,6 +25,8 @@
 #include <gui/screen_ad_screen/Screen_ADPresenter.hpp>
 #include <gui/screen_wifi_screen/Screen_WIFIView.hpp>
 #include <gui/screen_wifi_screen/Screen_WIFIPresenter.hpp>
+#include <gui/screen_music_screen/Screen_MusicView.hpp>
+#include <gui/screen_music_screen/Screen_MusicPresenter.hpp>
 
 
 /**
@@ -52,7 +54,8 @@ public:
             touchgfx::meta::TypeList< Screen_PAView,
             touchgfx::meta::TypeList< Screen_ADView,
             touchgfx::meta::TypeList< Screen_WIFIView,
-            touchgfx::meta::Nil > > > >
+            touchgfx::meta::TypeList< Screen_MusicView,
+            touchgfx::meta::Nil > > > > >
             > GeneratedViewTypes;
 
     /**
@@ -69,7 +72,8 @@ public:
             touchgfx::meta::TypeList< Screen_PAPresenter,
             touchgfx::meta::TypeList< Screen_ADPresenter,
             touchgfx::meta::TypeList< Screen_WIFIPresenter,
-            touchgfx::meta::Nil > > > >
+            touchgfx::meta::TypeList< Screen_MusicPresenter,
+            touchgfx::meta::Nil > > > > >
             > GeneratedPresenterTypes;
 
     /**

@@ -22,7 +22,7 @@ Screen_MainMenuViewBase::Screen_MainMenuViewBase() :
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID6));
 
-    image_AD.setXY(266, 193);
+    image_AD.setXY(185, 199);
     image_AD.setBitmap(touchgfx::Bitmap(BITMAP_ADI_R_ID));
 
     buttonRestart.setXY(405, 203);
@@ -42,6 +42,10 @@ Screen_MainMenuViewBase::Screen_MainMenuViewBase() :
     button_WIFI.setBitmaps(touchgfx::Bitmap(BITMAP_WIFI_G_ID), touchgfx::Bitmap(BITMAP_WIFI_G_ID));
     button_WIFI.setAction(buttonCallback);
 
+    button_Music.setXY(341, 60);
+    button_Music.setBitmaps(touchgfx::Bitmap(BITMAP_MUSIC_G_ID), touchgfx::Bitmap(BITMAP_MUSIC_G_ID));
+    button_Music.setAction(buttonCallback);
+
     add(__background);
     add(scalableImage1);
     add(textArea1);
@@ -50,6 +54,7 @@ Screen_MainMenuViewBase::Screen_MainMenuViewBase() :
     add(button_AD);
     add(button_PA);
     add(button_WIFI);
+    add(button_Music);
 }
 
 void Screen_MainMenuViewBase::setupScreen()
@@ -95,5 +100,12 @@ void Screen_MainMenuViewBase::buttonCallbackHandler(const touchgfx::AbstractButt
         //When button_WIFI clicked change screen to Screen_WIFI
         //Go to Screen_WIFI with screen transition towards East
         application().gotoScreen_WIFIScreenSlideTransitionEast();
+    }
+    else if (&src == &button_Music)
+    {
+        //Interaction7
+        //When button_Music clicked change screen to Screen_Music
+        //Go to Screen_Music with screen transition towards East
+        application().gotoScreen_MusicScreenSlideTransitionEast();
     }
 }

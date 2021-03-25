@@ -32,6 +32,7 @@
 #include "app_touchgfx.h"
 #include "AnalogDigitalTaskSupport.h"
 #include "PWM_AccelerometerTaskSupport.h"
+#include "AudioPlayTaskSupport.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -88,6 +89,18 @@ const osThreadAttr_t WIFI_AP_attributes = {
   .priority = (osPriority_t) osPriorityLow,
   .stack_size = 256 * 4
 };
+/* Definitions for AudioPlay */
+osThreadId_t AudioPlayHandle;
+const osThreadAttr_t AudioPlay_attributes = {
+  .name = "AudioPlay",
+  .priority = (osPriority_t) osPriorityLow,
+  .stack_size = 4096 * 4
+};
+/* Definitions for AudioQueue */
+osMessageQueueId_t AudioQueueHandle;
+const osMessageQueueAttr_t AudioQueue_attributes = {
+  .name = "AudioQueue"
+};
 /* Definitions for BinarySemAnalogDigital */
 osSemaphoreId_t BinarySemAnalogDigitalHandle;
 const osSemaphoreAttr_t BinarySemAnalogDigital_attributes = {
@@ -114,6 +127,7 @@ void generalHardwareTask(void *argument);
 void analogDigitalTask(void *argument);
 void PWM_AccelerometerTask(void *argument);
 void WIFI_AP_Task(void *argument);
+void audioPlayTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -149,6 +163,10 @@ void MX_FREERTOS_Init(void) {
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* creation of AudioQueue */
+  AudioQueueHandle = osMessageQueueNew (5, sizeof(Type_AudioMsg), &AudioQueue_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -168,6 +186,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of WIFI_AP */
   WIFI_APHandle = osThreadNew(WIFI_AP_Task, NULL, &WIFI_AP_attributes);
+
+  /* creation of AudioPlay */
+  AudioPlayHandle = osThreadNew(audioPlayTask, NULL, &AudioPlay_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -281,6 +302,26 @@ void WIFI_AP_Task(void *argument)
     osDelay(1);
   }
   /* USER CODE END WIFI_AP_Task */
+}
+
+/* USER CODE BEGIN Header_audioPlayTask */
+/**
+* @brief Function implementing the AudioPlay thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_audioPlayTask */
+void audioPlayTask(void *argument)
+{
+  /* USER CODE BEGIN audioPlayTask */
+	audioPlayTask_Init();
+  /* Infinite loop */
+  for(;;)
+  {
+	audioPlayTask_ForLoop();
+    osDelay(1);
+  }
+  /* USER CODE END audioPlayTask */
 }
 
 /* Private application code --------------------------------------------------*/

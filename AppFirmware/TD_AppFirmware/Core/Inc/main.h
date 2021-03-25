@@ -59,6 +59,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define USB_DET_Pin GPIO_PIN_13
+#define USB_DET_GPIO_Port GPIOC
 #define WIFI_EN_Pin GPIO_PIN_0
 #define WIFI_EN_GPIO_Port GPIOA
 #define TOUCH_IRQ_Pin GPIO_PIN_6
