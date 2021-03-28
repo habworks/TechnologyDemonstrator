@@ -108,6 +108,7 @@ extern Type_TechDemoStatus TechDemoStatus;
 
 // MACROS
 #define SUPPRESS_WARNING(FunctionName) 				(void)FunctionName      // To avoid gcc/g++ warnings
+
 #define TEST_RETURN_TRUE_OR_FAIL(__condition__)		do \
 													{ \
 														if(__condition__) \
@@ -115,6 +116,7 @@ extern Type_TechDemoStatus TechDemoStatus;
 														else \
 															Error_Handler(); \
 													} while(0)
+
 #define TEST_FAIL_IF_FALSE(__condition__)		do \
 													{ \
 														if((__condition__) != TRUE) \
@@ -125,7 +127,7 @@ extern Type_TechDemoStatus TechDemoStatus;
 // FUNCTION PROTOTYPES
 void main_Init(void);
 void main_WhileLoop(void);
-// CONSIDER MOVING
+// TODO HAB CONSIDER MOVING
 void defaultTouchGFxTask_Init(void);
 
 #ifdef __cplusplus
