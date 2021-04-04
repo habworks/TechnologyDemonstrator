@@ -128,20 +128,24 @@ typedef enum
 
 typedef struct
 {
-	char FileNameAndPath[MAX_LENGTH_WAV_FILE];
-	bool_t Play;
-	bool_t Playing;
-	bool_t Pause;
-	uint8_t NumberOfChannels;
-	volatile uint32_t PlayTimeInSeconds;
-	volatile uint8_t TimeRemainingInMinutes;
-	volatile uint8_t TimeRemainingInSeconds;
+	char FileNameAndPath[MAX_LENGTH_WAV_FILE];				// FileName and max associated length - must include path
+	bool_t Play;											// Set true when file is to play
+	bool_t Playing;											// For reading only - Indicates audio is playing
+	bool_t Pause;											// Set true to pause audio - only valid if Play member is also set true
+	uint8_t NumberOfChannels;								// Number of audio channels 2 indicates stero, 1 is left channel - Audio file dependent
+	volatile uint32_t PlayTimeInSeconds;					// Total Play time of the file
+	volatile uint8_t TimeRemainingInMinutes;				// Time remaining Audio Play
+	volatile uint8_t TimeRemainingInSeconds;				// Time remaining Audio Play
 } Type_AudioPlayBack;
 
+
+// MACROS
+#define REDEFINE_SUPPRESS_WARNING(FunctionName) 			(void)FunctionName      // To avoid gcc/g++ warnings
 
 // FUNCTION PROTOTYPES
 Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *);
 void audioTimerIrqHandler(void);
+bool_t init_WavAudioTimer(uint32_t);
 uint16_t call_S16Bit_To_10Bit(int16_t);
 uint16_t call_S16Bit_To_12Bit(int16_t);
 void updateMusicTime(void);
@@ -160,8 +164,8 @@ void startAudioTimer(void);
 void stopAudioTimer(void);
 void delayInMiliseonds(uint32_t);
 // USER OPTIONAL FUNCTIONS
-void haultActionsWithMusicPlaying(void);
-void pauseActionsWithMusicPlaying(void);
+void stopActionsMusicPlaying(void);
+void pauseActionsMusicPlaying(void);
 void yieldControlToAnotherTask(void);
 
 #ifdef __cplusplus

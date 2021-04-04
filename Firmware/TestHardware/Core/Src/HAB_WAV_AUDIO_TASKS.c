@@ -42,10 +42,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 // FUNCTION SUPPORT INCLUDES
-#include "AdcSupport.h"
-#include "TimerSupport.h"
-#include "SupportIO.h"
-#include "dac.h"
+#include "SupportIO.h"  // TODO Hab remove testing
+
 
 // GLOBALS
 volatile Type_CircularBuffer CircularBufferLeft, CircularBufferRight;
@@ -54,8 +52,6 @@ volatile bool_t PlayLeftChannel = FALSE;
 volatile bool_t AudioPlaying = FALSE;
 volatile uint8_t Last_LED_BarGraphState = 0;
 
-volatile uint32_t LeftHitCount = 0;
-volatile uint32_t RightHitCount = 0;
 
 
 /*******************************************************************************************************
@@ -120,8 +116,6 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 	writeDAC_RightChannel(0);
 	stopAudioTimer();
 	PlayLeftChannel = TRUE;
-	LeftHitCount = 0;
-	RightHitCount = 0;
 
 	// STEP 2: Open file for reading and allocate the necessary memory to start
 	// BUILD THE FILE NAME WITH PATH
@@ -199,7 +193,7 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 				// SET THE TIMER AT THE AUDIO PLAY BACK RATE
 				AudioPlayBackRate = (Buffer[CHANNEL_NUMBER_OFFSET] * BytesPerSecond.Int32Value) / (Buffer[CHANNEL_NUMBER_OFFSET] * 2); // PLAYBACK RATE IN BYTES PER SECOND FOR THE NUMBER OF CHANNELS
 				// SET THE TIMER IRQ INTERVAL FOR PLAYBACK RATE
-				if (!init_AudioTimer(AudioPlayBackRate))
+				if (!init_WavAudioTimer(AudioPlayBackRate))
 				{
 					f_close(&FileStream);
 					free(Buffer);
@@ -285,14 +279,14 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 		// STOP CONDITION
 		if (!AudioPlayBack->Play)
 		{
-			haultActionsWithMusicPlaying();
+			stopActionsMusicPlaying();
 			DataChunkSize.Int32Value = 0; // THIS WILL FORCE STOP PLAY AND CREATE AN END CONDITION
 		}
 		// CHECK FOR PAUSE - IF SO LED BAR GRAPH OFF AND WAIT TO PROCCEED
 		while ((AudioPlayBack->Play) && (AudioPlayBack->Pause))
 		{
 			AudioPlaying = FALSE;
-			pauseActionsWithMusicPlaying();
+			pauseActionsMusicPlaying();
 			yieldControlToAnotherTask();
 		}
 
@@ -317,7 +311,7 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 			AudioPlayBack->Pause = FALSE;
 			AudioPlayBack->Play = FALSE;
 			AudioPlaying = FALSE;
-			haultActionsWithMusicPlaying();
+			stopActionsMusicPlaying();
 			break;
 		}
 	} // END OF WHILE
@@ -353,14 +347,11 @@ void audioTimerIrqHandler(void)
 {
 	uint16_t PlayValue;
 
-	STATUS_MOD_IO1_TOGGLE();
-
 	// STEP 1: Output data from Left / Right channel and load Left / Right channel DAC
 	// READ VALUE FROM ONE OF CIRCULAR BUFFERS AND OUTPUT TO AUDIO
 	if ((!isEmpty_CB(&CircularBufferLeft)) && (PlayLeftChannel) && (AudioPlaying))
 	{
-		LeftHitCount++;
-		STATUS_MOD_IO0_TOGGLE();
+		STATUS_MOD_IO0_TOGGLE();  // TODO Hab remove testing
 		read_CB(&CircularBufferLeft, &PlayValue);
 #ifdef DAC_TYPE_10_BIT
 		PlayValue &= 0x03FF; // THE DAC VALUE IS 10BIT - JUST BEING SAFE
@@ -372,7 +363,7 @@ void audioTimerIrqHandler(void)
 	}
 	if ((!isEmpty_CB(&CircularBufferRight)) && (AudioChannel == STEREO) && (!PlayLeftChannel) && (AudioPlaying))
 	{
-		RightHitCount++;
+		STATUS_MOD_IO1_TOGGLE();	// TODO Hab remove testing
 		read_CB(&CircularBufferRight, &PlayValue);
 #ifdef DAC_TYPE_10_BIT
 		PlayValue &= 0x03FF; // THE DAC VALUE IS 10BIT - JUST BEING SAFE
@@ -393,7 +384,6 @@ void audioTimerIrqHandler(void)
 			PlayLeftChannel = TRUE;
 	}
 } // END audioTimerIrqHandler
-
 
 
 
@@ -457,7 +447,7 @@ uint16_t call_S16Bit_To_12Bit(int16_t Signed16BitValue)
 
 void updateMusicTime(void)
 {
-	SUPPRESS_WARNING(updateMusicTime);
+	REDEFINE_SUPPRESS_WARNING(updateMusicTime);
 } // END OF updateMusicTime
 
 
@@ -635,64 +625,269 @@ void read_CB(Type_CircularBuffer *Type_CircularBuffer, uint16_t *Element)
 
 
 
+
+
+/***********************************************************************************************************************/
 // ******************************* USER PROVIDED REPLACMENT - FUNCTIONS MUST BE REPLACED *******************************
+/***********************************************************************************************************************/
+
+/*******************************************************************************************************
+* @brief Init of the Timer dedicated for use with Hab WAV Audio API.  This function must init a timer
+* IRQ for use.  The timer must IRQ at the period of the InteruptFrequency that is passed.  This function
+* should only init the timer, not start it.  Starting and stopping of the timer IRQ is done elsewhere. The
+* IRQ handler must call the Hab WAV API function audoTimerIrqHandler()
+*
+* @date				4/3/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note Timer IRQ callback function must call audoTimerIrqHandler()
+*
+*
+* @param Interrupt Frequency
+* @return True or False on success of timer IRQ init
+*
+* STEP 1: User steps to init the IRQ timer
+****************************************************************************************************** */
+__weak bool_t init_WavAudioTimer(uint32_t InteruptFrequency)
+{
+	REDEFINE_SUPPRESS_WARNING(init_WavAudioTimer);
+} // END OF init_WavAudioTimer
+
+
+
+/*******************************************************************************************************
+* @brief Disable audio output driver.  This is used to disable audio output driver.  It is only necessary to
+* conserver power - user need not interface if the intent is to have the audio driver always on.  Otherwise
+* use this function to enable audio output driver
+*
+* @date				4/3/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note Recommended for embedded applications that need to conserve power
+* - Not implemented here.  User must redefine to hardware and OS specific platform
+*
+* @param void
+* @return void
+*
+* STEP 1: User steps to disable the output audio driver
+****************************************************************************************************** */
 __weak void disableAudioOutput(void)
 {
-	writeDAC_LeftChannel(0);
-	AUDIO_AMP_OFF();
-}
+	REDEFINE_SUPPRESS_WARNING(disableAudioOutput);
+} // END OF disableAudioOutput
 
+
+
+/*******************************************************************************************************
+* @brief Enable audio output driver.  This is used to enable audio output driver.  It is only necessary to
+* conserver power - user need not interface if the intent is to have the audio driver always on.  Otherwise
+* use this function to disable audio output driver
+*
+* @date				4/3/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note Recommended for embedded applications that need to conserve power
+* - Not implemented here.  User must redefine to hardware and OS specific platform
+*
+* @param void
+* @return void
+*
+* STEP 1: User steps to enable the output audio driver
+****************************************************************************************************** */
 __weak void enableAudioOutput(void)
 {
-	writeDAC_LeftChannel(0);
-	AUDIO_AMP_ON();
-}
+	REDEFINE_SUPPRESS_WARNING(enableAudioOutput);
+} // END OF enableAudioOutput
 
 
+
+/*******************************************************************************************************
+* @brief Write audio output to DAC Left channel.  User must implement a function that writes a value to
+* the DAC output.  The reference voltage of the DAC is only important to driving the output audio - what is
+* important here is the value of the DAC output which is a parameter.
+*
+* @date				4/3/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note The correct DAC resolution 10b or 12b must be defined in HAB_WAV_AUDIO_TASKS.H
+* - Do nothing to scale this value - it may be passed directly to the audio driver
+* - There is always a left channel - not always a right
+*
+* @param DAC value for left channel audio
+* @return void
+*
+* STEP 1: User steps to write to Left DAC Channel
+****************************************************************************************************** */
 __weak void writeDAC_LeftChannel(uint16_t DAC_Value)
 {
-	HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, DAC_Value);
-}
+	REDEFINE_SUPPRESS_WARNING(writeDAC_LeftChannel);
+} // END OF writeDAC_LeftChannel
 
 
+
+/*******************************************************************************************************
+* @brief Write audio output to DAC Right channel.  User must implement a function that writes a value to
+* the DAC output.  The reference voltage of the DAC is only important to driving the output audio - what is
+* important here is the value of the DAC output which is a parameter.  Note if no second DAC is implemented
+* for right channel audio - it is recommended that user calls the same function that writes to the left audio.
+*
+* @date				4/3/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note The correct DAC resolution 10b or 12b must be defined in HAB_WAV_AUDIO_TASKS.H
+* - Do nothing to scale this value - it may be passed directly to the audio driver
+* - There is always a left channel - not always a right
+*
+* @param DAC value for left channel audio
+* @return void
+*
+* STEP 1: User steps to write to Right DAC Channel
+****************************************************************************************************** */
 __weak void writeDAC_RightChannel(uint16_t DAC_Value)
 {
-	HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, DAC_Value);
-}
-
-__weak void haultActionsWithMusicPlaying(void)
-{
-	SUPPRESS_WARNING(haultActionsWithMusicPlaying);
-}
+	REDEFINE_SUPPRESS_WARNING(writeDAC_RightChannel);
+}  // END OF writeDAC_RightChannel
 
 
+
+/*******************************************************************************************************
+* @brief Start the Audio Timer IRQ ticking
+*
+* @date				4/3/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note This function is only intended to start the audio timer IRQ.  The Timer should have been previously setup
+* - This is the timer interrupt that is associated with the audio timer
+*
+* @param void
+* @return void
+*
+* STEP 1: User steps to start the timer associated with the timer IRQ
+****************************************************************************************************** */
 __weak void startAudioTimer(void)
 {
-	HAL_TIM_Base_Start_IT(&htim3);
-}
+	REDEFINE_SUPPRESS_WARNING(startAudioTimer);
+} // END OF startAudioTimer
 
 
+
+/*******************************************************************************************************
+* @brief Stop the Audio Timer IRQ ticking
+*
+* @date				4/3/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note This function is only intended to stop not de_init the audio timer IRQ.  After a stop has been
+* issued a start should be able to restart the timer IRQ without an init
+* @param void
+* @return void
+*
+* STEP 1: User steps to start the timer associated with the timer IRQ
+****************************************************************************************************** */
 __weak void stopAudioTimer(void)
 {
-	HAL_TIM_Base_Stop_IT(&htim3);
-}
+	REDEFINE_SUPPRESS_WARNING(stopAudioTimer);
+} // END OF stopAudioTimer
 
+
+
+/*******************************************************************************************************
+* @brief A delay in mili-seconds.  It is important that should Hab Wav Audio be used in an RTOS that the
+* delay implemented here is non-blocking.  Using a blocking function in an RTOS is typically non-thread safe
+*
+* @date				4/3/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note Function should not block if this API is used within an RTOS
+*
+* @param The nuumber of mili-seconds to delay
+* @return void
+*
+* STEP 1: User steps to implement a mili-second delay
+****************************************************************************************************** */
 __weak void delayInMiliseonds(uint32_t DelayTime)
 {
-	delayMiliSecond(DelayTime);
-}
+	REDEFINE_SUPPRESS_WARNING(delayInMiliseonds);
+} // END OF delayInMiliseonds
 
+
+
+/***********************************************************************************************************************/
 // ******************************* USER OPTIONAL FUNCTIONS - FUNCTIONS MUST BE REPLACED *******************************
+/***********************************************************************************************************************/
 
-__weak void pauseActionsWithMusicPlaying(void)
+/*******************************************************************************************************
+* @brief Use this function to set the actions necessary when the music playing has been stopped.  This is
+* totally at the user discretion and is not necessary for the implementation of Hab Wav Audio
+*
+* @date				4/3/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note User specific implementation
+*
+* @param void
+* @return void
+*
+* STEP 1: User steps when audio has stopped
+****************************************************************************************************** */
+__weak void stopActionsMusicPlaying(void)
 {
-	SUPPRESS_WARNING(pauseActionsWithMusicPlaying);
-}
+	REDEFINE_SUPPRESS_WARNING(stopActionsMusicPlaying);
+} // END OF stoptActionsMusicPlaying
 
+
+
+/*******************************************************************************************************
+* @brief Use this function to set the actions necessary when the music playing has been paused.  This is
+* totally at the user discretion and is not necessary for the implementation of Hab Wav Audio
+*
+* @date				4/3/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note User specific implementation
+*
+* @param void
+* @return void
+*
+* STEP 1: User steps when audio has paused
+****************************************************************************************************** */
+__weak void pauseActionsMusicPlaying(void)
+{
+	REDEFINE_SUPPRESS_WARNING(pauseActionsMusicPlaying);
+} // END OF pauseActionsMusicPlaying
+
+
+/*******************************************************************************************************
+* @brief For use in RTOS applications - used when audio has been paused.  Call this function to yield
+* priority to the RTOS for a time (user determined) but a few milliseconds is suggested
+*
+* @date				4/3/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note For use in RTOS based applications only
+*
+* @param void
+* @return void
+*
+* STEP 1: User steps to yield control to the RTOS when in pause condition
+****************************************************************************************************** */
 __weak void yieldControlToAnotherTask(void)
 {
-	SUPPRESS_WARNING(yieldControlToAnotherTask);
-}
+	REDEFINE_SUPPRESS_WARNING(yieldControlToAnotherTask);
+} // END OF yieldControlToAnotherTask
+
+
 
 
 
