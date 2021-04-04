@@ -11,6 +11,7 @@
 #include "AdcSupport.h"
 #include "UartSupport.h"
 #include "TimerSupport.h"
+#include "HAB_WAV_AUDIO_TASKS.h"
 #include "TPL0401A.h"
 #include "LIS3DH.h"
 #include "FT5426.h"
@@ -702,7 +703,7 @@ void main_WhileLoop(void)
 			AudioPlayBack.Play = TRUE;
 			sprintf((char *)DebugUarOutputtMsg, "Playing test audio...\r\n");
 			SendDebugUartMsg(DebugUarOutputtMsg);
-			if (call_play16Bit_WAVE(&AudioPlayBack))
+			if (call_play16Bit_WAVE(&AudioPlayBack) == STATUS_OK)
 				sprintf((char *)DebugUarOutputtMsg, "OK... Hope you heard it\r\n");
 			else
 				sprintf((char *)DebugUarOutputtMsg, "Error in audio playback\r\n");

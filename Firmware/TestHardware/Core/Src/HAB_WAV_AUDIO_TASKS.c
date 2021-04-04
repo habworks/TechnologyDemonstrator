@@ -46,11 +46,13 @@
 
 
 // GLOBALS
-volatile Type_CircularBuffer CircularBufferLeft, CircularBufferRight;
+Type_CircularBuffer CircularBufferLeft, CircularBufferRight;
 volatile uint8_t AudioChannel;
-volatile bool_t PlayLeftChannel = FALSE;
-volatile bool_t AudioPlaying = FALSE;
+volatile bool PlayLeftChannel = false;
+volatile bool AudioPlaying = false;
+#ifdef DISPLAY_AUDIO_LEVEL_EXAMPLE
 volatile uint8_t Last_LED_BarGraphState = 0;
+#endif
 
 
 
@@ -98,8 +100,8 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 	UINT BytesRead;
 	FRESULT FF_Result;
 	BYTE *Buffer;
-	bool_t FileVerified = FALSE, FirstRead = TRUE;
-	uint8_t FullFileName[MAX_LENGTH_WAV_FILE];
+	bool FileVerified = false, FirstRead = true;
+	char FullFileName[MAX_LENGTH_WAV_FILE];
 	uint8_t FileType[sizeof(RIFF_FILE_TYPE) + 1];  	// ONE ADDITIONAL ELEMENT ADDED FOR SAFETY
 	uint8_t RiffType[sizeof(WAVE_RIFF_TYPE) + 1]; 	// ONE ADDITIONAL ELEMENT ADDED FOR SAFETY
 	uint8_t *ptr_ToRiffOffset, *ptr_ToBufferData;
@@ -108,14 +110,13 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 	Union_AudioValue AudioValue;
 	Union_DataChunkSize DataChunkSize;
 	Union_BytesPerSecond BytesPerSecond;
-	uint8_t LineText[DISPLAY_COLUMN_TOTAL];
 
 	// STEP 1: Set the init conditions for playing audio
-	AudioPlayBack->Playing = FALSE;
+	AudioPlayBack->Playing = false;
 	writeDAC_LeftChannel(0);
 	writeDAC_RightChannel(0);
 	stopAudioTimer();
-	PlayLeftChannel = TRUE;
+	PlayLeftChannel = true;
 
 	// STEP 2: Open file for reading and allocate the necessary memory to start
 	// BUILD THE FILE NAME WITH PATH
@@ -135,7 +136,7 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 	}
 
 	// STEP 3: Read a large block of the file to get started with processing - Continue to read as data is processed
-	while (TRUE)
+	while (true)
 	{
 		// READ A CHUNK OF THE WAV FILE
 		FF_Result = f_read(&FileStream, Buffer, IN_COMMING_BUFFER_SIZE, &BytesRead);
@@ -154,13 +155,13 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 		if (!FileVerified)
 		{
 			// VERIFY THE FILE TYPE AS VALID - GET FILE TYPE AND RIFF TYPE
-			strncpy(FileType, Buffer, 4);
+			strncpy((char *)FileType, (char *)Buffer, 4);
 			FileType[4] = STRING_NULL;  // TERMINATE THE STRING
 			ptr_ToRiffOffset = Buffer + RIFF_TYPE_OFFSET;
-			strncpy(RiffType, ptr_ToRiffOffset, 4);
+			strncpy((char *)RiffType, (char *)ptr_ToRiffOffset, 4);
 			RiffType[4] = STRING_NULL;  // TERMINATE THE STRING
-			uint8_t StringCompareTotal = strcmp(RIFF_FILE_TYPE, FileType) + strcmp(WAVE_RIFF_TYPE, RiffType);
-			if ((StringCompareTotal != 0) || (Buffer[FORMAT_SIZE_OFFSET] != 16) && (Buffer[BIT_PER_SAMPLE_OFFSET] != 16))
+			uint8_t StringCompareTotal = strcmp(RIFF_FILE_TYPE, (char *)FileType) + strcmp(WAVE_RIFF_TYPE, (char *)RiffType);
+			if ((StringCompareTotal != 0) || (Buffer[FORMAT_SIZE_OFFSET] != 16) || (Buffer[BIT_PER_SAMPLE_OFFSET] != 16))
 			{
 				f_close(&FileStream);
 				free(Buffer);
@@ -169,7 +170,7 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 			else
 			{
 				// FILE VERIFIED - LOAD WAVE FILE PARAMETERS
-				FileVerified = TRUE;
+				FileVerified = true;
 				// LOAD BYTE PER SECOND RATE
 				BytesPerSecond.ByteValue[0] = Buffer[BYTE_RATE_OFFSET];
 				BytesPerSecond.ByteValue[1] = Buffer[BYTE_RATE_OFFSET + 1];
@@ -205,8 +206,8 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 				enableAudioOutput();
 				delayInMiliseonds(TIME_TO_AUDIO_OUTPUT_STABLE);
 				startAudioTimer();
-				AudioPlayBack->Playing = TRUE;
-				AudioPlaying = TRUE;
+				AudioPlayBack->Playing = true;
+				AudioPlaying = true;
 			}
 		} // WAVE FILE PARAMETERS READ AND CONDITIONS READY TO BEGIN PLAING DATA
 
@@ -215,7 +216,7 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 		if (FirstRead)
 		{
 			ptr_ToBufferData = Buffer + DATA_OFFSET;
-			FirstRead = FALSE;
+			FirstRead = false;
 		}
 		else
 		{
@@ -285,7 +286,7 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 		// CHECK FOR PAUSE - IF SO LED BAR GRAPH OFF AND WAIT TO PROCCEED
 		while ((AudioPlayBack->Play) && (AudioPlayBack->Pause))
 		{
-			AudioPlaying = FALSE;
+			AudioPlaying = false;
 			pauseActionsMusicPlaying();
 			yieldControlToAnotherTask();
 		}
@@ -307,10 +308,10 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 			f_close(&FileStream);
 			stopAudioTimer();
 			disableAudioOutput();
-			AudioPlayBack->Playing = FALSE;
-			AudioPlayBack->Pause = FALSE;
-			AudioPlayBack->Play = FALSE;
-			AudioPlaying = FALSE;
+			AudioPlayBack->Playing = false;
+			AudioPlayBack->Pause = false;
+			AudioPlayBack->Play = false;
+			AudioPlaying = false;
 			stopActionsMusicPlaying();
 			break;
 		}
@@ -371,7 +372,7 @@ void audioTimerIrqHandler(void)
 #ifdef DAC_TYPE_12_BIT
 		PlayValue &= 0x0FFF; // THE DAC VALUE IS 10BIT - JUST BEING SAFE
 #endif
-		writeDAC_RightChannel(PlayValue); // FOR TRUE STERO WOULD OUTPUT TO 2ND AUDIO DAC
+		writeDAC_RightChannel(PlayValue); // FOR true STERO WOULD OUTPUT TO 2ND AUDIO DAC
 	}
 
 	// STEP 2: Alternate Audio Channel for playback on left right channel
@@ -379,9 +380,9 @@ void audioTimerIrqHandler(void)
 	if (AudioChannel == STEREO)
 	{
 		if (PlayLeftChannel)
-			PlayLeftChannel = FALSE;
+			PlayLeftChannel = false;
 		else
-			PlayLeftChannel = TRUE;
+			PlayLeftChannel = true;
 	}
 } // END audioTimerIrqHandler
 
@@ -469,7 +470,7 @@ void updateMusicTime(void)
  * STEP 1: Set start and end of buffer to 0 - set size 
  * STEP 2: Allocate memory
 ****************************************************************************************************** */
-bool_t init_CB(Type_CircularBuffer *CircularBuffer, uint16_t BufferSize, uint8_t NumberOfBytesInType)
+bool init_CB(Type_CircularBuffer *CircularBuffer, uint16_t BufferSize, uint8_t NumberOfBytesInType)
 {
 	// STEP 1: Set start and end of buffer to 0 - set size
 	CircularBuffer->Size = BufferSize + 1; // INCLUDES AND EMPTY LOCATION
@@ -479,9 +480,9 @@ bool_t init_CB(Type_CircularBuffer *CircularBuffer, uint16_t BufferSize, uint8_t
 	// STEP 2: Allocate memory
 	CircularBuffer->Elems = (uint16_t *) calloc(NumberOfBytesInType * CircularBuffer->Size, sizeof(int16_t));
 	if (CircularBuffer->Elems ==  NULL)
-		return(FALSE);
+		return(false);
 	else
-		return(TRUE);
+		return(true);
 
 } // END OF init_CB
 
@@ -649,9 +650,10 @@ void read_CB(Type_CircularBuffer *Type_CircularBuffer, uint16_t *Element)
 *
 * STEP 1: User steps to init the IRQ timer
 ****************************************************************************************************** */
-__weak bool_t init_WavAudioTimer(uint32_t InteruptFrequency)
+__weak bool init_WavAudioTimer(uint32_t InteruptFrequency)
 {
 	REDEFINE_SUPPRESS_WARNING(init_WavAudioTimer);
+	return(false);
 } // END OF init_WavAudioTimer
 
 

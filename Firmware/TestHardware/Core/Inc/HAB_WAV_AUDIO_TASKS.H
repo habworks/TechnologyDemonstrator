@@ -29,7 +29,8 @@ extern"C" {
 #endif
 
 // INCLUDES
-#include "MainSupport.h"
+#include "stdint.h"
+#include "stdbool.h"
 
 // WAVE AUDIO OFFSETS - COMMENTS ARE FOR 16BIT PCM WAV AUDIO
 #define RIFF_CHUNCK_OFFSET      0U  // EXPECTED "RIFF"
@@ -60,8 +61,8 @@ extern"C" {
 
 // WAVE DIRECTORIES AND FILE NAMES - FILE NAME LIMIT 30 CHARS
 #define ROOT_DIR          "0:"
-#define AUDIO_PATH        "0:\\HC15C_AUDIO"
-#define MUSIC_PATH        "0:\\MUSIC_FILES"
+#define AUDIO_PATH        "0:\\HAB_AUDIO"
+#define MUSIC_PATH        "0:\\HAB_MUSIC"
 
 //#define DISPLAY_AUDIO_LEVEL_EXAMPLE
 //#define DAC_TYPE_10_BIT
@@ -129,9 +130,9 @@ typedef enum
 typedef struct
 {
 	char FileNameAndPath[MAX_LENGTH_WAV_FILE];				// FileName and max associated length - must include path
-	bool_t Play;											// Set true when file is to play
-	bool_t Playing;											// For reading only - Indicates audio is playing
-	bool_t Pause;											// Set true to pause audio - only valid if Play member is also set true
+	bool Play;											// Set true when file is to play
+	bool Playing;											// For reading only - Indicates audio is playing
+	bool Pause;											// Set true to pause audio - only valid if Play member is also set true
 	uint8_t NumberOfChannels;								// Number of audio channels 2 indicates stero, 1 is left channel - Audio file dependent
 	volatile uint32_t PlayTimeInSeconds;					// Total Play time of the file
 	volatile uint8_t TimeRemainingInMinutes;				// Time remaining Audio Play
@@ -145,11 +146,11 @@ typedef struct
 // FUNCTION PROTOTYPES
 Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *);
 void audioTimerIrqHandler(void);
-bool_t init_WavAudioTimer(uint32_t);
+bool init_WavAudioTimer(uint32_t);
 uint16_t call_S16Bit_To_10Bit(int16_t);
 uint16_t call_S16Bit_To_12Bit(int16_t);
 void updateMusicTime(void);
-bool_t init_CB(Type_CircularBuffer *, uint16_t , uint8_t);
+bool init_CB(Type_CircularBuffer *, uint16_t , uint8_t);
 void free_CB(Type_CircularBuffer *);
 uint8_t isFull_CB(Type_CircularBuffer *);
 uint8_t isEmpty_CB(Type_CircularBuffer *);

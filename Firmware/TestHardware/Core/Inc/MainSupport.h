@@ -38,7 +38,6 @@
 
 #define INTEGER_ROUNDING							(0.5)
 // TYPEDEFS AND ENUMS
-typedef _Bool bool;
 
 #ifndef bool_t
 	#ifdef FALSE

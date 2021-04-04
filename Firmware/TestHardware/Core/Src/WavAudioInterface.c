@@ -11,11 +11,11 @@
 #include "TimerSupport.h"
 #include "SupportIO.h"
 #include "dac.h"
-
+#include "stdbool.h"
 
 
 // REDEFINITION OF FUNCTIONS DECLARED WEAK USED IN HAB WAV AUDIO
-bool_t init_WavAudioTimer(uint32_t InteruptFrequency)
+bool init_WavAudioTimer(uint32_t InteruptFrequency)
 {
 	uint16_t TicksToIrq;
 	uint32_t TimerFrequency;
