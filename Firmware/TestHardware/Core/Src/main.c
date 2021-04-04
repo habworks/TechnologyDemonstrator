@@ -122,6 +122,7 @@ int main(void)
   MX_SPI1_Init();
   MX_DAC_Init();
   MX_I2C3_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   main_Init();
   /* USER CODE END 2 */

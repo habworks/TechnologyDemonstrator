@@ -94,7 +94,7 @@
 #define QSPI_D0_GPIO_PORT          GPIOF
 #define QSPI_D1_PIN                GPIO_PIN_9
 #define QSPI_D1_GPIO_PORT          GPIOF
-#define QSPI_D2_PIN                GPIO_PIN_2
+#define QSPI_D2_PIN                GPIO_PIN_8
 #define QSPI_D2_GPIO_PORT          GPIOE
 #define QSPI_D3_PIN                GPIO_PIN_6
 #define QSPI_D3_GPIO_PORT          GPIOF

@@ -67,6 +67,10 @@ void Error_Handler(void);
 #define TOUCH_IRQ_GPIO_Port GPIOH
 #define TOUCH_NRST_Pin GPIO_PIN_9
 #define TOUCH_NRST_GPIO_Port GPIOH
+#define MOD_IO0_Pin GPIO_PIN_12
+#define MOD_IO0_GPIO_Port GPIOB
+#define MOD_IO1_Pin GPIO_PIN_14
+#define MOD_IO1_GPIO_Port GPIOB
 #define PWM_GLED_Pin GPIO_PIN_12
 #define PWM_GLED_GPIO_Port GPIOD
 #define PWM_RLED_Pin GPIO_PIN_13

@@ -5,6 +5,7 @@
  *      Author: IMR HabPC
  */
 
+#include <HAB_WAV_AUDIO_TASKS.H>
 #include "MainSupport.h"
 #include "SupportIO.h"
 #include "AdcSupport.h"
@@ -13,7 +14,6 @@
 #include "TPL0401A.h"
 #include "LIS3DH.h"
 #include "FT5426.h"
-// ST DRIVRS
 #include "usart.h"
 #include "adc.h"
 #include "tim.h"
@@ -672,6 +672,47 @@ void main_WhileLoop(void)
 			break;
 		}
 
+		case 'n':
+		case 'N':
+		{
+			Type_AudioPlayBack AudioPlayBack;
+			FRESULT Result;
+			float HundredPercent = 100.0;
+
+			// SET VOLUME TO MAX
+			if (setDigitalPotAttenuation(HundredPercent))
+				sprintf((char *)DebugUarOutputtMsg, "Digital Pot set percentage: %2.2f\r\n", HundredPercent);
+			else
+				sprintf((char *)DebugUarOutputtMsg, "Error Failed to set volume\r\n");
+			SendDebugUartMsg(DebugUarOutputtMsg);
+
+			// MOUNT THE DRIVE FOR USE
+			Result = f_mount(&SDFatFS, (TCHAR const*)SDPath, 0);
+			if (Result != FR_OK)
+			{
+				strcpy(AudioPlayBack.FileNameAndPath, "Error on mounting drive for use");
+				SendDebugUartMsg(DebugUarOutputtMsg);
+				break;
+			}
+
+			// LOAD AUDIO PLAY STRUCT FOR PLAYBACK
+			memset(AudioPlayBack.FileNameAndPath, '\0', sizeof(AudioPlayBack.FileNameAndPath));
+			strcpy(AudioPlayBack.FileNameAndPath, "0:\\AUDIO\\ON_LINE1.wav");
+			AudioPlayBack.Pause = FALSE;
+			AudioPlayBack.Play = TRUE;
+			sprintf((char *)DebugUarOutputtMsg, "Playing test audio...\r\n");
+			SendDebugUartMsg(DebugUarOutputtMsg);
+			if (call_play16Bit_WAVE(&AudioPlayBack))
+				sprintf((char *)DebugUarOutputtMsg, "OK... Hope you heard it\r\n");
+			else
+				sprintf((char *)DebugUarOutputtMsg, "Error in audio playback\r\n");
+			SendDebugUartMsg(DebugUarOutputtMsg);
+
+			// UNMOUNT THE DRIVE
+			f_mount(0, "", 0);
+			break;
+		}
+
 
 		default:
 			break;
@@ -723,11 +764,11 @@ void printHelpMenu(void)
 	SendDebugUartMsg(DebugUarOutputtMsg);
 	sprintf((char *)DebugUarOutputtMsg, "  F: Toggle LCD\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
-	sprintf((char *)DebugUarOutputtMsg, "  G: Change LCD Background color\r\n");
+	sprintf((char *)DebugUarOutputtMsg, "  G: LCD Background color\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
-	sprintf((char *)DebugUarOutputtMsg, "  H: Change DAC CH-1 voltage\r\n");
+	sprintf((char *)DebugUarOutputtMsg, "  H: DAC CH-1 voltage\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
-	sprintf((char *)DebugUarOutputtMsg, "  I: Change Digital Pot Set Percentage\r\n");
+	sprintf((char *)DebugUarOutputtMsg, "  I: Digital Pot Set Percentage\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
 	sprintf((char *)DebugUarOutputtMsg, "  J: Accelerometer Set Operating Conditions FIRST\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
@@ -736,6 +777,8 @@ void printHelpMenu(void)
 	sprintf((char *)DebugUarOutputtMsg, "  L: Accelerometer Read Axis g\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
 	sprintf((char *)DebugUarOutputtMsg, "  M: Touch Controller Test\r\n");
+	SendDebugUartMsg(DebugUarOutputtMsg);
+	sprintf((char *)DebugUarOutputtMsg, "  N: Test Audio Play back\r\n");
 	SendDebugUartMsg(DebugUarOutputtMsg);
 }
 

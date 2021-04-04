@@ -73,6 +73,8 @@ extern volatile Type_BoardStatus BoardStatus;
                                              } \
                                             }while(0)
 
+#define SUPPRESS_WARNING(FunctionName) 				(void)FunctionName      // To avoid gcc/g++ warnings
+
 // PROTOTYPE FUNCTIONS
 void main_Init(void);
 void main_WhileLoop(void);
