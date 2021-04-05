@@ -128,7 +128,7 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 		return(FILE_OPEN_ERROR);
 	}
 	// ALLOCATE MEMORY
-	Buffer = (BYTE *)calloc(IN_COMMING_BUFFER_SIZE, sizeof(BYTE));
+	Buffer = (BYTE *)memoryAllocate(IN_COMMING_BUFFER_SIZE, sizeof(BYTE));
 	if (Buffer ==  NULL)
 	{
 		f_close(&FileStream);
@@ -143,7 +143,7 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 		if (FF_Result != FR_OK)
 		{
 			f_close(&FileStream);
-			free(Buffer);
+			memoryFree(Buffer);
 			return(FILE_READ_ERROR);
 		}
 		if (BytesRead == 0)
@@ -164,7 +164,7 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 			if ((StringCompareTotal != 0) || (Buffer[FORMAT_SIZE_OFFSET] != 16) || (Buffer[BIT_PER_SAMPLE_OFFSET] != 16))
 			{
 				f_close(&FileStream);
-				free(Buffer);
+				memoryFree(Buffer);
 				return (FILE_VERIFICATION_ERROR);
 			}
 			else
@@ -197,7 +197,7 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 				if (!init_WavAudioTimer(AudioPlayBackRate))
 				{
 					f_close(&FileStream);
-					free(Buffer);
+					memoryFree(Buffer);
 					return(TIMER_FAIL_INIT_ERROR);
 				}
 				// ADJUST BYTES READ TO ACCOUNT FOR WAVE FILE HEADER FOR THIS FIRST PASS
@@ -295,7 +295,7 @@ Type_RetrunStatus call_play16Bit_WAVE(Type_AudioPlayBack *AudioPlayBack)
 		if (DataChunkSize.Int32Value == 0)
 		{
 			// FREE MEMORY
-			free(Buffer);
+			memoryFree(Buffer);
 			// WAIT FOR THE BUFFERS TO BE EMPTY: FREE MEMORY AND DISABLE TIMER IRQ
 			while (!isEmpty_CB(&CircularBufferLeft)); // TODO Hab not thread safe - fix later
 			free_CB(&CircularBufferLeft);
@@ -478,7 +478,7 @@ bool init_CB(Type_CircularBuffer *CircularBuffer, uint16_t BufferSize, uint8_t N
 	CircularBuffer->End = 0;
 
 	// STEP 2: Allocate memory
-	CircularBuffer->Elems = (uint16_t *) calloc(NumberOfBytesInType * CircularBuffer->Size, sizeof(int16_t));
+	CircularBuffer->Elems = (uint16_t *) memoryAllocate(NumberOfBytesInType * CircularBuffer->Size, sizeof(int16_t));
 	if (CircularBuffer->Elems ==  NULL)
 		return(false);
 	else
@@ -508,7 +508,7 @@ void free_CB(Type_CircularBuffer *CircularBuffer)
 
 	// STEP 1: Return memory to heap
 	// OK IF NULL
-	free(CircularBuffer->Elems);
+	memoryFree(CircularBuffer->Elems);
 
 } // END OF free_CB
 
@@ -631,6 +631,53 @@ void read_CB(Type_CircularBuffer *Type_CircularBuffer, uint16_t *Element)
 /***********************************************************************************************************************/
 // ******************************* USER PROVIDED REPLACMENT - FUNCTIONS MUST BE REPLACED *******************************
 /***********************************************************************************************************************/
+
+/*******************************************************************************************************
+* @brief OS implementation of the allocation of memory.  For a bear metal application the suggestion would
+* be to use calloc
+*
+* @date				4/5/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note Memory allocation is typically OS dependent if bear metal use calloc
+*
+*
+* @param Number of Elements, Size of the individual element in bytes
+* @return void pointer
+*
+* STEP 1: User steps to allocate memory
+****************************************************************************************************** */
+__weak void * memoryAllocate(size_t NumberOfElements, size_t SizeOfElement)
+{
+	REDEFINE_SUPPRESS_WARNING(memoryAllocate);
+	return(NULL);
+} // END OF memoryAllocate
+
+
+
+/*******************************************************************************************************
+* @brief OS implementation of the freeing of allocated  memory.  For a bear metal application the suggestion would
+* be to use free
+*
+* @date				4/5/21 \n
+* @author 			Hab S. Collector \n
+* Last Edited By:  	Hab S. Collector \n
+*
+* @note Memory allocation / dealocaiton is typically OS dependent if bear metal use free
+*
+*
+* @param Pointer to Memory
+* @return void
+*
+* STEP 1: User steps to allocate memory
+****************************************************************************************************** */
+__weak void memoryFree(void *PointerToMemory)
+{
+	REDEFINE_SUPPRESS_WARNING(memoryFree);
+} // END OF memoryFree
+
+
 
 /*******************************************************************************************************
 * @brief Init of the Timer dedicated for use with Hab WAV Audio API.  This function must init a timer
@@ -895,7 +942,7 @@ __weak void yieldControlToAnotherTask(void)
 
 /*******************************************************************************************************
 * @brief This is a sample EXAMPLE implementation for use of a playback display.  It IS NOT USED HERE JUST
-* A SAMPLE.  Haredware requires 7 LED tied to output GPIO.  This function uses the LEDs to indicate an Audio
+* A SAMPLE.  Hardware requires 7 LED tied to output GPIO.  This function uses the LEDs to indicate an Audio
 * Graph of the audio output level.  The output LEDs are driven to a dB level as described in the .h file.
 * Logs are used since hearing is in logs.  The code is written to be fast and only updates the LED graph upon change.
 * The function accepts the converted 10Bit Audio (see function call_S16Bit_To_10Bit), converts it back to signed 16 bit.
@@ -908,7 +955,7 @@ __weak void yieldControlToAnotherTask(void)
 * @note This is a 10Bit DAC
 * -  Uses 7 LEDs
 *
-* @param Pointer to circular buffer, and pointer to return element
+* @param Scaled Audio value - value placed into DAC within Audio IRQ Handler
 * @return void
 *
  * STEP 1: Convert

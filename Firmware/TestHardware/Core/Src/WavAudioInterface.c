@@ -12,9 +12,22 @@
 #include "SupportIO.h"
 #include "dac.h"
 #include "stdbool.h"
+#include "stdlib.h"
 
 
 // REDEFINITION OF FUNCTIONS DECLARED WEAK USED IN HAB WAV AUDIO
+void * memoryAllocate(size_t NumberOfElements, size_t SizeOfElement)
+{
+	void *PointerToMemory;
+	PointerToMemory = calloc(NumberOfElements, SizeOfElement);
+	return(PointerToMemory);
+}
+
+void memoryFree(void *PointerToMemory)
+{
+	free(PointerToMemory);
+}// END OF memoryFree
+
 bool init_WavAudioTimer(uint32_t InteruptFrequency)
 {
 	uint16_t TicksToIrq;

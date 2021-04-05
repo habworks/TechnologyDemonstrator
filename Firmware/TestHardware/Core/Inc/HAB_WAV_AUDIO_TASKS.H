@@ -31,6 +31,7 @@ extern"C" {
 // INCLUDES
 #include "stdint.h"
 #include "stdbool.h"
+#include "stddef.h"
 
 // WAVE AUDIO OFFSETS - COMMENTS ARE FOR 16BIT PCM WAV AUDIO
 #define RIFF_CHUNCK_OFFSET      0U  // EXPECTED "RIFF"
@@ -157,6 +158,8 @@ uint8_t isEmpty_CB(Type_CircularBuffer *);
 void write_CB(Type_CircularBuffer *, uint16_t *);
 void read_CB(Type_CircularBuffer *, uint16_t *);
 // USER PROVIDED REPLACMENT FUNCTIONS
+void * memoryAllocate(size_t, size_t);
+void memoryFree(void *);
 void disableAudioOutput(void);
 void enableAudioOutput(void);
 void writeDAC_LeftChannel(uint16_t DAC_Value);

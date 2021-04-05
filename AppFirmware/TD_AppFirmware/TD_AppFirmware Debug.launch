@@ -53,8 +53,8 @@
     <booleanAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.enable_logging" value="false"/>
     <booleanAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.enable_max_halt_delay" value="false"/>
     <booleanAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.enable_shared_stlink" value="false"/>
-    <stringAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.external_loader" value="CLIVEONE-N25Q128A_STM32F7-PB2-PF8-PF9-PE2-PF6-PB6, 0x90000000, NOR_FLASH, CLIVEONE-N25Q128A_STM32F7-PB2-PF8-PF9-PE2-PF6-PB6.stldr"/>
-    <booleanAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.external_loader_init" value="false"/>
+    <stringAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.external_loader" value="N25Q128A_STM32F7-PB2-PF8-PF9-PF7-PF6-PB6-CLIVEONE, 0x90000000, NOR_FLASH, N25Q128A_STM32F7-PB2-PF8-PF9-PF7-PF6-PB6-CLIVEONE.stldr"/>
+    <booleanAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.external_loader_init" value="true"/>
     <stringAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.frequency" value="0"/>
     <booleanAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.halt_all_on_reset" value="false"/>
     <stringAttribute key="com.st.stm32cube.ide.mcu.debug.stlink.log_file" value="C:\IMR_Projects\HabProjects\TechDemo\AppFirmware\TD_AppFirmware\Debug\st-link_gdbserver_log.txt"/>
