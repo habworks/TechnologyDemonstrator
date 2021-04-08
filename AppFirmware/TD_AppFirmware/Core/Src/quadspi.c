@@ -31,11 +31,11 @@ void MX_QUADSPI_Init(void)
 {
 
   hqspi.Instance = QUADSPI;
-  hqspi.Init.ClockPrescaler = 255;
-  hqspi.Init.FifoThreshold = 1;
-  hqspi.Init.SampleShifting = QSPI_SAMPLE_SHIFTING_NONE;
-  hqspi.Init.FlashSize = 1;
-  hqspi.Init.ChipSelectHighTime = QSPI_CS_HIGH_TIME_1_CYCLE;
+  hqspi.Init.ClockPrescaler = 1;
+  hqspi.Init.FifoThreshold = 4;
+  hqspi.Init.SampleShifting = QSPI_SAMPLE_SHIFTING_HALFCYCLE;
+  hqspi.Init.FlashSize = 24;
+  hqspi.Init.ChipSelectHighTime = QSPI_CS_HIGH_TIME_6_CYCLE;
   hqspi.Init.ClockMode = QSPI_CLOCK_MODE_0;
   hqspi.Init.FlashID = QSPI_FLASH_ID_1;
   hqspi.Init.DualFlash = QSPI_DUALFLASH_DISABLE;
@@ -45,7 +45,6 @@ void MX_QUADSPI_Init(void)
   }
   // HAB ADDED: Note this must be added every time the .ioc file is rebuild as the rebuilding process removes it
   quadSPI_InitSupport();
-
 }
 
 void HAL_QSPI_MspInit(QSPI_HandleTypeDef* qspiHandle)
@@ -60,17 +59,25 @@ void HAL_QSPI_MspInit(QSPI_HandleTypeDef* qspiHandle)
     /* QUADSPI clock enable */
     __HAL_RCC_QSPI_CLK_ENABLE();
 
+    __HAL_RCC_GPIOE_CLK_ENABLE();
     __HAL_RCC_GPIOF_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
     /**QUADSPI GPIO Configuration
+    PE2     ------> QUADSPI_BK1_IO2
     PF6     ------> QUADSPI_BK1_IO3
-    PF7     ------> QUADSPI_BK1_IO2
     PF8     ------> QUADSPI_BK1_IO0
     PF9     ------> QUADSPI_BK1_IO1
     PB2     ------> QUADSPI_CLK
     PB6     ------> QUADSPI_BK1_NCS
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+    GPIO_InitStruct.Pin = GPIO_PIN_2;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF9_QUADSPI;
+    HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = GPIO_PIN_6;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
@@ -116,14 +123,16 @@ void HAL_QSPI_MspDeInit(QSPI_HandleTypeDef* qspiHandle)
     __HAL_RCC_QSPI_CLK_DISABLE();
 
     /**QUADSPI GPIO Configuration
+    PE2     ------> QUADSPI_BK1_IO2
     PF6     ------> QUADSPI_BK1_IO3
-    PF7     ------> QUADSPI_BK1_IO2
     PF8     ------> QUADSPI_BK1_IO0
     PF9     ------> QUADSPI_BK1_IO1
     PB2     ------> QUADSPI_CLK
     PB6     ------> QUADSPI_BK1_NCS
     */
-    HAL_GPIO_DeInit(GPIOF, GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9);
+    HAL_GPIO_DeInit(GPIOE, GPIO_PIN_2);
+
+    HAL_GPIO_DeInit(GPIOF, GPIO_PIN_6|GPIO_PIN_8|GPIO_PIN_9);
 
     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_2|GPIO_PIN_6);
 
