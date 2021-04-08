@@ -81,8 +81,7 @@ void audioPlayTask_ForLoop(void)
 
 void callbackHandlerTimer3(void)
 {
-
-		STATUS_LED_TOGGLE();
+	STATUS_LED_TOGGLE();
 }
 
 
