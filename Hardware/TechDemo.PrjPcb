@@ -402,20 +402,20 @@ DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\ExportSTEP\PCB_Tec
 DItemRevisionGUID=
 
 [Parameter1]
-Name=ProjectDate
-Value=10/29/2020
-
-[Parameter2]
-Name=ProjectNumber
-Value=IMR_002
-
-[Parameter3]
-Name=ProjectRevision
-Value=1
-
-[Parameter4]
 Name=ProjectTitle
 Value=IMR Technology Demonstrator
+
+[Parameter2]
+Name=ProjectRevision
+Value=2
+
+[Parameter3]
+Name=ProjectNumber
+Value=IMR_004
+
+[Parameter4]
+Name=ProjectDate
+Value=10/29/2020
 
 [Configuration1]
 Name=Sources
