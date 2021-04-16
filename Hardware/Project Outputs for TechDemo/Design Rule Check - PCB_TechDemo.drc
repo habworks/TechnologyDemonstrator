@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc
 Date     : 4/15/2021
-Time     : 7:46:35 PM
+Time     : 8:12:15 PM
 
 Processing Rule : Clearance Constraint (Gap=8mil) (HasFootprint('MICRO_USB_AB_MOLEX_0475900001')),(All)
 Rule Violations :0
@@ -16,8 +16,7 @@ Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
 Rule Violations :0
 
 Processing Rule : Un-Routed Net Constraint ( (All) )
-   Violation between Un-Routed Net Constraint: Net GND Between Pad U13-15(1190.945mil,2667.323mil) on Top Layer And Pad SW5-3(1505.906mil,2759.843mil) on Top Layer 
-Rule Violations :1
+Rule Violations :0
 
 Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
 Rule Violations :0
@@ -74,21 +73,13 @@ Processing Rule : Minimum Solder Mask Sliver (Gap=1.5mil) (HasFootprint('SC70-5_
 Rule Violations :0
 
 Processing Rule : Minimum Solder Mask Sliver (Gap=3mil) (All),(All)
-   Violation between Minimum Solder Mask Sliver Constraint: (2.566mil < 3mil) Between Pad C82-2(3759.945mil,2510.153mil) on Top Layer And Via (3805.511mil,2514.252mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [2.566mil]
-Rule Violations :1
+Rule Violations :0
 
 Processing Rule : Minimum Solder Mask Sliver (Gap=2mil) (HasFootprint('14VSON')),(All)
 Rule Violations :0
 
 Processing Rule : Silk to Silk (Clearance=5mil) (All),(All)
-   Violation between Silk To Silk Clearance Constraint: (Collision < 5mil) Between Arc (3169.291mil,940mil) on Top Overlay And Text "C17" (3216.378mil,946.603mil) on Top Overlay Silk Text to Silk Clearance [0mil]
-   Violation between Silk To Silk Clearance Constraint: (4.311mil < 5mil) Between Arc (4858.268mil,2058.425mil) on Top Overlay And Text "K107" (4846.268mil,2036.614mil) on Top Overlay Silk Text to Silk Clearance [4.311mil]
-   Violation between Silk To Silk Clearance Constraint: (Collision < 5mil) Between Text "C17" (3216.378mil,946.603mil) on Top Overlay And Text "TP13" (3133.849mil,1005.798mil) on Top Overlay Silk Text to Silk Clearance [0mil]
-   Violation between Silk To Silk Clearance Constraint: (3.84mil < 5mil) Between Text "R37" (3978.347mil,337.364mil) on Top Overlay And Track (3982.284mil,328.524mil)(4068.898mil,328.524mil) on Top Overlay Silk Text to Silk Clearance [3.84mil]
-   Violation between Silk To Silk Clearance Constraint: (4.843mil < 5mil) Between Text "R75" (108.268mil,2726.378mil) on Top Overlay And Track (118.11mil,2742.126mil)(118.11mil,2828.74mil) on Top Overlay Silk Text to Silk Clearance [4.843mil]
-   Violation between Silk To Silk Clearance Constraint: (4.225mil < 5mil) Between Text "R83" (2017.716mil,503.937mil) on Top Overlay And Track (1968.504mil,513.781mil)(1968.504mil,604.331mil) on Top Overlay Silk Text to Silk Clearance [4.225mil]
-   Violation between Silk To Silk Clearance Constraint: (4.068mil < 5mil) Between Text "TP13" (3133.849mil,1005.798mil) on Top Overlay And Track (3236.22mil,964.095mil)(3236.22mil,1024.094mil) on Top Overlay Silk Text to Silk Clearance [4.068mil]
-Rule Violations :7
+Rule Violations :0
 
 Processing Rule : Net Antennae (Tolerance=0mil) (All)
 Rule Violations :0
@@ -130,6 +121,6 @@ Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (
 Rule Violations :0
 
 
-Violations Detected : 9
+Violations Detected : 0
 Waived Violations : 0
-Time Elapsed        : 00:00:09
+Time Elapsed        : 00:00:02
