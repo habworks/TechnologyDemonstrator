@@ -1,0 +1,22 @@
+------------------------------------------------------------------------------------------
+Gerber File Extension Report For: PCB_TechDemo.GBR   4/16/2021  10:31:44 AM
+------------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------------
+Layer Extension     Layer Description                      
+------------------------------------------------------------------------------------------
+.GTO                Top Overlay                             
+.GTP                Top Paste                               
+.GTS                Top Solder                              
+.GTL                Top Layer                               
+.GP1                GND_Plane                               
+.G1                 Int2 (Sign)                             
+.G2                 Int3 (Sign)                             
+.GP2                PWR_Plane                               
+.GBL                Bottom Layer                            
+.GBS                Bottom Solder                           
+.GBP                Bottom Paste                            
+.GBO                Bottom Overlay                          
+.GD1                Drill Drawing                           
+------------------------------------------------------------------------------------------

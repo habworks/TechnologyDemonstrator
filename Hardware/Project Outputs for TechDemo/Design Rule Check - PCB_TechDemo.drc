@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\IMR_Projects\HabProjects\TechDemo\Hardware\PCB\PCB_TechDemo.PcbDoc
 Date     : 4/16/2021
-Time     : 7:58:40 AM
+Time     : 10:26:35 AM
 
 Processing Rule : Clearance Constraint (Gap=8mil) (HasFootprint('MICRO_USB_AB_MOLEX_0475900001')),(All)
 Rule Violations :0
@@ -123,4 +123,4 @@ Rule Violations :0
 
 Violations Detected : 0
 Waived Violations : 0
-Time Elapsed        : 00:00:02
+Time Elapsed        : 00:00:03

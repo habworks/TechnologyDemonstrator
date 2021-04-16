@@ -1,0 +1,10 @@
+Output: Export STEP
+Type  : ExportSTEP
+From  : Variant [Normal Build Variant of TechDemo] of PCB Document [PCB_TechDemo.PcbDoc]
+   Generated File[PCB_TechDemo(Normal Build Variant of TechDemo).step]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 10:32:47 AM On 4/16/2021
