@@ -314,7 +314,7 @@ UniqueID=4FF9AC2B-F3B5-455B-BCB0-D2306D83F120
 Description=Normal Build Variant of TechDemo
 AllowFabrication=0
 ParameterCount=0
-VariationCount=9
+VariationCount=11
 Variation1=Designator=X2|UniqueId=\UDLFBKVB|Kind=1|AlternatePart= 
 Variation2=Designator=R2|UniqueId=\JFVLUHKW|Kind=1|AlternatePart= 
 Variation3=Designator=C2|UniqueId=\TBMWJYNG|Kind=1|AlternatePart= 
@@ -324,6 +324,8 @@ Variation6=Designator=R3|UniqueId=\JDCAABNT|Kind=1|AlternatePart=
 Variation7=Designator=R77|UniqueId=\CARMFKAJ|Kind=1|AlternatePart= 
 Variation8=Designator=L4|UniqueId=\DTROKULR|Kind=1|AlternatePart= 
 Variation9=Designator=J9|UniqueId=\QHDEFDBD|Kind=1|AlternatePart= 
+Variation10=Designator=C89|UniqueId=\EEXAMWEW|Kind=1|AlternatePart= 
+Variation11=Designator=J1|UniqueId=\LBHCCJDL|Kind=1|AlternatePart= 
 ParamVariationCount=0
 
 [GeneratedDocument1]
@@ -515,20 +517,20 @@ DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\ExportSTEP\PCB_Tec
 DItemRevisionGUID=
 
 [Parameter1]
-Name=ProjectTitle
-Value=IMR Technology Demonstrator
+Name=ProjectDate
+Value=4/17/2021
 
 [Parameter2]
-Name=ProjectRevision
-Value=2
-
-[Parameter3]
 Name=ProjectNumber
 Value=IMR_004
 
+[Parameter3]
+Name=ProjectRevision
+Value=2
+
 [Parameter4]
-Name=ProjectDate
-Value=4/17/2021
+Name=ProjectTitle
+Value=IMR Technology Demonstrator
 
 [Configuration1]
 Name=Sources
