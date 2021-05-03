@@ -55,7 +55,7 @@ uint8_t Uart2RxBuffer[3];
 void WIFI_AP_Task_Init(void)
 {
 	// STEP 1: Enable the WIFI and start UART 2
-	WIFI_ON();
+	WIFI_ON();  //TODO Hab need enable wifi when the screen is on / disable when screen off
 	HAL_UART_Receive_IT(&huart2, Uart2RxBuffer, 1);
 
 } // END OF WIFI_AP_Task_Init
