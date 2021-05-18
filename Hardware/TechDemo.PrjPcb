@@ -293,7 +293,7 @@ GenerateClassCluster=0
 DocumentUniqueId=OTHRTYQO
 
 [Document16]
-DocumentPath=TechDemoRev1.OutJob
+DocumentPath=TechDemoRev2.OutJob
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -309,109 +309,224 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
+[ProjectVariant1]
+UniqueID=4FF9AC2B-F3B5-455B-BCB0-D2306D83F120
+Description=Normal Build Variant of TechDemo
+AllowFabrication=0
+ParameterCount=0
+VariationCount=11
+Variation1=Designator=X2|UniqueId=\UDLFBKVB|Kind=1|AlternatePart= 
+Variation2=Designator=R2|UniqueId=\JFVLUHKW|Kind=1|AlternatePart= 
+Variation3=Designator=C2|UniqueId=\TBMWJYNG|Kind=1|AlternatePart= 
+Variation4=Designator=C3|UniqueId=\YCTHASLB|Kind=1|AlternatePart= 
+Variation5=Designator=R5|UniqueId=\HGXZPCUX|Kind=1|AlternatePart= 
+Variation6=Designator=R3|UniqueId=\JDCAABNT|Kind=1|AlternatePart= 
+Variation7=Designator=R77|UniqueId=\CARMFKAJ|Kind=1|AlternatePart= 
+Variation8=Designator=L4|UniqueId=\DTROKULR|Kind=1|AlternatePart= 
+Variation9=Designator=J9|UniqueId=\QHDEFDBD|Kind=1|AlternatePart= 
+Variation10=Designator=C89|UniqueId=\EEXAMWEW|Kind=1|AlternatePart= 
+Variation11=Designator=J1|UniqueId=\LBHCCJDL|Kind=1|AlternatePart= 
+ParamVariationCount=0
+
 [GeneratedDocument1]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\BOM\Bill of Materials-TechDemo.xlsx
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\BOM\Bill of Materials-TechDemo(Normal Build Variant of TechDemo).xlsx
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for TechDemo\Design Rule Check - PCB_TechDemo.html
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\BOM\Bill of Materials-TechDemo.xlsx
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\NC Drill\PCB_TechDemo-RoundHoles.TXT
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\BOM\Bill of Materials-TechDemo.xlsx
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\NC Drill\PCB_TechDemo-SlotHoles.TXT
+DocumentPath=Project Outputs for TechDemo\Design Rule Check - PCB_TechDemo.html
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\NC Drill\PCB_TechDemo.DRR
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\ExportSTEP\PCB_TechDemo(Normal Build Variant of TechDemo).step
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.EXTREP
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\NC Drill\PCB_TechDemo-RoundHoles.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.G1
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\NC Drill\PCB_TechDemo-RoundHoles.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.G2
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\NC Drill\PCB_TechDemo-SlotHoles.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GBL
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\NC Drill\PCB_TechDemo-SlotHoles.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GBO
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\NC Drill\PCB_TechDemo.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GBP
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\NC Drill\PCB_TechDemo.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GBS
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GD1
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument14]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GP1
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.G1
 DItemRevisionGUID=
 
 [GeneratedDocument15]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GP2
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.G1
 DItemRevisionGUID=
 
 [GeneratedDocument16]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GTL
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.G2
 DItemRevisionGUID=
 
 [GeneratedDocument17]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GTO
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.G2
 DItemRevisionGUID=
 
 [GeneratedDocument18]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GTP
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument19]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GTS
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument20]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\NC Drill\PCB_TechDemo.LDP
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument21]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.REP
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument22]
-DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.RUL
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument23]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument24]
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument25]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument26]
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GD1
+DItemRevisionGUID=
+
+[GeneratedDocument27]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.GD1
+DItemRevisionGUID=
+
+[GeneratedDocument28]
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GP1
+DItemRevisionGUID=
+
+[GeneratedDocument29]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.GP1
+DItemRevisionGUID=
+
+[GeneratedDocument30]
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GP2
+DItemRevisionGUID=
+
+[GeneratedDocument31]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.GP2
+DItemRevisionGUID=
+
+[GeneratedDocument32]
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument33]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument34]
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument35]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument36]
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument37]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument38]
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument39]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument40]
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\NC Drill\PCB_TechDemo.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument41]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\NC Drill\PCB_TechDemo.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument42]
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.REP
+DItemRevisionGUID=
+
+[GeneratedDocument43]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.REP
+DItemRevisionGUID=
+
+[GeneratedDocument44]
+DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\Gerber\PCB_TechDemo.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument45]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\Gerber\PCB_TechDemo.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument46]
 DocumentPath=Project Outputs for TechDemo\REV1\Generate Files\ExportSTEP\PCB_TechDemo.step
+DItemRevisionGUID=
+
+[GeneratedDocument47]
+DocumentPath=Project Outputs for TechDemo\REV2\Generate Files\ExportSTEP\PCB_TechDemo.step
 DItemRevisionGUID=
 
 [Parameter1]
 Name=ProjectDate
-Value=10/29/2020
+Value=4/17/2021
 
 [Parameter2]
 Name=ProjectNumber
-Value=IMR_002
+Value=IMR_004
 
 [Parameter3]
 Name=ProjectRevision
-Value=1
+Value=2
 
 [Parameter4]
 Name=ProjectTitle
