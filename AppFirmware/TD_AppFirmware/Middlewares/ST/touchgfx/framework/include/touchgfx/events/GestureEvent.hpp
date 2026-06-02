@@ -1,25 +1,22 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.16.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/events/GestureEvent.hpp
  *
  * Declares the touchgfx::GestureEvent class.
  */
-#ifndef GESTUREEVENT_HPP
-#define GESTUREEVENT_HPP
+#ifndef TOUCHGFX_GESTUREEVENT_HPP
+#define TOUCHGFX_GESTUREEVENT_HPP
 
 #include <touchgfx/Event.hpp>
 #include <touchgfx/hal/Types.hpp>
@@ -36,11 +33,11 @@ class GestureEvent : public Event
 {
 public:
     /** Values that represent gesture types. */
-    typedef enum
+    enum GestureEventType
     {
         SWIPE_HORIZONTAL, ///< An enum constant representing a horizontal swipe
         SWIPE_VERTICAL    ///< An enum constant representing a vertical swipe
-    } GestureEventType;
+    };
 
     /**
      * Constructor. Create a gesture event of the specified type with the specified
@@ -57,6 +54,16 @@ public:
           gestureX(x),
           gestureY(y)
     {
+    }
+
+    /**
+     * Copy constructor.
+     *
+     * @param  gestureEvent The gesture event.
+     */
+    GestureEvent(const GestureEvent& gestureEvent)
+    {
+        *this = gestureEvent;
     }
 
     /**
@@ -104,14 +111,31 @@ public:
      *
      * @return The type of this event.
      */
-    virtual Event::EventType getEventType()
+    virtual Event::EventType getEventType() const
     {
         return Event::EVENT_GESTURE;
+    }
+
+    /**
+     * Assignment operator.
+     *
+     * @param  gestureEvent The gesture event.
+     *
+     * @return A shallow copy of this object.
+     */
+    const GestureEvent& operator=(const GestureEvent& gestureEvent)
+    {
+        gestureEventType = gestureEvent.gestureEventType;
+        gestureVelocity = gestureEvent.gestureVelocity;
+        gestureX = gestureEvent.gestureX;
+        gestureY = gestureEvent.gestureY;
+        return *this;
     }
 
 private:
     /** Initializes a new instance of the GestureEvent class. */
     GestureEvent()
+        : gestureEventType(SWIPE_HORIZONTAL), gestureVelocity(0), gestureX(0), gestureY(0)
     {
     }
 
@@ -123,4 +147,4 @@ private:
 
 } // namespace touchgfx
 
-#endif // GESTUREEVENT_HPP
+#endif // TOUCHGFX_GESTUREEVENT_HPP

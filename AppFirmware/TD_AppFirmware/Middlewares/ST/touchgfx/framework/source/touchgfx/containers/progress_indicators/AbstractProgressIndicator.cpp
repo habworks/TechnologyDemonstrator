@@ -1,25 +1,24 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.16.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
+#include <touchgfx/Application.hpp>
+#include <touchgfx/Utils.hpp>
 #include <touchgfx/containers/progress_indicators/AbstractProgressIndicator.hpp>
 
 namespace touchgfx
 {
 AbstractProgressIndicator::AbstractProgressIndicator()
-    : Container(), rangeMin(0), rangeMax(100), currentValue(0), rangeSteps(100), rangeStepsMin(0),
-      equation(&EasingEquations::linearEaseNone), animationStartValue(0), animationEndValue(0), animationDuration(0), animationStep(0),
+    : Container(), background(), progressIndicatorContainer(), rangeMin(0), rangeMax(100), currentValue(0), rangeSteps(100), rangeStepsMin(0),
+      equation(&EasingEquations::linearEaseNone), animationRunning(false), animationStartValue(0), animationEndValue(0), animationDuration(0), animationStep(0),
       valueSetCallback(0), valueUpdatedCallback(0)
 {
     background.setXY(0, 0);
@@ -143,12 +142,14 @@ void AbstractProgressIndicator::updateValue(int value, uint16_t duration)
     {
         // Old animation is running, stop it first
         Application::getInstance()->unregisterTimerWidget(this);
+        animationRunning = false;
     }
     animationStartValue = getValue();
     animationEndValue = value;
     animationDuration = duration;
     animationStep = 0;
     Application::getInstance()->registerTimerWidget(this);
+    animationRunning = true;
 }
 
 int AbstractProgressIndicator::getValue() const
@@ -164,9 +165,9 @@ uint16_t AbstractProgressIndicator::getProgress(uint16_t range /*= 100*/) const
     }
     int32_t remainder; // Not used here
     // Find out at what step the current value is.
-    int32_t step = rangeStepsMin + muldiv(currentValue - rangeMin, rangeSteps - rangeStepsMin, rangeMax - rangeMin, remainder);
+    const int32_t step = rangeStepsMin + muldiv(currentValue - rangeMin, rangeSteps - rangeStepsMin, rangeMax - rangeMin, remainder);
     // Scale the step up to [0..range]
-    int32_t prog = muldiv(step, range, rangeSteps, remainder);
+    const int32_t prog = muldiv(step, range, rangeSteps, remainder);
     return (uint16_t)prog;
 }
 
@@ -177,14 +178,19 @@ void AbstractProgressIndicator::setValueSetAction(GenericCallback<const Abstract
 
 void AbstractProgressIndicator::handleTickEvent()
 {
+    if (!animationRunning)
+    {
+        return;
+    }
     animationStep++;
-    int16_t delta = (int16_t)equation(animationStep, 0, animationEndValue - animationStartValue, animationDuration);
+    const int16_t delta = (int16_t)equation(animationStep, 0, animationEndValue - animationStartValue, animationDuration);
     setValue(animationStartValue + delta);
     if (animationStep >= animationDuration)
     {
         animationDuration = 0;
         animationStep = 0;
         Application::getInstance()->unregisterTimerWidget(this);
+        animationRunning = false;
         if (valueUpdatedCallback && valueUpdatedCallback->isValid())
         {
             valueUpdatedCallback->execute(*this);
@@ -197,28 +203,14 @@ void AbstractProgressIndicator::setValueUpdatedAction(GenericCallback<const Abst
     valueUpdatedCallback = &callback;
 }
 
-void AbstractProgressIndicator::getRange(int16_t& min, int16_t& max, uint16_t& steps, uint16_t& minStep) const
+void AbstractProgressIndicator::setAlpha(uint8_t newAlpha)
 {
-    int imin, imax;
-    getRange(imin, imax, steps, minStep);
-    min = (int16_t)imin;
-    max = (int16_t)imax;
+    background.setAlpha(newAlpha);
 }
 
-void AbstractProgressIndicator::getRange(int16_t& min, int16_t& max, uint16_t& steps) const
+uint8_t AbstractProgressIndicator::getAlpha() const
 {
-    int imin, imax;
-    getRange(imin, imax, steps);
-    min = (int16_t)imin;
-    max = (int16_t)imax;
-}
-
-void AbstractProgressIndicator::getRange(int16_t& min, int16_t& max) const
-{
-    int imin, imax;
-    getRange(imin, imax);
-    min = (int16_t)imin;
-    max = (int16_t)imax;
+    return background.getAlpha();
 }
 
 } // namespace touchgfx

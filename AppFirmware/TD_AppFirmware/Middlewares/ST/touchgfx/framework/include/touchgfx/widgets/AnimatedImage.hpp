@@ -1,26 +1,26 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.16.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/AnimatedImage.hpp
  *
  * Declares the touchgfx::AnimatedImage class.
  */
-#ifndef ANIMATEDIMAGE_HPP
-#define ANIMATEDIMAGE_HPP
+#ifndef TOUCHGFX_ANIMATEDIMAGE_HPP
+#define TOUCHGFX_ANIMATEDIMAGE_HPP
 
+#include <touchgfx/Bitmap.hpp>
+#include <touchgfx/Callback.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/Image.hpp>
 
 namespace touchgfx
@@ -145,20 +145,20 @@ public:
     /**
      * @copydoc Image::setBitmap(const Bitmap&)
      *
-     * @see setBitmaps, setEndBitmap
+     * @see setBitmaps, setBitmapEnd
      *
      * @note This only sets the start image.
      */
-    virtual void setBitmap(const Bitmap& bitmap);
+    virtual void setBitmap(const Bitmap& bmp);
 
     /**
      * Sets the end bitmap for this AnimatedImage sequence.
      *
-     * @param  bitmap The bitmap.
+     * @param   bmp The bitmap.
      *
      * @see setBitmaps, setBitmap
      */
-    virtual void setBitmapEnd(const Bitmap& bitmap);
+    virtual void setBitmapEnd(const Bitmap& bmp);
 
     /**
      * Sets the bitmaps that are used by the animation.
@@ -169,7 +169,7 @@ public:
      * @param  start Defines the start of the range of images in the animation.
      * @param  end   Defines the end of the range of images in the animation.
      *
-     * @see setBitmap, SetBitmapEnd
+     * @see setBitmap, setBitmapEnd
      */
     void setBitmaps(BitmapId start, BitmapId end);
 
@@ -197,4 +197,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // ANIMATEDIMAGE_HPP
+#endif // TOUCHGFX_ANIMATEDIMAGE_HPP

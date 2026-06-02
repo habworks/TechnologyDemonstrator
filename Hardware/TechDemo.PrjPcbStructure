@@ -1,1 +1,10 @@
-Record=TopLevelDocument|FileName=AudioAmp.SchDoc
+Record=TopLevelDocument|FileName=AudioAmp.SchDoc|SheetNumber=8
+Record=NoMainPathDocument|SourceDocument=AudioAmp.SchDoc|FileName=LCD_TouchBackLight.SchDoc|SheetNumber=5
+Record=NoMainPathDocument|SourceDocument=AudioAmp.SchDoc|FileName=MainController.SchDoc|SheetNumber=2
+Record=NoMainPathDocument|SourceDocument=AudioAmp.SchDoc|FileName=MainControllerPower.SchDoc|SheetNumber=3
+Record=NoMainPathDocument|SourceDocument=AudioAmp.SchDoc|FileName=Power.SchDoc|SheetNumber=10
+Record=NoMainPathDocument|SourceDocument=AudioAmp.SchDoc|FileName=SerialInterface.SchDoc|SheetNumber=6
+Record=NoMainPathDocument|SourceDocument=AudioAmp.SchDoc|FileName=SystemMemory.SchDoc|SheetNumber=4
+Record=NoMainPathDocument|SourceDocument=AudioAmp.SchDoc|FileName=TitleBlock.SchDoc|SheetNumber=1
+Record=NoMainPathDocument|SourceDocument=AudioAmp.SchDoc|FileName=UserInteractive.SchDoc|SheetNumber=7
+Record=NoMainPathDocument|SourceDocument=AudioAmp.SchDoc|FileName=Wifi.SchDoc|SheetNumber=9

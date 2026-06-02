@@ -1,27 +1,25 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.16.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/ScalableImage.hpp
  *
  * Declares the touchgfx::ScalableImage class.
  */
-#ifndef SCALABLEIMAGE_HPP
-#define SCALABLEIMAGE_HPP
+#ifndef TOUCHGFX_SCALABLEIMAGE_HPP
+#define TOUCHGFX_SCALABLEIMAGE_HPP
 
 #include <touchgfx/Bitmap.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/Image.hpp>
 
 namespace touchgfx
@@ -49,15 +47,15 @@ public:
     };
 
     /**
-     * Constructs a new ScalableImage with a default alpha value of 255 (solid) and a
-     * default Bitmap (undefined) if none is specified. If a Bitmap is passed to the
-     * constructor, the width and height of this widget is set to those of the bitmap.
+     * Constructs a new ScalableImage with a default alpha value of 255 (solid) and a default Bitmap
+     * (undefined) if none is specified. If a Bitmap is passed to the constructor, the width and
+     * height of this widget is set to those of the bitmap.
      *
-     * @param  bitmap (Optional) The bitmap to display.
+     * @param   bmp (Optional) The bitmap to display.
      *
      * @see setBitmap
      */
-    ScalableImage(const Bitmap& bitmap = Bitmap());
+    ScalableImage(const Bitmap& bmp = Bitmap());
 
     /**
      * Sets the algorithm to be used. In short, there is currently a value for fast (nearest
@@ -98,7 +96,7 @@ private:
      * @param      triangleUs      The triangle us.
      * @param      triangleVs      The triangle vs.
      */
-    void drawTriangle(const Rect& invalidatedArea, uint16_t* fb, const float* triangleXs, const float* triangleYs, const float* triangleZs, const float* triangleUs, const float* triangleVs) const;
+    void drawQuad(const Rect& invalidatedArea, uint16_t* fb, const float* triangleXs, const float* triangleYs, const float* triangleZs, const float* triangleUs, const float* triangleVs) const;
 
     /**
      * Looks up the appropriate render variant based on the bitmap format and scaling
@@ -115,4 +113,4 @@ private:
 
 } // namespace touchgfx
 
-#endif // SCALABLEIMAGE_HPP
+#endif // TOUCHGFX_SCALABLEIMAGE_HPP

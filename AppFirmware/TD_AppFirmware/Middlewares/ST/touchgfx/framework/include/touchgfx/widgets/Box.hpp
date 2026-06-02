@@ -1,32 +1,25 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.16.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/Box.hpp
  *
  * Declares the touchgfx::Box class.
  */
-#ifndef BOX_HPP
-#define BOX_HPP
+#ifndef TOUCHGFX_BOX_HPP
+#define TOUCHGFX_BOX_HPP
 
-#include <touchgfx/Bitmap.hpp>
 #include <touchgfx/hal/Types.hpp>
-#include <touchgfx/lcd/LCD.hpp>
 #include <touchgfx/widgets/Widget.hpp>
-
-#include <touchgfx/widgets/Button.hpp>
 
 namespace touchgfx
 {
@@ -45,14 +38,13 @@ public:
     /**
      * Construct a Box with the given size and color (and optionally alpha).
      *
-     * @param  width  The width of the box.
-     * @param  height The height of the box.
-     * @param  color  The color of the box.
-     * @param  alpha  (Optional) The alpha of the box. Default is 255 (solid).
+     * @param  width    The width of the box.
+     * @param  height   The height of the box.
+     * @param  boxColor The color of the box.
+     * @param  boxAlpha (Optional) The alpha of the box. Default is 255 (solid).
      */
-    Box(uint16_t width, uint16_t height, colortype color, uint8_t alpha = 255)
-        : Widget(),
-          alpha(alpha), color(color)
+    Box(uint16_t width, uint16_t height, colortype boxColor, uint8_t boxAlpha = 255)
+        : Widget(), alpha(boxAlpha), color(boxColor)
     {
         rect.width = width;
         rect.height = height;
@@ -63,13 +55,13 @@ public:
     /**
      * Sets the color of the Box.
      *
-     * @param  color The color of the box.
+     * @param  newColor The color of the box.
      *
-     * @see getColor, Color::getColorFrom24BitRGB
+     * @see getColor, Color::getColorFromRGB
      */
-    void setColor(colortype color)
+    void setColor(colortype newColor)
     {
-        this->color = color;
+        color = newColor;
     }
 
     /**
@@ -77,7 +69,7 @@ public:
      *
      * @return The current color of the box.
      *
-     * @see setColor, Color::getRedColor, Color::getGreenColor, Color::getRedColor
+     * @see setColor, Color::getRed, Color::getGreen, Color::getRed
      */
     FORCE_INLINE_FUNCTION colortype getColor() const
     {
@@ -102,6 +94,14 @@ public:
 
     virtual void draw(const Rect& area) const;
 
+    virtual void invalidateContent() const
+    {
+        if (alpha > 0)
+        {
+            Widget::invalidateContent();
+        }
+    }
+
 protected:
     uint8_t alpha;   ///< The alpha value used for this Box.
     colortype color; ///< The fill color for this Box
@@ -109,4 +109,4 @@ protected:
 
 } // namespace touchgfx
 
-#endif // BOX_HPP
+#endif // TOUCHGFX_BOX_HPP

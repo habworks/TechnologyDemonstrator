@@ -1,24 +1,22 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.16.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 #include <touchgfx/containers/progress_indicators/CircleProgress.hpp>
+#include <touchgfx/widgets/canvas/CWRUtil.hpp>
 
 namespace touchgfx
 {
 CircleProgress::CircleProgress()
-    : AbstractProgressIndicator(), circle()
+    : AbstractProgressIndicator(), circle(), circleEndAngle(360)
 {
     progressIndicatorContainer.add(circle);
     circle.setPosition(0, 0, getWidth(), getHeight());
@@ -96,22 +94,18 @@ int CircleProgress::getEndAngle() const
 
 void CircleProgress::setAlpha(uint8_t newAlpha)
 {
+    AbstractProgressIndicator::setAlpha(newAlpha);
     circle.setAlpha(newAlpha);
-}
-
-uint8_t CircleProgress::getAlpha() const
-{
-    return circle.getAlpha();
 }
 
 void CircleProgress::setValue(int value)
 {
     AbstractProgressIndicator::setValue(value);
     CWRUtil::Q5 startAngle;
-    CWRUtil::Q5 endAngle = CWRUtil::toQ5(circleEndAngle);
+    CWRUtil::Q5 const endAngle = CWRUtil::toQ5(circleEndAngle);
     circle.getArcStart<CWRUtil::Q5>(startAngle);
-    uint16_t rangeAngleSteps = endAngle < startAngle ? (int)(startAngle - endAngle) : (int)(endAngle - startAngle);
-    CWRUtil::Q5 progress = CWRUtil::Q5(AbstractProgressIndicator::getProgress(rangeAngleSteps));
+    const uint16_t rangeAngleSteps = endAngle < startAngle ? (int)(startAngle - endAngle) : (int)(endAngle - startAngle);
+    CWRUtil::Q5 const progress = CWRUtil::Q5(AbstractProgressIndicator::getProgress(rangeAngleSteps));
     if (endAngle < startAngle)
     {
         circle.updateArcEnd<CWRUtil::Q5>(startAngle - progress);

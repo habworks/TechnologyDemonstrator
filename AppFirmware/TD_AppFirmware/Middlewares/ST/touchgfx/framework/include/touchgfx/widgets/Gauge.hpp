@@ -1,27 +1,25 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.16.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/Gauge.hpp
  *
  * Declares the gauge class.
  */
-#ifndef GAUGE_HPP
-#define GAUGE_HPP
+#ifndef TOUCHGFX_GAUGE_HPP
+#define TOUCHGFX_GAUGE_HPP
 
 #include <touchgfx/containers/progress_indicators/AbstractProgressIndicator.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/TextureMapper.hpp>
 #include <touchgfx/widgets/canvas/Circle.hpp>
 
@@ -125,30 +123,36 @@ public:
     void setSteadyNeedleRenderingAlgorithm(TextureMapper::RenderingAlgorithm algorithm);
 
     /**
-     * Sets start and end angle for the needle and arc. By swapping end and start angles, these
-     * can progress backwards.
+     * Sets start and end angle in degrees for the needle and arc. By swapping end and start angles,
+     * these can progress backwards.
      *
-     * @param  startAngle The start angle.
-     * @param  endAngle   The end angle.
+     * @param   startAngle  The start angle.
+     * @param   endAngle    The end angle.
+     *
+     * @note    Angles are given in degrees, so a full circle is 360.
      */
     virtual void setStartEndAngle(int startAngle, int endAngle);
 
     /**
-     * Gets start angle for the needle (and arc).
+     * Gets start angle in degrees for the needle (and arc).
      *
-     * @return The start angle.
+     * @return  The start angle.
      *
      * @see setStartEndAngle, getEndAngle
+     *
+     * @note    Angles are given in degrees, so a full circle is 360.
      */
     virtual int getStartAngle() const;
 
     /**
-     * Gets end angle. Beware that the value returned is not related to the current progress of
-     * the texture mapper but rather the end point of the Gauge when it is at max value.
+     * Gets end angle in degrees. Beware that the value returned is not related to the current
+     * progress of the texture mapper but rather the end point of the Gauge when it is at max value.
      *
-     * @return The end angle.
+     * @return  The end angle.
      *
      * @see setStartEndAngle
+     *
+     * @note    Angles are given in degrees, so a full circle is 360.
      */
     virtual int getEndAngle() const;
 
@@ -182,17 +186,20 @@ public:
      */
     virtual void setAlpha(uint8_t newAlpha);
 
-    /**
-     * @copydoc Image::getAlpha()
-     */
-    virtual uint8_t getAlpha() const;
+    virtual void invalidateContent() const
+    {
+        if (getAlpha() > 0)
+        {
+            AbstractProgressIndicator::invalidateContent();
+        }
+    }
 
 protected:
     TextureMapper needle;                              ///< The textureMapper
     TextureMapper::RenderingAlgorithm algorithmMoving; ///< The algorithm used when the needle is moving
     TextureMapper::RenderingAlgorithm algorithmSteady; ///< The algorithm used when the needle is steady
-    int needleStartAngle;                              ///< The start angle
-    int needleEndAngle;                                ///< The end angle
+    int needleStartAngle;                              ///< The start angle in degrees
+    int needleEndAngle;                                ///< The end angle in degrees
     int16_t gaugeCenterX;                              ///< The x coordinate of the rotation point of the hands
     int16_t gaugeCenterY;                              ///< The y coordinate of the rotation point of the hands
     int16_t needleCenterX;                             ///< The x coordinate of the rotation point of the hands
@@ -212,5 +219,7 @@ protected:
      */
     virtual void setProgressIndicatorPosition(int16_t x, int16_t y, int16_t width, int16_t height);
 };
+
 } // namespace touchgfx
-#endif // GAUGE_HPP
+
+#endif // TOUCHGFX_GAUGE_HPP

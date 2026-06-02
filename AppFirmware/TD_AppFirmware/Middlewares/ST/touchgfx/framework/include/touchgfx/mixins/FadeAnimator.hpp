@@ -1,29 +1,27 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.16.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/mixins/FadeAnimator.hpp
  *
  * Declares the touchgfx::FadeAnimator class.
  */
-#ifndef FADEANIMATOR_HPP
-#define FADEANIMATOR_HPP
+#ifndef TOUCHGFX_FADEANIMATOR_HPP
+#define TOUCHGFX_FADEANIMATOR_HPP
 
 #include <touchgfx/Application.hpp>
 #include <touchgfx/Callback.hpp>
 #include <touchgfx/EasingEquations.hpp>
+#include <touchgfx/hal/Types.hpp>
 
 namespace touchgfx
 {
@@ -174,10 +172,23 @@ protected:
                 // Adjust the used animationCounter for the startup delay
                 uint32_t actualAnimationCounter = fadeAnimationCounter - fadeAnimationDelay;
 
-                int16_t deltaAlpha = (int16_t)fadeAnimationAlphaEquation(actualAnimationCounter, 0, fadeAnimationEndAlpha - fadeAnimationStartAlpha, fadeAnimationDuration);
+                int16_t newAlpha = fadeAnimationStartAlpha + (int16_t)fadeAnimationAlphaEquation(actualAnimationCounter, 0, fadeAnimationEndAlpha - fadeAnimationStartAlpha, fadeAnimationDuration);
 
-                T::setAlpha(fadeAnimationStartAlpha + deltaAlpha);
-                T::invalidate();
+                if (T::getAlpha() != newAlpha)
+                {
+                    if (newAlpha == 0)
+                    {
+                        // InvalidateContent before it becomes invisible
+                        T::invalidateContent();
+                        T::setAlpha((uint8_t)newAlpha);
+                    }
+                    else
+                    {
+                        // InvalidateContent after we are sure that it is visible
+                        T::setAlpha((uint8_t)newAlpha);
+                        T::invalidateContent();
+                    }
+                }
 
                 if (fadeAnimationCounter >= (uint32_t)(fadeAnimationDelay + fadeAnimationDuration))
                 {
@@ -205,6 +216,7 @@ protected:
 
     GenericCallback<const FadeAnimator<T>&>* fadeAnimationEndedCallback; ///< Animation ended Callback.
 };
-} //namespace touchgfx
 
-#endif // FADEANIMATOR_HPP
+} // namespace touchgfx
+
+#endif // TOUCHGFX_FADEANIMATOR_HPP

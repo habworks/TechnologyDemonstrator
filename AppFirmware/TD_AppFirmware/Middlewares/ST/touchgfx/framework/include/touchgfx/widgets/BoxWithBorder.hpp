@@ -1,27 +1,24 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.16.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/widgets/BoxWithBorder.hpp
  *
  * Declares the touchgfx::BoxWithBorder class.
  */
-#ifndef BOXWITHBORDER_HPP
-#define BOXWITHBORDER_HPP
+#ifndef TOUCHGFX_BOXWITHBORDER_HPP
+#define TOUCHGFX_BOXWITHBORDER_HPP
 
-#include <touchgfx/Bitmap.hpp>
+#include <touchgfx/hal/Types.hpp>
 #include <touchgfx/widgets/Box.hpp>
 
 namespace touchgfx
@@ -44,34 +41,33 @@ public:
      *
      * @param  width       The width.
      * @param  height      The height.
-     * @param  color       The color.
-     * @param  borderColor The border color.
-     * @param  borderSize  Size of the border.
-     * @param  alpha       (Optional) The alpha.
+     * @param  colorMiddle The color of the middle of the box.
+     * @param  colorBorder The border color.
+     * @param  borderWidth Size (width) of the border.
+     * @param  boxAlpha    (Optional) The alpha of the box and the border.
      */
-    BoxWithBorder(uint16_t width, uint16_t height, colortype color, colortype borderColor, uint16_t borderSize, uint8_t alpha = 255)
-        : Box(width, height, color, alpha), borderColor(borderColor), borderSize(borderSize)
+    BoxWithBorder(uint16_t width, uint16_t height, colortype colorMiddle, colortype colorBorder, uint16_t borderWidth, uint8_t boxAlpha = 255)
+        : Box(width, height, colorMiddle, boxAlpha), borderColor(colorBorder), borderSize(borderWidth)
     {
-        rect.width = width;
-        rect.height = height;
     }
 
     /**
      * Sets the color of the border drawn along the edge of the BoxWithBorder.
      *
-     * @param  color The color of the border.
-     * @see setColor, getBorderColor, Color::getColorFrom24BitRGB
+     * @param  colorBorder The color of the border.
+     *
+     * @see setColor, getBorderColor, Color::getColorFromRGB
      */
-    void setBorderColor(colortype color)
+    void setBorderColor(colortype colorBorder)
     {
-        borderColor = color;
+        borderColor = colorBorder;
     }
 
     /**
      * Gets the color of the border drawn along the edge of the BoxWithBorder.
      *
      * @return The color of the border.
-     * @see setBorderColor, getColor, Color::getRedColor, Color::getGreenColor, Color::getRedColor
+     * @see setBorderColor, getColor, Color::getRed, Color::getGreen, Color::getRed
      */
     FORCE_INLINE_FUNCTION colortype getBorderColor() const
     {
@@ -107,9 +103,9 @@ public:
 
 protected:
     colortype borderColor; ///< The color of the border along the edge
-    uint16_t borderSize;    ///< Width of the border along the edge
+    uint16_t borderSize;   ///< Width of the border along the edge
 };
 
 } // namespace touchgfx
 
-#endif // BOXWITHBORDER_HPP
+#endif // TOUCHGFX_BOXWITHBORDER_HPP

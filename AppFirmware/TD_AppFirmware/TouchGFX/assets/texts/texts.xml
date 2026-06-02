@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextDatabase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="texts.xsd" Version="4.24.2">
+  <Languages>
+    <Language Id="GB" />
+  </Languages>
+  <Texts>
+    <TextGroup Id="Group1">
+      <Text Id="__SingleUse_K75L" TypographyId="Iceland_45" Alignment="Left">
+        <Translation Language="GB">Technology Demonstrator</Translation>
+      </Text>
+      <Text Id="__SingleUse_R53O" TypographyId="Iceland_45" Alignment="Left">
+        <Translation Language="GB">Main Menu</Translation>
+      </Text>
+      <Text Id="__SingleUse_XE8B" TypographyId="Iceland_45" Alignment="Left">
+        <Translation Language="GB">Analog</Translation>
+      </Text>
+      <Text Id="__SingleUse_L34B" TypographyId="Iceland_45" Alignment="Left">
+        <Translation Language="GB">PWM &amp; ACEL</Translation>
+      </Text>
+      <Text Id="__SingleUse_OWDM" TypographyId="Iceland_200" Alignment="Left">
+        <Translation Language="GB">&lt;Digital_Read&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_ZJZS" TypographyId="Digital_Dream_25" Alignment="Center">
+        <Translation Language="GB">&lt;Analog_Read&gt;V</Translation>
+      </Text>
+      <Text Id="__SingleUse_4O85" TypographyId="Iceland_45" Alignment="Left">
+        <Translation Language="GB">Digital</Translation>
+      </Text>
+      <Text Id="__SingleUse_UGU9" TypographyId="Digital_Dream_25" Alignment="Left">
+        <Translation Language="GB">0.000</Translation>
+      </Text>
+      <Text Id="__SingleUse_CBA2" TypographyId="Iceland_200" Alignment="Left">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_HI0I" TypographyId="Small" Alignment="Left">
+        <Translation Language="GB">&lt;&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_03XU" TypographyId="Small" Alignment="Right">
+        <Translation Language="GB">&lt;&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_2HXG" TypographyId="Digital_Dream_25" Alignment="Left">
+        <Translation Language="GB">X:&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_W832" TypographyId="Digital_Dream_25" Alignment="Left">
+        <Translation Language="GB">-000.0</Translation>
+      </Text>
+      <Text Id="__SingleUse_04MJ" TypographyId="Digital_Dream_25" Alignment="Left">
+        <Translation Language="GB">Y:&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_K8BB" TypographyId="Digital_Dream_25" Alignment="Left">
+        <Translation Language="GB">-000.0</Translation>
+      </Text>
+      <Text Id="__SingleUse_IRJ9" TypographyId="Digital_Dream_25" Alignment="Left">
+        <Translation Language="GB">Z:&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_0FCQ" TypographyId="Digital_Dream_25" Alignment="Left">
+        <Translation Language="GB">-000.0</Translation>
+      </Text>
+      <Text Id="__SingleUse_D280" TypographyId="Default" Alignment="Left">
+        <Translation Language="GB">RED</Translation>
+      </Text>
+      <Text Id="__SingleUse_EDO2" TypographyId="Default" Alignment="Left">
+        <Translation Language="GB">GREEN</Translation>
+      </Text>
+      <Text Id="__SingleUse_M4NP" TypographyId="Large" Alignment="Left">
+        <Translation Language="GB">LED</Translation>
+      </Text>
+      <Text Id="__SingleUse_FCSO" TypographyId="Digital_Dream_25" Alignment="Left">
+        <Translation Language="GB">TILT</Translation>
+      </Text>
+      <Text Id="__SingleUse_7WWW" TypographyId="Iceland_45" Alignment="Left">
+        <Translation Language="GB">WiFi</Translation>
+      </Text>
+      <Text Id="__SingleUse_ROXM" TypographyId="Default" Alignment="Left">
+        <Translation Language="GB">SSID: IMR_TechDemo</Translation>
+      </Text>
+      <Text Id="__SingleUse_UMDW" TypographyId="Default" Alignment="Left">
+        <Translation Language="GB">PASS: Connext123</Translation>
+      </Text>
+      <Text Id="__SingleUse_A9J1" TypographyId="Default" Alignment="Left">
+        <Translation Language="GB">IPV4: 192.168.4.1</Translation>
+      </Text>
+      <Text Id="__SingleUse_283F" TypographyId="Default" Alignment="Left">
+        <Translation Language="GB">UPDATE</Translation>
+      </Text>
+      <Text Id="__SingleUse_KZQ5" TypographyId="Default" Alignment="Left">
+        <Translation Language="GB">1</Translation>
+      </Text>
+      <Text Id="__SingleUse_5TS1" TypographyId="Default" Alignment="Center">
+        <Translation Language="GB">2</Translation>
+      </Text>
+      <Text Id="__SingleUse_J3O5" TypographyId="Default" Alignment="Left">
+        <Translation Language="GB">CONNECTION:</Translation>
+      </Text>
+    </TextGroup>
+  </Texts>
+  <Typographies>
+    <Typography Id="Iceland_45" Font="Iceland-Regular.ttf" Size="45" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters="." WildcardCharacterRanges="0-9" IsVector="no" />
+    <Typography Id="Iceland_200" Font="Iceland-Regular.ttf" Size="200" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacterRanges="0-9,A-F" IsVector="no" />
+    <Typography Id="Digital_Dream_25" Font="digital-dream.fat-skew.ttf" Size="25" Bpp="4" Direction="LTR" FallbackCharacter="?" WildcardCharacters=".-" WildcardCharacterRanges="0-9," IsVector="no" />
+    <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" Direction="LTR" FallbackCharacter="?" WidgetWildcardCharacters="-., 0123456789" IsVector="no" />
+    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" Direction="LTR" FallbackCharacter="?" IsVector="no" />
+    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" Direction="LTR" FallbackCharacter="?" IsVector="no" />
+    <Typography Id="Digital_Dream_100" Font="digital-dream.fat-skew.ttf" Size="100" Bpp="4" Direction="LTR" FallbackCharacter="-" WildcardCharacterRanges="0-9,A-F" IsVector="no" />
+  </Typographies>
+</TextDatabase>

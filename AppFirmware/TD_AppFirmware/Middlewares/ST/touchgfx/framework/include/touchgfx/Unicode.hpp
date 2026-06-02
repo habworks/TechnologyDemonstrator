@@ -1,25 +1,22 @@
-/**
-  ******************************************************************************
-  * This file is part of the TouchGFX 4.16.0 distribution.
-  *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
-  *
-  ******************************************************************************
-  */
+/******************************************************************************
+* Copyright (c) 2018(-2024) STMicroelectronics.
+* All rights reserved.
+*
+* This file is part of the TouchGFX 4.24.2 distribution.
+*
+* This software is licensed under terms that can be found in the LICENSE file in
+* the root directory of this software component.
+* If no LICENSE file comes with this software, it is provided AS-IS.
+*
+*******************************************************************************/
 
 /**
  * @file touchgfx/Unicode.hpp
  *
  * Declares the touchgfx::Unicode class.
  */
-#ifndef UNICODE_HPP
-#define UNICODE_HPP
+#ifndef TOUCHGFX_UNICODE_HPP
+#define TOUCHGFX_UNICODE_HPP
 
 #include <stdarg.h>
 #include <touchgfx/hal/Types.hpp>
@@ -470,14 +467,13 @@ public:
     static uint16_t toUTF8(const UnicodeChar* unicode, uint8_t* utf8, uint16_t maxbytes);
 
 private:
-    static void composeString(const UnicodeChar*& bufptr, UnicodeChar sign, UnicodeChar formatChar, bool hasPrecision, bool zeroPrefix, int precision, bool hasWidth, int width, bool alignLeft, int& charNumber, uint16_t dstSize, UnicodeChar* dst);
+    static void composeString(const UnicodeChar*& bufptr, UnicodeChar numberSign, UnicodeChar formatChar, bool hasPrecision, bool zeroPrefix, int precision, bool hasWidth, int width, bool alignLeft, int& charNumber, uint16_t dstSize, UnicodeChar* dst);
 
-    static void parseFlagsAndPrecision(const UnicodeChar*& ucFormat, const char*& cFormat, UnicodeChar& sign, bool& alignLeft, bool& forceDecimalPoint, bool& zeroPrefix, bool& hasWidth, int& width, bool& hasPrecision, int& precision);
+    static void parseFlagsAndPrecision(const UnicodeChar*& ucFormat, const char*& cFormat, UnicodeChar& numberSign, bool& alignLeft, bool& forceDecimalPoint, bool& zeroPrefix, bool& hasWidth, int& width, bool& hasPrecision, int& precision);
 
-    static const UnicodeChar* skip_spaces(const UnicodeChar* str);
     static const UnicodeChar* skip_whitespace(const UnicodeChar* str);
 
-    FORCE_INLINE_FUNCTION static Unicode::UnicodeChar peekChar(const UnicodeChar* ucFormat, const char* cFormat);
+    FORCE_INLINE_FUNCTION static UnicodeChar peekChar(const UnicodeChar* ucFormat, const char* cFormat);
     FORCE_INLINE_FUNCTION static void nextChar(const UnicodeChar*& ucFormat, const char*& cFormat);
     static UnicodeChar* vsnprintf(UnicodeChar* dst, uint16_t dstSize, const UnicodeChar* ucFormat, const char* cFormat, va_list pArg);
     static UnicodeChar* snprintfFloats(UnicodeChar* dst, uint16_t dstSize, const UnicodeChar* ucFormat, const char* cFormat, const float* values);
@@ -485,4 +481,4 @@ private:
 
 } // namespace touchgfx
 
-#endif // UNICODE_HPP
+#endif // TOUCHGFX_UNICODE_HPP
