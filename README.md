@@ -1,19 +1,18 @@
 # Hab's Technology Demonstrator
 
 Developed as a sales tool to assist me in selling my design capabilites this is a catch-all project.  Based on an ARM Cortex M7 and the Touch GFX graphics library the project demonstrates my hardware and firmware design capabilites.  Devloped during the COVID lock-in I hope you enjoy, see the value, and invite me to work on your project:<br><br>
+
 Hardware:
 - ARM Cortex M7 uC
 - Grapical Touch Display 
 - SDRAM
-- ADC 
-- DAC
+- ADC & DAC
 - SMPS
 - Accelerometer
 - uSD
-- PWM
 - Battery Power and charging
+- I2C, SPI, USB, UART
  
-
 Firmware:
 - FreeRTOS + CMSIS
 - Grpahical User Interface
