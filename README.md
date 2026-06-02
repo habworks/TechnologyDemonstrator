@@ -1,7 +1,7 @@
 # Hab's Technology Demonstrator
 <img src="Documents/Images/PCBA_Top.png" width="25%">
 
-Developed as a sales tool to assist me in selling my design capabilites this is a catch-all project.  It includes a little of everything.  Based on an ARM Cortex M7 and the Touch GFX graphics library the project demonstrates my hardware and firmware design capabilites.  Devloped during the COVID lock-in I hope you enjoy it, see the value, and invite me to work on your project:<br><br>
+Developed as a sales tool to assist me in selling my design capabilites this is a catch-all project.  It includes a little of everything.  Based on an ARM Cortex M7 and the Touch GFX graphics library the project demonstrates my hardware and firmware design capabilites.  Devloped during the COVID lock-in I hope you enjoy it, see the value, and invite me to work on your project:<br>
 
 ## Quick Visual Links:
 See [Block Diagram](https://imrengineeringcom-my.sharepoint.com/:p:/g/personal/hab_collector_imrengineering_com/IQBJmAEbv2q8TZ0ApIJ88drxAbf0ilMzcAGDfjFYzenVswI?e=SNhDvY) from IMR Cloud<br>
