@@ -1,21 +1,26 @@
-# Arbitrary Power Booster
+# Hab's Technology Demonstrator
 
-Based on an ARM Cortex M7 two channel power amplication for driving heavy loads according to real world inputs.  Designed as a test equipment the device measures in True RMS with settable limits for power.  Features include:<br>
+Developed as a sales tool to assist me in selling my design capabilites this is a catch-all project.  Based on an ARM Cortex M7 and the Touch GFX graphics library the project demonstrates my hardware and firmware design capabilites.  Devloped during the COVID lock-in I hope you enjoy, see the value, and invite me to work on your project:<br>
 Hardware:
-- 25W continuous per channel  
-- Wide operating voltage -14V < Vo < +14V  
-- Precision Absolute Value Divider  
-- SSR Input Protection  
-- Selectable Input Impedance  
-- +/- Inrush Current Limiter  
+- ARM Cortex M7 uC
+- Grapical Touch Display 
+- SDRAM
+- ADC 
+- DAC
+- SMPS
+- Accelerometer
+- uSD
+- PWM
+- Battery Power and charging
+ 
 
 Firmware:
-- FreeRTOS OS  
+- FreeRTOS + CMSIS
+- Grpahical User Interface
 - UI Touch Interface 242x480  
-- True RMS  
-- PID output control  
-- Fault Tolerant  
-- Smart Cooling  
+- Custom Audio Playback
+- Custom Driver Development  
+ 
 
 Hardware and Firmware 100% designed by:<br>
 Hab Collector<br>
@@ -23,20 +28,20 @@ Principal Engineer<br>
 IMR Engineering, LLC<br>
 
 ## Quick Links to IMR Cloud:
-See [Video Demo](https://imrengineeringcom-my.sharepoint.com/:v:/g/personal/hab_collector_imrengineering_com/ETz-QbAvxjtEm_Lhyh-R2pUBUKSNs67Pcy3YFl8mtPB_mw?e=GsLUFl&referrer=Outlook.Win32&referrerScenario=email-linkwithoutembed) from IMR Cloud<br>
-See [User Manual & Technical Specification](https://imrengineeringcom-my.sharepoint.com/:b:/g/personal/hab_collector_imrengineering_com/EVBAl45Asp9Jv4Ho5CQpJLwBBzy_O8o_hFsLN9PBJ4WJYw?e=tqp03m) from IMR Cloud<br>
-See [Schematics PCB and BOM](https://imrengineeringcom-my.sharepoint.com/:b:/g/personal/hab_collector_imrengineering_com/EVWHgYOxN1xJqR7aqiF_OPgBgC4Y5v372JjiHFJdWcHM8w?e=K3NVE4) from IMR Cloud<br>
+See [Block Diagram](https://imrengineeringcom-my.sharepoint.com/:p:/g/personal/hab_collector_imrengineering_com/IQBJmAEbv2q8TZ0ApIJ88drxAbf0ilMzcAGDfjFYzenVswI?e=SNhDvY) from IMR Cloud<br>
+See [Schematics PCB and BOM](https://imrengineeringcom-my.sharepoint.com/:b:/g/personal/hab_collector_imrengineering_com/IQCkbXLIxkKmTaa8k9nujfb7AQS4M2PV1brDCnOEc579SEw?e=TcV1P0) from IMR Cloud<br>
 
 ## Project Folders:
 
 | Folder | Description |
 |-----------|-------------|
 | Demo | URL to demo - just use the link provided above|
-| Documents | UMTS, Images, and reference material|
-| Firmware/ArbPwrBooster_App| Application Firmware|
-| Hardware | Hardware Design in Circuit Studio: Schematics, PCB, BOM|
-| Simulate | Spice Modle Simulation (LT Spice)|
-| TestResults | Measured test results to support specification|
+| Documents | Block Diagram and misc|
+| AppFirmware/TD_AppFirmware| Application Firmware|
+| AppFirmware/ESP8266| WIFI Module|
+| Firmware| Test Firmware|
+| Hardware | Hardware Design in Altium: Schematics, PCB, Gerber|
+
 
 
 
